@@ -1,0 +1,95 @@
+/* eslint-disable no-unused-vars */
+import Http from '@Api/Api';
+import {Commissions} from '@core/actions';
+import fromState from '@selectors';
+import get from 'lodash/get';
+import store from './store';
+
+const {
+    updateCommissionForm,
+    clearCommissionForm,
+    deleteCommissionRequested,
+    submitCommissionRequested
+} = Commissions;
+
+describe('Commissions', () => {
+    let apiGetCall;
+    let apiPostCall;
+    let apiPutCall;
+    let apiDeleteCall;
+    let result;
+
+    beforeEach(() => {
+        result = {
+            json: () => ({data: {}}),
+            status: 200
+        };
+        apiGetCall = jest.spyOn(Http, 'get').mockReturnValue(result);
+        apiPostCall = jest.spyOn(Http, 'post').mockReturnValue(result);
+        apiPutCall = jest.spyOn(Http, 'put').mockReturnValue(result);
+        apiDeleteCall = jest.spyOn(Http, 'delete').mockReturnValue(result);
+    });
+
+    afterEach(() => {
+        Http.get.mockReset();
+        Http.post.mockReset();
+        Http.put.mockReset();
+        Http.delete.mockReset();
+        apiGetCall = null;
+        apiPostCall = null;
+        apiPutCall = null;
+        apiDeleteCall = null;
+    });
+
+    it('UPDATE_COMMISSION_FORM', () => {
+        const expectedValue = {
+            name: 'fake-value',
+            fakeValue: ''
+        };
+        store.dispatch(updateCommissionForm(expectedValue));
+        const form = fromState.Commissions.getForm()(store.getState());
+        expect(form).toEqual(expectedValue);
+    });
+
+    // it('SUBMIT_PORTAL_REQUESTED method post', () => {
+    //     store.dispatch(clearPortalForm());
+    //     const expectedValue = {values: "{name: 'fake-data'}"};
+    //     result.json = () => ({data: {message: 'ok'}});
+    //     result.status = 200;
+    //     store.dispatch(updatePortalForm({values: "{name: 'fake-data'}"}));
+    //     store.dispatch(submitPortalRequested());
+    //     const [[url, paramsSended]] = apiPostCall.mock.calls;
+    //     const putCall = apiPutCall.mock.calls;
+    //     expect(putCall).toEqual([]);
+    //     expect(paramsSended).toEqual(JSON.stringify(expectedValue));
+    //     expect(url).toEqual('portal');
+    // });
+
+    // it('CLEAR_PORTAL_FORM', () => {
+    //     const expectedValue = {
+    //         themingFields: [],
+    //         values: {}
+    //     };
+    //     store.dispatch(updatePortalForm({
+    //         key: 'values', value: 'fake-data'
+    //     }));
+    //     store.dispatch(updatePortalForm({
+    //         key: 'entity_id', value: 'fake-data'
+    //     }));
+    //     store.dispatch(updatePortalForm({
+    //         key: 'position', value: 'fake-data'
+    //     }));
+    //     store.dispatch(clearPortalForm());
+    //     const form = fromState.Portals.getForm(store.getState());
+    //     expect(form).toEqual(expectedValue);
+    // });
+
+    // it('DELETE_PORTAL_REQUESTED', () => {
+    //     result.json = () => ({data: {}});
+    //     store.dispatch(deletePortalRequested('1'));
+    //     const [[url, paramsSended]] = apiDeleteCall.mock.calls;
+
+    //     expect(paramsSended).toEqual(undefined);
+    //     expect(url).toEqual('portal/1');
+    // });
+});

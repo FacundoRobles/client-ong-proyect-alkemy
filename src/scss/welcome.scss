@@ -1,0 +1,23 @@
+.welcome {
+  background-color: var(--white);
+  height: 384px;
+  margin-top: 5px;
+  width: 1279px;
+}
+
+.quote {
+  color: var(--primary-hover);
+  font-size: resize(var(--size-26px));
+  font-weight: bold;
+  height: 105px;
+  line-height: 1.17;
+  padding: 140px 0 133px 143px;
+  text-align: left;
+  width: 490px;
+}
+
+.welcome-img {
+  height: 311.1px;
+  object-fit: contain;
+  width: 415px;
+}

@@ -1,0 +1,22 @@
+
+$vertical-nav-active-hover-border: 1px solid transparent !important;
+$vertical-nav-active-hover-background-color: var(--background-table) !important;
+$vertical-nav-active-hover-box-shadow: 0 3px 6px 0 var(--grey-rgba);
+$vertical-nav-active-hover-border-radius: 10px;
+
+$large-desktop: (min-width: 1360px);
+$tablet: (max-width: 849px);
+$mobile: (max-width: 425px);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 425px,
+  md: 849px,
+  lg: 1360px,
+  xl: 1760px
+);
+
+.container {
+  line-height: 12px !important;
+  padding: 0;
+}

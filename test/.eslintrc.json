@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "extends": "../.eslintrc-browser.json",
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "expect": "readonly",
+    "jest": "readonly",
+    "window": "readonly"
+  },
+  "rules": {
+    "lodash/import-scope": "off",
+    "promise/no-promise-in-callback": "off"
+  }
+}

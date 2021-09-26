@@ -1,30 +1,46 @@
-# Ong Client
+# Título del Proyecto: Cpq React Sys 
+## Proyecto en React con una arquitectura FLUX mediante el uso de redux. y redux-saga
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Gestos de paquetes: npm. 
 
-## Available Scripts
+# Desplegar proyecto.
+Clonar el repositorio, correr :
+npm ci
 
-In the project directory, you can run:
+# Para inicializar el proyecto en ambiente de Desarrollo 
+npm run dev o yarn dev 
 
-### `yarn start`
+# Para correrlo modo PRoduction
+cambiar el .env a production y correr npm start
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Ejecucion de Test:
+npm run test o yarn test
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# Estructura del proyecto
+El proyecto tiene como estructura,
+## src
+### core
+#### state
+##### Nuestras entidades con todo sus datos, sagas, reducers, actions, selectors y types
+### store // Archivo nucleo de nuestro reducers y actions
+### reducers Todos los reducers provienen del state / entidad
+### selectros, nuestro selectores provienen del state / entidad
+### actions nuestras actions nucleadas provienen del state / entidad
+### components
+#### Todos nuestros componentes
+### views
+#### Nuestras Main Components todos los containers y components conectados al store están aca
+### scss
+#### Nuestro estilos
+## tinymce
+### Libreria para que se usa para el texto enriquecido
 
-### `yarn test`
+Usage eslint config with git pre commit 
+Edit package.json > prepare script and run it once:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+npm set-script prepare "husky install"
+npm run prepare
+Add a hook:
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npx husky add .husky/pre-commit "npm test"
+git add .husky/pre-commit

@@ -1,0 +1,339 @@
+img:
+  emptyState: null
+  notFound: null
+  defaultLPImage: null
+es:
+  academicCalendar: Calendario Académico
+  accountConfig: Datos de cuenta
+  accountOwner: Dueño de la cuenta
+  accept: Aceptar
+  accessMenu:
+  actions: Acciones
+  active: Activo
+  active-description: Se registro correctamente. Válido para comisionar.
+  add: Añadir
+  advanced: Avanzada
+  address: Dirección
+  addresses: Direcciones
+  access: Accesos
+  amount: Importe
+  amountToCommission: Importe a Comisionar
+  apartment: Departamento
+  apiIntegration: Datos para la integración de nuestra API
+  apply: Aplicar
+  authorized: Autorizado
+  authorized-description: El pago esta autorizado. 
+  approved: Aprobado
+  approved-description: Lead aprobado para comisionar
+  areaCode: Código de area
+  askIt: Solicitar
+  back: Volver
+  backToGallery: Volver a la galería 
+  bibliography: Bibliografía
+  billingAddress: Código Postal
+  board: Tablero
+  breadcrumb:
+    home: Inicio
+  buttonNotFoundPage: Volver a la Home
+  businessName: Razón Social
+  cancelled: Cancelada
+  cancel: Cancelar
+  city: Ciudad
+  clear: Limpiar
+  change: Cambio
+  completed: Finished
+  chooseAnAction: Seleccione una acción
+  chooseFromGallery: Elija una imagen de la galería o suba una nueva.
+  chooseFile: Elegir archivo
+  classification: Clasificación
+  clearedrefunded: Liquidado Reembolsado
+  clearedrefunded-description: Liquidado y reembolsado.
+  certification: Certificación
+  colorPikerStylesApp: Defina el color para la variable
+  commercialAspectLegend: El precio debe estar indicando con decimales y sin coma. Al ingresar una moneda secundaria, podremos elegir si las mismas son variables o fijas con respecto a la moneda primaria. #Leyenda de Aspectos comerciales
+  commercialInfo: Información comercial
+  commercialName: Nombre Comercial
+  commissions: Comisiones
+  commissions-title: Mira a continuación el listado de compras realizadas por parte de los leads que nos has enviado y conoce el importe que te corresponde comisionar. Consulta la referencia en la sección inferior de esta página para conocer el significado de cada estado de la comisión.
+  conditionIva: Condicion ante el IVA
+  confirm: Confirme
+  confirmDeleteCourse: ¿Esta seguro que desea eliminar la cursada?
+  confirmDeleteProposal: ¿Esta seguro que desea eliminar la propuesta?
+  contact: Contacto
+  contentOfNested: El contenido del $$TEXT$$ aún está vació
+  content: Contenido
+  correlatively: Correlatividad
+  courses: Cursadas
+  country: País
+  countryCode: Código de país  
+  coverContainer:
+    title: Programa de afiliados
+    subtitle: Sumate a nuestra misión de hacerle llegar a más personas nuestros cursos, diplomados, expertos universitarios, carreras y seminarios de posgrado de dictado online. Contribuye a llevar la educación accesible y de calidad a todo el mundo.
+    items:
+    - type: section
+      title: En qué consiste nuestro programa de afiliados
+      item:
+      - Nosotros, el centro de e-Learning de la Universidad Tecnológica Nacional Regional BA, te ofrecemos un modelo simple, claro y transparente para que puedas hacer llegar a tu audiencia nuestra variada oferta de programas formativos y obtener un pago por la promoción.
+      - A traves de este portal podrás monitorear en tiempo real los resultados de tus campañas.
+    - type: list
+      title: A quienes está dirigido este programa
+      item:
+      - Portales y directorios de educación.
+      - Influencers, referentes temáticos, bloggers.
+      - Periodistas, prensa y medios de comunicación tradicionales.
+      - Empresas, asociaciones e instituciones en sectores en los que poseemos ofertas educativas afines.
+    - type: section
+      title: ¿Querés saber más?
+      item:
+      - Ponte en contacto con nosotros para conocer más sobre este programa.
+    buttonProps:
+      legend: Contáctenos
+      urlTo: marketing@centrodeelearning.com
+    image:
+      alt: Generic placeholder images
+      url: https://assets.stage.redtecnologica.org/public-api/files/c61e8112c9f0cdaa4cf77221e911b2d6/images
+  create: Crear
+  created: Fecha de vencimiento
+  createdAt: Fecha de Registro
+  createdDate: Fecha de Creación
+  createProposalWarning: Todos los Campos son Obligatorios Para Crear Una Propuesta Formativa
+  currency: Moneda
+  date: Fecha
+  dateError: La fecha de Inicio no puede ser mayor a la de fin.
+  dashboard: Tablero
+  dashboardLegend: Indicadores principales
+  delete: Eliminar
+  deleteRegister: ¿Desea Eliminar el Registro?
+  descriptionNotFoundPage: Lo sentimos, no podemos encontrar la página que solicitaste.
+  description: Descripcíon
+  defeated: Vencido
+  defeated-description: El registro expiró. No corresponde comisión por nuevo pago
+  defeatedDate: Fecha de vencimiento
+  detail: Detalle
+  discardChanges: ¿Desea descartar los cambios realizados?
+  direct_mapping: Mapeo Directo
+  domains: Dominios
+  domainText: Dominios desde donde se enviarán leads
+  download: Descargar Listado
+  downloadFile: Obtención de archivo exitoso, ya puede descargarla
+  draft: Borrador
+  duration: Duración
+  dueDate: Fecha de Vencimiento
+  edit: Editar
+  editContent: Editar contenido
+  educationalPrograms: Programas Educativos
+  educational-programs: Programas Educativos
+  educational-programs-title: Conoce a continuación el listado de programas educativos incluidos en el Programa de Afiliados. Utiliza los filtros para descubrir las ofertas nuevas y monitorear las actualizaciones.
+  end: Fin
+  endDate: Fecha Fin
+  ending: Final
+  email: E-Mail
+  emailAddress: Correo Electrónico
+  emailMarketingReferent: Email referente de marketing
+  emailToNotification: Email para notificaciones
+  emptyState: No se encontraron resultados relacionados a la búsqueda
+  error: Hubo un error al realizar la acción
+  evolutionOfBilling: Evolución de facturación en pesos
+  evolutionOfLeadsSended: Evolución de leads enviados
+  evolutionOfFees: Evolución de comisiones
+  extensionNumber: Extension
+  fax: Fax
+  filters: Filtros
+  finished: Completo
+  floor: Piso
+  forgotPassword: Olvide mi contraseña
+  formativeProposal: Propuesta Formativa
+  footerContent: Texto del footer
+  here: aquí
+  inactive: Inactivo
+  informationOf: Información de
+  inscription: Inscripción
+  insert: Ingrese
+  includeCommission: Comisiones Incluidas
+  image: Imagen
+  importToPage: Importe a Pagar
+  identification: Nro Documento
+  Inactive: Inactivo
+  in Progress: En Progreso
+  in-course: En Curso
+  insertDescription: Ingrese una Descripción
+  institutionName: Fundación Para El Progreso
+  integration: Integración
+  la: la
+  last: Ultimo
+  lastLiquidations: Ultimas liquidaciones
+  lastEducationalPrograms: Últimos programas educativos
+  leads: Leads
+  leads-title: Encuentra a continuación el listado de interesados que has enviado. Consulta la referencia en la sección inferior de esta página para conocer el significado de cada estado del lead.
+  leadsSended: Leads enviados últimos 3 meses
+  listOf: Lista de
+  liquidations: Liquidaciones
+  liquidated: Librado
+  liquidationDate: Fecha de Liquidación
+  liquidated-description: La comision ya fue incluida en una liquidación.
+  login: Ingresar 
+  loginTite: Ingreso al Sistema
+  loginLegendLink: ¿ Tenés algún inconveniente ? Comunicate a 
+  loginImage: Login Imagen
+  loginImageText: Imagen para la Pantalla de Login
+  loginForgetPassword: ¿Olvidaste tu Contraseña ?
+  logo: Logo
+  logout: Salir
+  location: Localidad
+  load: Cargar
+  loading: Cargando
+  loadMoreData: Desea cargar mas datos
+  loremIpsum: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s
+  medium: Media
+  messagesSuccessCreate: Registro Exitoso
+  messagesSuccessDelete: Registro Eliminado
+  messagesSuccessEdit: Registro Modificado
+  messagesNotEmptyName: Hay campos obligatorios vacíos
+  messagesWarningCreate: Existen Campos Obligatorios Vacíos
+  messagesWarningFormat: Formato Erróneo
+  messagesWarningField: La imagen principal es un Campo Obligatorio
+  messagesErrorConnection: Error de Conexión
+  messagesErrorAction: No se pudo realizar la acción
+  modificationOf: Modificación de
+  mobile: Celular
+  messagesWarningFormatWebp: Tu imagen debe ser formato Webp
+  months:
+    - ENE
+    - FEB
+    - MAR
+    - ABR
+    - MAY
+    - JUN
+    - JUL
+    - AGO
+    - SEP
+    - OCT
+    - NOV
+    - DIC
+  myProfile: Mi Perfil
+  myCompany: Fundación para el Progreso
+  name: Nombre
+  nameEmail: Nombre / Email
+  nameMarketingReferent: Nombre referente de marketing
+  nameOf: Nombre del
+  netAmount: Importe a Comisionar
+  next: Siguiente
+  nextSettlement: Proxima liquidación
+  new: Nuevo
+  not: No
+  not-completed: Incompleto
+  number: Numero
+  oauthMessageTokenExpired: El token expiró o no es valido, realiza de nuevo el proceso
+  oauthMessageChangePassSuccess: La contraseña se cambió exitosamente, ya puede iniciar sesión
+  oauthMessageChangePassError: No se pudo modificar las contraseñas, intente nuevamente
+  oauthMessageSendEmail: Te enviamos un email para que completes el proceso
+  oauthMessageNewPassword: Ingresa tu nueva contraseña
+  oauthUserActive: Usuario activado exitosamente
+  oauthSessionDataError: Datos de sesión mal ingresados
+  of: de
+  office: Oficina
+  page: Página
+  pages: Páginas
+  paymentDay: Fecha de Pago
+  pendingChanges: Hay cambios pendientes
+  pending: Pendiente
+  pendingLiquidation: Pendiente por liquidar
+  pending-description: La comision aún no fue incluida en una liquidación y esta pendiente.
+  password: Contraseña
+  passwordDifficulty: Nivel de dificultad de la contraseña
+  passwordRecovery: Recuperación de contraseña
+  passwordValidation: <ul><li>La contraseña debe contener al menos 1 una letra en minúscula</li><li>La contraseña debe contener al menos 1 una letra en mayúscula</li><li>La contraseña debe contener al menos 1 un numero</li><li>La contraseña debe contener al menos 1 un carácter special</li><li>La contraseña debe ser al menos de 6 dígitos</li></ul> # Password validation form password strength
+  person: Persona
+  personalInfo: Datos Personales
+  persons: Personas
+  phone: Teléfono
+  phoneNumber: Numero de teléfono
+  phones: Teléfonos
+  postalCode: Código postal
+  profileImage: Imagen de Perfil
+  preexistent: Preexistente
+  preexistent-description: Ya existe en nuestro sistema, por lo tanto no se crea la relacion agente/persona. No sujeto a comisión.
+  previous: Anterior
+  preview: Previsualización
+  profile: Perfil
+  program: Programa
+  price: Precio
+  processed: Procesado
+  processed-description: El pago ha sido procesado. 
+  recoveryPassword: Recuperar contraseña
+  references: Nombre y apellido / email
+  referents: Referentes
+  register: Registrar
+  registerDate: Fecha de Registro
+  registerOf: Registro de
+  referralPartner: Socio/a Referente
+  refunded: Reintegrada
+  refunded-description: Reintegrada.
+  refundinprogress: Reembolso en Curso
+  refundinprogress-description: Reembolso en Curso. 
+  reject: Rechazar
+  rejected: Vencido
+  rejected-description: El pago ha sido rechazado. 
+  relatedProducts: Productos relacionados
+  resources: Recursos
+  resultSetTitle: Resultados
+  returnToLis: Volver al listado
+  save: Guardar
+  saveAndContinue: Guardar y continuar
+  search: Búsqueda
+  saving: Guardando
+  state: Estado
+  searcher: Buscador
+  searcherPlaceHolder: Buscar por Texto
+  settlements: Liquidaciones
+  settlementsDate: Fecha de Liquidación
+  settlementdone: Liquidado
+  settlement-title: A continuación el listado de liquidaciones, con las comisiones incluidas y su correspondiente estado administrativo.
+  settlementdone-description: La comision ya fue incluida en una liquidación.
+  settlementsCommissions: Comisiones de la liquidación
+  selectContent: Seleccione el Contenido
+  selectedFile: Archivo Seleccionado
+  sessionStarted: Inicio de sesión correcto, redirigiendo al home
+  showPassword: Mostrar Contraseña
+  signOff: Cerrar Sesión
+  since: Desde
+  sortBy: Ordenar por
+  specific_goal: Objetivo Especifico
+  start: Inicio
+  StartEducationalPrograms: Fecha de publicación
+  startDate: Fecha inicio
+  startSession: Iniciar Sesión
+  status: Estado
+  statusCommissions: Estado de Las Comisiones
+  strong: Fuerte
+  static: Fijo
+  staticBlock: Bloques Estáticos
+  success: Acción realizada con éxito
+  successfullySave: Guardado con éxito
+  successPasswordRequested: Solicitud Enviada con éxito si se encuentra registrado en nuestra base de datos le va a llegar un email con las instrucciones por favor revise su casilla de correo # Confirmación de envió de contraseña
+  surname: Apellido
+  templates: Plantilla
+  text: Texto descriptivo
+  timeTo: Tiempo de
+  timeZoneText: Ingrese el uso horario de acuerdo a su locación
+  title: Titulo
+  titleNotFoundPage: Página no encontrada
+  to: Hasta
+  tokenValidationOnProgress: Por favor espere. Validando Token
+  tokenInvalid: El token es invalido o a vencido Solicite uno nuevo
+  toStartASyllabus: Para iniciar la construcción del $$TEXT$$ agregue un $$LEVEL$$
+  totalOfProgram: Total de Programas
+  transactions: Transacciones
+  transferData: Datos para la Transferencia
+  type: Tipo
+  typeOfIdentification: Tipo de Documento
+  upload: Subir
+  updateDate: Fecha de Actualización
+  user: Usuario
+  userInfo: ¿Desea Seguir Cargando Datos del Usuario?
+  underreview: Bajo Revisión
+  underreview-description: El pago esta siendo revisado por nuestro equipo.  
+  warning: Atención
+  week: Débil
+  workload: Carga Horaria
+  yes: Si
