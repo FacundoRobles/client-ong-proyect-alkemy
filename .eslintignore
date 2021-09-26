@@ -1,0 +1,5 @@
+docker/
+node_modules/**
+public/
+src/serviceWorker.js
+tinymce/**/*.js

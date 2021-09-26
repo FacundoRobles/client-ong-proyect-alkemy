@@ -1,0 +1,34 @@
+{
+  "plugins": [
+    "promise"
+  ],
+  "extends": "./.eslintrc-base.json",
+  "env": {
+    "browser": false,
+    "node": true
+  },
+  "rules": {
+    "promise/always-return": "error",
+    "promise/no-return-wrap": "error",
+    "promise/param-names": "error",
+    "promise/catch-or-return": "error",
+    "lodash/prop-shorthand": [
+      2,
+      "never"
+    ],
+    "lodash/matches-prop-shorthand": [
+      "error",
+      "never"
+    ],
+    "lodash/prefer-lodash-method": [
+      "error",
+      {
+        "ignoreMethods": [
+          "find"
+        ]
+      }
+    ],
+    "lodash/import-scope": [2, "method"],
+    "curly": "error"
+  }
+}

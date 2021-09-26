@@ -34,12 +34,12 @@ const requestToken = async () => {
 const publicPath = `${__dirname}/dist`;
 
 const logger = require('./server/helpers/logger');
-const routes = require('./server/routes');
+
 
 const app = express();
 const internalApp = express();
 
-routes(internalApp);
+
 app.use(internalApp);
 const startApp = () => app.listen(PORT, () => logger.info(`\nApp running on port ${PORT} in ${NODE_ENV} environment`));
 logger.info(`\nApp running on port ${PORT} in ${NODE_ENV} environment`)

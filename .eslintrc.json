@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": "./.eslintrc-node.json",
+  "globals": {
+    "fetch": "readonly",
+    "window": "readonly",
+    "document": "readonly",
+    "localStorage": "readonly",
+    "alert": "readonly"
+  },
+  "overrides": [{
+    "files": [ "src/**/*.js" ]
+  }]
+}

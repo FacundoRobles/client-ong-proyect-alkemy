@@ -1,0 +1,13 @@
+{
+    "extends": "stylelint-config-sass-guidelines",
+    "plugins": [
+        "stylelint-scss",
+        "stylelint-order"
+    ],
+    "rules": {
+        "selector-max-id" : 1,
+        "max-nesting-depth": 4,
+        "selector-max-compound-selectors": 4,
+        "selector-no-qualifying-type": [true, {"ignore": ["attribute", "class"]}]
+    }
+}
