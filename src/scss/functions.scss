@@ -10,14 +10,3 @@
   @return calc(#{$value} * var(--size-multiply));
 }
 
-// sass-lint:disable no-duplicate-properties
-@mixin font-size($size) {
-  font-size: $size;
-  font-size: rem($size);
-}
-
-@mixin variable($property, $variable, $fallback) {
-  #{$property}: $fallback;
-  #{$property}: var($variable);
-}
-// sass-lint:enable no-duplicate-properties
