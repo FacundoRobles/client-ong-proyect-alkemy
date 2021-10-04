@@ -17,6 +17,7 @@ const Router = () => {
                 <Container className="background">
                     <Switch>
                         <Route exact path={mainRoutes.home} component={Home}/>
+                        <Route exact path={mainRoutes.testimonial} component={Home}/>
                     </Switch>
                 </Container>
                 <Footer/>
