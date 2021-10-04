@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {useSelector} from 'react-redux';
 import {Container} from 'reactstrap';
 import {getRoutes} from '@utils';
 import Home from '@pages/Home';
@@ -10,8 +9,8 @@ import Footer from './footer';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Router = () => {
-    const isAuthenticate = useSelector(state => state.session.isAuthenticate);
-    if (!isAuthenticate) {
+    const inAuthenticate = false;
+    if (!inAuthenticate) {
         return (
             <>
                 <Header/>

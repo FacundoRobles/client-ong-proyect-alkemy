@@ -1,10 +1,2 @@
-export const ACCOUNT = 'account';
+export const HOME = '/';
 export const LOGIN = 'login';
-export const LOGIN_AGENT = 'login-agent';
-export const LEADS = 'ui-comp/leads';
-export const PAYMENTS = 'ui-comp/payments';
-export const REPORTING = 'reporting';
-export const SETTLEMENTS = 'ui-comp/payment-group';
-export const SESSION = 'session';
-export const USER_INTERFACE_COMPONENT = 'ui-comp';
-export const PUBLISHEDLPEOFFERS = 'ui-comp/published-lpe-offers';

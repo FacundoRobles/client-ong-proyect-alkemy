@@ -1,59 +1,37 @@
-/* global API, TOKEN, FormData */
+/* global API */
 import isString from 'lodash/isString';
 
-const getTokenApp = () => TOKEN;
+// RECORDAR QUE HAY LLAMADAS QUE NO REQUIREN EL TOKE DE USUARIO PORQUE SON PUBLICAS.
+
 const getTokenUser = () => {
     const token = localStorage.getItem('token_agent');
-
     if (token) {
         return `Bearer ${token}`;
     }
-
     return null;
 };
 
 export default class Api {
-    static get(URL, api = true) {
-        let url = API;
-
-        if (api) {
-            url += 'api/';
-        } else {
-            url += 'public-api/';
-        }
-
-        url += URL;
-
+    static get(URL) {
         return fetch(
-            url,
+            `${API}/${URL}`,
             {
                 headers: {
                     'Content-Type': ' application/json',
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
+                    Authorization: getTokenUser()
                 },
                 method: 'GET'
             }
         );
     }
 
-    static post(URL, params, api = true) {
-        let url = API;
-        if (api) {
-            url += 'api/';
-        } else {
-            url += 'public-api/';
-        }
-
-        url += URL;
-
+    static post(URL, params) {
         return fetch(
-            url,
+            `${API}/${URL}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
+                    Authorization: getTokenUser()
                 },
                 method: 'POST',
                 ...(params ? {
@@ -64,24 +42,13 @@ export default class Api {
         );
     }
 
-    static put(URL, body, api = true) {
-        let url = API;
-
-        if (api) {
-            url += 'api/';
-        } else {
-            url += 'public-api/';
-        }
-
-        url += URL;
-
+    static put(URL, body) {
         return fetch(
-            url,
+            `${API}/${URL}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
+                    Authorization: getTokenUser()
                 },
                 method: 'PUT',
                 body
@@ -89,91 +56,16 @@ export default class Api {
         );
     }
 
-    static delete(URL, body, api = true) {
-        let url = API;
-
-        if (api) {
-            url += 'api/';
-        } else {
-            url += 'public-api/';
-        }
-
-        url += URL;
-
+    static delete(URL, body) {
         return fetch(
-            url,
+            `${API}/${URL}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
+                    Authorization: getTokenUser()
                 },
                 method: 'DELETE',
                 body
-            }
-        );
-    }
-
-    static async postFile(URL, file, api = true) {
-        let url = API;
-
-        if (api) {
-            url += 'api/';
-        } else {
-            url += 'public-api/';
-        }
-
-        url += URL;
-
-        const data = new FormData();
-        // eslint-disable-next-line no-undef
-        append('file', file);
-        const response = await fetch(
-            url, {
-                method: 'POST',
-                body: data,
-                headers: {
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
-                }
-            }
-        );
-        return response;
-    }
-
-    static async getFile(URL, api = true) {
-        let url = API;
-
-        if (api) {
-            url += 'api/';
-        } else {
-            url += 'public-api/';
-        }
-
-        url += URL;
-        const response = await fetch(
-            url, {
-                method: 'GET',
-                headers: {
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
-                }
-            }
-        );
-        return response;
-    }
-
-    static localPost(uri, body) {
-        return fetch(
-            `/${uri}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser(),
-                    appToken: getTokenApp()
-                },
-                method: 'POST',
-                body: JSON.stringify(body)
             }
         );
     }
