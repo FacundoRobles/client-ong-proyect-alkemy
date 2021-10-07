@@ -1,5 +1,6 @@
 /* global API */
 import isString from 'lodash/isString';
+import axios from 'axios';
 
 // RECORDAR QUE HAY LLAMADAS QUE NO REQUIREN EL TOKE DE USUARIO PORQUE SON PUBLICAS.
 
@@ -12,40 +13,41 @@ const getTokenUser = () => {
 };
 
 export default class Api {
-    static get(URL) {
-        return fetch(
-            `${API}/${URL}`,
-            {
-                headers: {
-                    'Content-Type': ' application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'GET'
-            }
-        );
+    static async get(URL) {
+        const token = getTokenUser();
+        try {
+            return await axios.get(URL, {
+                headers: token ? {
+                    Authorization: token
+                } : {}
+            });
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            return console.log(err.message);
+        }
     }
 
-    static post(URL, params) {
-        return fetch(
-            `${API}/${URL}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'POST',
-                ...(params ? {
+    static async post(URL, params) {
+        const token = getTokenUser();
+        try {
+            return await axios.post(
+                `${API}/${URL}`, params ? {
                     body: isString(params) ? params : JSON.stringify(params)
-                } : {
-                })
-            }
-        );
+                } : {}, {
+                    headers: token ? {
+                        Authorization: token
+                    } : {}
+                }
+            );
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            return console.log(err.message);
+        }
     }
 
     static put(URL, body) {
         return fetch(
-            `${API}/${URL}`,
-            {
+            `${API}/${URL}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: getTokenUser()
@@ -58,8 +60,7 @@ export default class Api {
 
     static delete(URL, body) {
         return fetch(
-            `${API}/${URL}`,
-            {
+            `${API}/${URL}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: getTokenUser()
