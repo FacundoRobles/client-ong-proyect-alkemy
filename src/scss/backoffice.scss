@@ -1,0 +1,30 @@
+.--card-backoffice {
+  
+  box-shadow: 0.5px 3px 6px var(--warm-grey);
+
+  h6 {
+    color: var(--secondary);
+  }
+
+  p {
+    svg {
+      background-color: var(--background);
+      border-radius: 5em;
+    } 
+  }
+}
+
+.--button-card {
+  background-color: var(--button-background);
+  border-style: none;
+  font-size: 0.8rem;
+  outline: none;
+  padding-bottom: 0.3em !important;
+  padding-top: 0.2em !important;
+
+  a {
+    color: var(--white);
+    text-decoration: none !important;
+
+  }
+}
