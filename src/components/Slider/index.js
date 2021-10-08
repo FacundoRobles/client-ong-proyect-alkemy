@@ -7,7 +7,6 @@ import {
     CarouselIndicators,
     CarouselCaption
 } from 'reactstrap';
-import '../../scss/slider.scss';
 import PropTypes from 'prop-types';
 
 const Slider = ({items}) => {
