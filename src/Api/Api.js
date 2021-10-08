@@ -2,8 +2,6 @@
 import isString from 'lodash/isString';
 import axios from 'axios';
 
-// RECORDAR QUE HAY LLAMADAS QUE NO REQUIREN EL TOKE DE USUARIO PORQUE SON PUBLICAS.
-
 const getTokenUser = () => {
     const token = localStorage.getItem('token_agent');
     if (token) {
@@ -45,29 +43,35 @@ export default class Api {
         }
     }
 
-    static put(URL, body) {
-        return fetch(
-            `${API}/${URL}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'PUT',
-                body
-            }
-        );
+    static async put(URL, body) {
+        const token = getTokenUser();
+        try {
+            return await axios.put(
+                `${API}/${URL}`, body, {
+                    headers: token ? {
+                        Authorization: token
+                    } : {}
+                }
+            );
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            return console.log(err.message);
+        }
     }
 
-    static delete(URL, body) {
-        return fetch(
-            `${API}/${URL}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'DELETE',
-                body
-            }
-        );
+    static async delete(URL, body) {
+        const token = getTokenUser();
+        try {
+            return await axios.delete(
+                `${API}/${URL}`, body, {
+                    headers: token ? {
+                        Authorization: token
+                    } : {}
+                }
+            );
+        } catch (err) {
+            // eslint-disable-next-line no-console
+            return console.log(err.message);
+        }
     }
 }
