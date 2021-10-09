@@ -40,7 +40,7 @@ const Header = () => {
                     <Col className="p-0 m-0">
                         <Navbar light expand="md" className="pr-3 pr-lg-0 ml-0 pt-1">
                             <Col sm="6" md="2" className="p-0 m-0">
-                                <NavbarBrand href="/" className="mb-md-1 mx-lg-5">
+                                <NavbarBrand to="/" tag={RRNavLink} className="mb-md-1 mx-lg-5">
                                     <img
                                         width="120"
                                         height="50"

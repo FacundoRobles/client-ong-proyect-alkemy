@@ -5,7 +5,9 @@ const mainRoutes = {
     news: '/news',
     testimonial: '/testimonials',
     contact: '/contact',
-    contribute: '/contribute'
+    contribute: '/contribute',
+    login: '/login',
+    register: '/register'
 };
 
 export default {
