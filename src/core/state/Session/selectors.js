@@ -3,7 +3,6 @@ import {getRoutes} from '@utils';
 
 const mainRoutes = getRoutes('mainRoutes');
 
-// eslint-disable-next-line import/prefer-default-export
 export const isAuthenticate = state => get(state, 'session.isAuthenticate');
 
 export const getNavigationHeader = () => {
