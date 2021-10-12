@@ -45,7 +45,7 @@ const ModalLogin = ({
 );
 
 ModalLogin.propTypes = {
-    isOpen: PropTypes.element,
+    isOpen: PropTypes.bool,
     toggle: PropTypes.func,
     proceed: PropTypes.func,
     children: PropTypes.elementType,
@@ -56,10 +56,10 @@ ModalLogin.propTypes = {
 };
 
 ModalLogin.defaultProps = {
-    isOpen: '',
-    toggle: '',
-    proceed: '',
-    children: '',
+    isOpen: false,
+    toggle: null,
+    proceed: null,
+    children: null,
     title: 'Modal title',
     className: 'container-modal',
     buttonConfirm: '',

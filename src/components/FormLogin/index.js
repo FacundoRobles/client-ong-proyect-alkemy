@@ -1,71 +1,68 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Formik,
-    Form,
-    Field
-} from 'formik';
-
-import {
     Label,
     Col
 } from 'reactstrap';
 
 const FormLogin = ({
-    fields
+    Formik
 }) => (
     <>
-        <Formik
-            initialValues={{
-                email: fields.email,
-                password: fields.password
-            }}
-            validate={values => {
-                const errors = {};
-                if (!values.email) {
-                    errors.email = 'Email required';
-                } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                    errors.email = 'Invalid email address';
-                }
-                if (!values.password) {
-                    errors.password = 'Password required';
-                } else if (
-                    !/^[\s\S]{6,25}$/i.test(values.password)
-                ) {
-                    errors.password = 'Must contain at least 6 characters';
-                }
-                return errors;
-            }}
-        >
-            {({errors, touched}) => (
-                <Form className="form">
-                    <Col className="text-center">
-                        <Label className="text-justify">Email</Label>
-                    </Col>
-                    <Col className="text-center">
-                        <Field type="email" name="email"/>
-                        {errors.email && touched.email && <p>{errors.email}</p>}
-                    </Col>
-                    <Col className="text-center">
-                        <Label className="text-justify">Contraseña</Label>
-                    </Col>
-                    <Col className="text-center">
-                        <Field type="password" name="password"/>
-                        {errors.password && touched.password && <p>{errors.password}</p>}
-                    </Col>
-                </Form>
-            )}
-        </Formik>
+        <form className="form" onSubmit={Formik.handleSubmit}>
+            <Col className="text-center">
+                <Label className="text-justify">Email</Label>
+            </Col>
+            <Col className="text-center">
+                <input
+                    type="email"
+                    name="email"
+                    onChange={Formik.handleChange}
+                    onBlur={Formik.handleBlur}
+                    value={Formik.values.email}
+                />
+                {Formik.errors.email && Formik.touched.email && <p>{Formik.errors.email}</p>}
+            </Col>
+            <Col className="text-center">
+                <Label className="text-justify">Contraseña</Label>
+            </Col>
+            <Col className="text-center">
+                <input
+                    type="password"
+                    name="password"
+                    onChange={Formik.handleChange}
+                    onBlur={Formik.handleBlur}
+                    value={Formik.values.password}
+                />
+                {Formik.errors.password && Formik.touched.password && <p>{Formik.errors.password}</p>}
+            </Col>
+        </form>
     </>
 );
 
 FormLogin.propTypes = {
-    fields: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired
-    }).isRequired
+    Formik: PropTypes.shape({
+        errors: PropTypes.shape({
+            email: PropTypes.string,
+            password: PropTypes.string
+        }),
+        touched: PropTypes.shape({
+            email: PropTypes.bool,
+            password: PropTypes.bool
+        }),
+        handleChange: PropTypes.func.isRequired,
+        handleBlur: PropTypes.func.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        values: PropTypes.shape({
+            email: PropTypes.string,
+            password: PropTypes.string
+        }),
+        validate: PropTypes.func
+    })
+};
+
+FormLogin.defaultProps = {
+    Formik: {}
 };
 
 export default FormLogin;
