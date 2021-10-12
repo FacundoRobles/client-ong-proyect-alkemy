@@ -1,13 +1,17 @@
 const mainRoutes = {
     home: '/',
-    testimonial: '/testimonials',
-    category: '/categories',
+    organization: '/organizations',
+    activity: '/activities',
     news: '/news',
-    organization: '/organization',
+    testimonial: '/testimonials',
+    contact: '/contact',
+    contribute: '/contribute',
+    login: '/login',
+    register: '/register',
+    category: '/categories',
     slides: '/slides',
     user: '/users',
-    member: '/members',
-    activity: '/activities'
+    member: '/members'
 };
 
 export default {

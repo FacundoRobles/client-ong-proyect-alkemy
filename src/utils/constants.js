@@ -2,6 +2,7 @@ export const SUCCESS = 'success';
 export const ERROR = 'error';
 export const WARNING = 'warning';
 export const LOADING = 'loading';
+export const HOME = 'home';
 export const items = [
     {
         imageUrl: 'https://d25rq8gxcq0p71.cloudfront.net/dictionary-images/324/9bf35d23-933f-49dd-b754-fcb66d9375f3.jpg',
