@@ -1,3 +1,4 @@
+/* eslint-disable no-console  */
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {NavLink as RRNavLink} from 'react-router-dom';
@@ -16,6 +17,9 @@ import {
     Button
 } from 'reactstrap';
 import {getRoutes} from '@utils';
+import {useFormik} from 'formik';
+import ModalLogin from '@components/ModalLogin';
+import FormLogin from '@components/FormLogin';
 import logo from '../images/LOGO-HEADER.png';
 import {getNavigationHeader} from '../core/state/Session/selectors';
 import {HOME} from '../utils/constants';
@@ -23,11 +27,30 @@ import {HOME} from '../utils/constants';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Header = () => {
+    const [modal, setModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [routes, setRoutes] = useState(null);
     const [activeTab, setActiveTab] = useState(null);
     const toggle = () => setIsOpen(!isOpen);
     const state = useSelector(() => getNavigationHeader());
+    const validation = values => {
+        const errors = {};
+        if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = 'Invalid email address';
+        }
+        if (!values.password || !/^[\s\S]{6,25}$/i.test(values.password)) {
+            errors.password = 'Must contain at least 6 characters';
+        }
+        return errors;
+    };
+    const Formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validate: validation,
+        onSubmit: values => console.log(values)
+    });
 
     useEffect(() => {
         if (state) {
@@ -90,10 +113,19 @@ const Header = () => {
                                                     className="pr-lg-0 ml-md-2 ml-lg-5 pl-0 pl-md-2"
                                                     tag={RRNavLink}
                                                 >
-                                                    <Button outline color="primary" className="btn-login">
+                                                    <Button outline color="primary" onClick={() => setModal(!modal)} className="btn-login">
                                                         Log In
                                                     </Button>
-                                                    {' '}
+                                                    <ModalLogin
+                                                        isOpen={modal}
+                                                        toggle={() => setModal(!modal)}
+                                                        proceed={Formik.handleSubmit}
+                                                        title="Iniciar sesion"
+                                                        buttonConfirm="Entrar"
+                                                        buttonCancel="Cancelar"
+                                                    >
+                                                        <FormLogin Formik={Formik}/>
+                                                    </ModalLogin>
                                                 </NavLink>
                                             </NavItem>
                                             <NavItem>
