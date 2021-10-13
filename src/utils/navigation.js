@@ -7,7 +7,11 @@ const mainRoutes = {
     contact: '/contact',
     contribute: '/contribute',
     login: '/login',
-    register: '/register'
+    register: '/register',
+    category: '/categories',
+    slides: '/slides',
+    user: '/users',
+    member: '/members'
 };
 
 export default {

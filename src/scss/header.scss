@@ -1,46 +1,31 @@
 .btn-register {
-  background-color: #18a0fb !important;
-  border-radius: 7px !important;
+  background-color: var(--red-drive);
   border-style: none !important;
-  height: 40px;
-  width: 135px;
 }
 
 .btn-login {
-  background-color: #fff !important;
-  border: solid 2px #18a0fb !important;
-  border-radius: 7px !important;
-  color: #18a0fb !important;
-  height: 40px;
-  width: 135px;
+  background-color: var(--white);
 }
 
 .btn-register:hover {
-  background-color: #1980c5 !important;
-  border: solid 1px #18a0fb !important;
-  transition: all 0.6s;
+  background-color: var(--primary-hover);
 }
 
 .btn-login:hover {
-  background-color: #18a0fb !important;
-  border: solid 2px #1898ee !important;
-  color: #fff !important;
-  transition: all 0.4s;
+  background-color: var(--sky-drive);
 }
 
 .links {
-  color: #18a0fb !important;
+  color: var(--sky-drive) !important;
 }
 
-.links:hover {
+.links:hover ,
+.active {
   font-size: 1.02rem !important;
-  text-shadow: 1px 1px 5px #18a0fb96;
-  transition: 0.3s;
+  text-shadow: 1px 1px 5px var(--sky-drive);
 }
 
 .active {
-  color: #1877b6 !important;
-  font-size: 1.02rem !important;
+  color: var(--secondary) !important;
   font-weight: bold !important;
-  text-shadow: 1px 1px 5px #18a0fb96;
 }
