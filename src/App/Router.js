@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {Container} from 'reactstrap';
+import {useSelector} from 'react-redux';
 import {getRoutes} from '@utils';
 import Home from '@pages/Home';
-import jwt from 'jwt-decode';
 import Organization from '@pages/Organization';
 import Activity from '@pages/Activity';
 import News from '@pages/News';
@@ -12,16 +12,18 @@ import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import Login from '@pages/Login';
 import Register from '@pages/Register';
+import Session from '@selectors';
+import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
 
 const mainRoutes = getRoutes('mainRoutes');
 
 const Router = () => {
-    const token = localStorage.getItem('token_agent');
-    const roleId = token ? jwt(token).roleId : null;
-    if (!token) {
-        // Las rutas publicas
+    const isAuthenticate = useSelector(() => Session.isAuthenticate());
+    const userAgent = useSelector(() => Session.getUserAgent());
+    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
+    if (!isAuthenticate) {
         return (
             <>
                 <Header/>
@@ -43,7 +45,6 @@ const Router = () => {
         );
     }
     if (roleId === 1) {
-        // Rutas admin
         return (
             <>
                 <Switch>
@@ -53,7 +54,6 @@ const Router = () => {
         );
     }
     return (
-        // Rutas para usuario privado
         <>
             <Header/>
             <Container className="background">

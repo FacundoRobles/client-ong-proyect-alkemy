@@ -1,35 +1,65 @@
 /* eslint-disable no-console */
 import {
     all,
+    put,
     takeLatest
 } from 'redux-saga/effects';
-import {
-    getRoutes
-} from '@utils';
+
+import get from 'lodash/get';
 
 import {
-    LOGOUT,
+    AUTH,
+    LOGIN,
+    ME
+} from '@Api/Urls';
+
+import Api from '@Api/Api';
+
+import {
+    // LOGOUT,
+    FETCH_SESSION_REQUESTED,
     FETCH_LOGIN_REQUESTED
 } from './types';
 
-const mainRoutes = getRoutes('mainRoutes');
+import {
+    fetchLoginSucceeded
+} from './actions';
 
-function* fetchLogin() {
+function* fetchLogin(values) {
     try {
-        yield console.log(mainRoutes);
+        const responseLogin = yield Api.post(`${AUTH}/${LOGIN}`, values.payload);
+        const success = get(responseLogin, 'data.success');
+        if (success) {
+            const token = get(responseLogin, 'data.data');
+            localStorage.setItem('token_agent', token);
+            const dataUser = yield Api.get(`${AUTH}/${ME}`);
+            const userSuccess = get(dataUser, 'data.success');
+            if (userSuccess) {
+                const user = get(dataUser, 'data.data');
+                yield put(fetchLoginSucceeded(user));
+            }
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+function* verifyUser() {
+    try {
+        const responseUser = yield Api.get(`${AUTH}/${ME}`);
+        const success = get(responseUser, 'data.success');
+        if (success) {
+            const user = get(responseUser, 'data.data');
+            yield put(fetchLoginSucceeded(user));
+        }
     } catch (error) {
         console.log(error);
     }
 }
 
-function logout() {
-    localStorage.clear();
-    window.location = '/';
-}
-
 export default function* sessionSagas() {
     yield all([
         takeLatest(FETCH_LOGIN_REQUESTED, fetchLogin),
-        takeLatest(LOGOUT, logout)
+        takeLatest(FETCH_SESSION_REQUESTED, verifyUser)
     ]);
 }
