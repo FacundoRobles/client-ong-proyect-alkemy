@@ -1,0 +1,54 @@
+.link-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+  
+.link-list {
+  display: flex;
+  list-style-type: none;
+  width:173px;
+  height:24px;
+  top:120px;
+  left:80px;
+}
+
+.link-social{
+    display:flex;
+    list-style-type: none;
+}
+
+.fixed {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  width: 100%;
+}
+
+#img-logo{
+  width:207px;
+}
+
+.img-silueta{
+    width: 44px;
+    height:44px;
+    box-sizing: border-box;
+    margin-right: 5px;
+}
+
+.margin-bottom{
+    margin-bottom: 20px;
+}
+
+#rights-text{
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.container-link-social{
+    text-align: center;
+}
