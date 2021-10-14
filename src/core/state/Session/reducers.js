@@ -1,7 +1,5 @@
 import {
-    FETCH_LOGIN_REQUESTED,
     FETCH_LOGIN_SUCCEEDED,
-    FETCH_SESSION_REQUESTED,
     SET_REQUEST_FLAG
 } from './types';
 
@@ -22,12 +20,6 @@ const Session = (state = initialState, {type, ...props}) => {
                 flagRequest: props.flag
             };
         }
-        case FETCH_LOGIN_REQUESTED:
-            return {
-                ...state,
-                requestingSession: true,
-                flagRequest: true
-            };
         case FETCH_LOGIN_SUCCEEDED:
             return {
                 ...state,
@@ -35,13 +27,7 @@ const Session = (state = initialState, {type, ...props}) => {
                 user: {
                     userAgent: props
                 },
-                isAuthenticate: true,
-                flagRequest: false
-            };
-        case FETCH_SESSION_REQUESTED:
-            return {
-                ...state,
-                requestingSession: true
+                isAuthenticate: true
             };
         default:
             return state;
