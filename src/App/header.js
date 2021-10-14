@@ -1,6 +1,6 @@
 /* eslint-disable no-console  */
 import React, {useState, useEffect} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {NavLink as RRNavLink} from 'react-router-dom';
 import map from 'lodash/map';
 import {
@@ -18,6 +18,8 @@ import {
 } from 'reactstrap';
 import {getRoutes} from '@utils';
 import {useFormik} from 'formik';
+
+import {fetchLoginRequested} from '@core/state/Session/actions';
 import ModalLogin from '@components/ModalLogin';
 import FormLogin from '@components/FormLogin';
 import logo from '../images/LOGO-HEADER.png';
@@ -27,6 +29,7 @@ import {HOME} from '../utils/constants';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Header = () => {
+    const dispatch = useDispatch();
     const [modal, setModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [routes, setRoutes] = useState(null);
@@ -36,10 +39,10 @@ const Header = () => {
     const validation = values => {
         const errors = {};
         if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
+            errors.email = 'Direccion de Email invalido';
         }
         if (!values.password || !/^[\s\S]{6,25}$/i.test(values.password)) {
-            errors.password = 'Must contain at least 6 characters';
+            errors.password = 'Deberia de tener al menos 6 caracteres';
         }
         return errors;
     };
@@ -49,7 +52,10 @@ const Header = () => {
             password: ''
         },
         validate: validation,
-        onSubmit: values => console.log(values)
+        onSubmit: values => {
+            dispatch(fetchLoginRequested(values));
+            setModal(!modal);
+        }
     });
 
     useEffect(() => {
