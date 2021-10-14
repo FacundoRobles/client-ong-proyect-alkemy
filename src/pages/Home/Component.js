@@ -8,7 +8,6 @@ import {
     NavItem,
     NavLink
 } from 'reactstrap';
-import ModalLogin from '@components/ModalLogin';
 
 import map from 'lodash/map';
 
@@ -23,7 +22,6 @@ const Component = ({
     return (
         <>
             <h1>Hola home</h1>
-            <ModalLogin/>
             <Row style={{backgroundColor: '#f5f5f5'}}>
                 <Col md="3" className="mr-2">
                     <Row>

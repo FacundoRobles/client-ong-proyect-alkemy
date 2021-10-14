@@ -1,6 +1,9 @@
 /* global API */
+/* eslint-disable no-console */
 import isString from 'lodash/isString';
 import axios from 'axios';
+
+// const {API} = process.env;
 
 const getTokenUser = () => {
     const token = localStorage.getItem('token_agent');
@@ -14,32 +17,32 @@ export default class Api {
     static async get(URL) {
         const token = getTokenUser();
         try {
-            return await axios.get(URL, {
+            return await axios.get(`${API}/${URL}`, {
                 headers: token ? {
                     Authorization: token
                 } : {}
             });
         } catch (err) {
-            // eslint-disable-next-line no-console
             return console.log(err.message);
         }
     }
 
-    static async post(URL, params) {
+    static async post(URL, body) {
         const token = getTokenUser();
         try {
             return await axios.post(
-                `${API}/${URL}`, params ? {
-                    body: isString(params) ? params : JSON.stringify(params)
-                } : {}, {
+                `${API}/${URL}`, isString(body) ? body : JSON.stringify(body), {
+                    mode: 'cors',
                     headers: token ? {
                         Authorization: token
-                    } : {}
+                    } : {
+                        'Content-Type': 'application/json',
+                        Authorization: false
+                    }
                 }
             );
         } catch (err) {
-            // eslint-disable-next-line no-console
-            return console.log(err.message);
+            return err;
         }
     }
 
@@ -54,7 +57,6 @@ export default class Api {
                 }
             );
         } catch (err) {
-            // eslint-disable-next-line no-console
             return console.log(err.message);
         }
     }
@@ -70,7 +72,6 @@ export default class Api {
                 }
             );
         } catch (err) {
-            // eslint-disable-next-line no-console
             return console.log(err.message);
         }
     }
