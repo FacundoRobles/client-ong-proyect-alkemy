@@ -9,9 +9,9 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import {getRoutes} from '@utils';
 import get from 'lodash/get';
 
-const mainRoutes = getRoutes('mainRoutes');
-
 export const isAuthenticate = state => get(state, 'session.isAuthenticate');
+export const getRequestFlag = state => get(state, 'session.flagRequest');
+const mainRoutes = getRoutes('mainRoutes');
 
 export const getNavigationHeader = () => {
     const navigationHeader = [
