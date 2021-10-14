@@ -1,6 +1,6 @@
-import {fetchLoginRequested} from './state/Session/actions';
+import {fetchSessionRequested} from './state/Session/actions';
 
 export default store => {
-    store.dispatch(fetchLoginRequested());
+    store.dispatch(fetchSessionRequested());
     return store;
 };
