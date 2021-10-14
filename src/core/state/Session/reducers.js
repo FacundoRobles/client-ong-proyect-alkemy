@@ -25,7 +25,8 @@ const Session = (state = initialState, {type, ...props}) => {
         case FETCH_LOGIN_REQUESTED:
             return {
                 ...state,
-                requestingSession: true
+                requestingSession: true,
+                flagRequest: true
             };
         case FETCH_LOGIN_SUCCEEDED:
             return {
@@ -34,7 +35,8 @@ const Session = (state = initialState, {type, ...props}) => {
                 user: {
                     userAgent: props
                 },
-                isAuthenticate: true
+                isAuthenticate: true,
+                flagRequest: false
             };
         case FETCH_SESSION_REQUESTED:
             return {
