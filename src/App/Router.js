@@ -10,8 +10,6 @@ import News from '@pages/News';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
-import Login from '@pages/Login';
-import Register from '@pages/Register';
 import Header from './header';
 import Footer from './footer';
 
@@ -44,8 +42,6 @@ const Router = () => {
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
-                            <Route exact path={mainRoutes.login} component={Login}/>
-                            <Route exact path={mainRoutes.register} component={Register}/>
                         </Switch>
                     </motion.div>
                 </Container>
