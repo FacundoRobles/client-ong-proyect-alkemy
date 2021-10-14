@@ -1,7 +1,9 @@
 /* global API */
+/* eslint-disable no-console */
 import isString from 'lodash/isString';
+import axios from 'axios';
 
-// RECORDAR QUE HAY LLAMADAS QUE NO REQUIREN EL TOKE DE USUARIO PORQUE SON PUBLICAS.
+// const {API} = process.env;
 
 const getTokenUser = () => {
     const token = localStorage.getItem('token_agent');
@@ -12,61 +14,65 @@ const getTokenUser = () => {
 };
 
 export default class Api {
-    static get(URL) {
-        return fetch(
-            `${API}/${URL}`,
-            {
-                headers: {
-                    'Content-Type': ' application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'GET'
-            }
-        );
+    static async get(URL) {
+        const token = getTokenUser();
+        try {
+            return await axios.get(`${API}/${URL}`, {
+                headers: token ? {
+                    Authorization: token
+                } : {}
+            });
+        } catch (err) {
+            return console.log(err.message);
+        }
     }
 
-    static post(URL, params) {
-        return fetch(
-            `${API}/${URL}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'POST',
-                ...(params ? {
-                    body: isString(params) ? params : JSON.stringify(params)
-                } : {
-                })
-            }
-        );
+    static async post(URL, body) {
+        const token = getTokenUser();
+        try {
+            return await axios.post(
+                `${API}/${URL}`, isString(body) ? body : JSON.stringify(body), {
+                    mode: 'cors',
+                    headers: token ? {
+                        Authorization: token
+                    } : {
+                        'Content-Type': 'application/json',
+                        Authorization: false
+                    }
+                }
+            );
+        } catch (err) {
+            return err;
+        }
     }
 
-    static put(URL, body) {
-        return fetch(
-            `${API}/${URL}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'PUT',
-                body
-            }
-        );
+    static async put(URL, body) {
+        const token = getTokenUser();
+        try {
+            return await axios.put(
+                `${API}/${URL}`, body, {
+                    headers: token ? {
+                        Authorization: token
+                    } : {}
+                }
+            );
+        } catch (err) {
+            return console.log(err.message);
+        }
     }
 
-    static delete(URL, body) {
-        return fetch(
-            `${API}/${URL}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: getTokenUser()
-                },
-                method: 'DELETE',
-                body
-            }
-        );
+    static async delete(URL, body) {
+        const token = getTokenUser();
+        try {
+            return await axios.delete(
+                `${API}/${URL}`, body, {
+                    headers: token ? {
+                        Authorization: token
+                    } : {}
+                }
+            );
+        } catch (err) {
+            return console.log(err.message);
+        }
     }
 }

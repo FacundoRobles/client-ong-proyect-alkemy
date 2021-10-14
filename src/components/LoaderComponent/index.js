@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react';
 import Loader from 'react-loader-spinner';
 import {useSelector} from 'react-redux';
