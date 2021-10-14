@@ -1,15 +1,22 @@
+import {SET_REQUEST_FLAG} from './types';
+
 const initialState = {
     requestingSession: true,
     user: {
         userAgent: {}
     },
     isAuthenticate: false,
-    reCaptcha: {}
+    flagRequest: false
 };
 
-// eslint-disable-next-line no-unused-vars
 const Session = (state = initialState, {type, ...props}) => {
     switch (type) {
+        case SET_REQUEST_FLAG: {
+            return {
+                ...state,
+                flagRequest: props.flag
+            };
+        }
         default:
             return state;
     }
