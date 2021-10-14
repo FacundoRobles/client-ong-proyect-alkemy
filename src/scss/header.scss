@@ -1,0 +1,31 @@
+.btn-register {
+  background-color: var(--red-drive);
+  border-style: none !important;
+}
+
+.btn-login {
+  background-color: var(--white);
+}
+
+.btn-register:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-login:hover {
+  background-color: var(--sky-drive);
+}
+
+.links {
+  color: var(--sky-drive) !important;
+}
+
+.links:hover ,
+.active {
+  font-size: 1.02rem !important;
+  text-shadow: 1px 1px 5px var(--sky-drive);
+}
+
+.active {
+  color: var(--secondary) !important;
+  font-weight: bold !important;
+}

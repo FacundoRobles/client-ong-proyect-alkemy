@@ -1,17 +1,16 @@
-import constant from 'lodash/constant';
-
 import {
-    FETCH_SESSION_REQUESTED,
-    FETCH_SESSION_SUCCEEDED,
-    SET_REQUEST_FLAG
+    SET_REQUEST_FLAG,
+    FETCH_LOGIN_REQUESTED,
+    FETCH_LOGIN_SUCCEEDED
 } from './types';
 
-export const fetchSessionRequested = constant({
-    type: FETCH_SESSION_REQUESTED
+export const fetchLoginRequested = values => ({
+    type: FETCH_LOGIN_REQUESTED,
+    payload: values
 });
 
-export const fetchSessionSucceeded = props => ({
-    type: FETCH_SESSION_SUCCEEDED,
+export const fetchLoginSucceeded = props => ({
+    type: FETCH_LOGIN_SUCCEEDED,
     ...props
 });
 
