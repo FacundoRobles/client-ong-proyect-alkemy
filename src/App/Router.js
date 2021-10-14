@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {Container} from 'reactstrap';
+import {useSelector} from 'react-redux';
 import {getRoutes} from '@utils';
 import Home from '@pages/Home';
 import Organization from '@pages/Organization';
@@ -11,14 +12,18 @@ import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import Login from '@pages/Login';
 import Register from '@pages/Register';
+import Session from '@selectors';
+import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
 
 const mainRoutes = getRoutes('mainRoutes');
 
 const Router = () => {
-    const inAuthenticate = false;
-    if (!inAuthenticate) {
+    const isAuthenticate = useSelector(() => Session.isAuthenticate());
+    const userAgent = useSelector(() => Session.getUserAgent());
+    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
+    if (!isAuthenticate) {
         return (
             <>
                 <Header/>
@@ -39,12 +44,25 @@ const Router = () => {
             </>
         );
     }
-
+    if (roleId === 1) {
+        return (
+            <>
+                <Switch>
+                    <Route exact path={mainRoutes.home} key="activePerson" component={Home}/>
+                </Switch>
+            </>
+        );
+    }
     return (
         <>
-            <Switch>
-                <Route exact path={mainRoutes.home} key="activePerson" component={Home}/>
-            </Switch>
+            <Header/>
+            <Container className="background">
+                <Switch>
+                    <Route exact path={mainRoutes.home} component={Home}/>
+                    <Route exact path={mainRoutes.testimonial} component={Home}/>
+                </Switch>
+            </Container>
+            <Footer/>
         </>
     );
 };
