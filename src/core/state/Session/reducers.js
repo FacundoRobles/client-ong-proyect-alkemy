@@ -1,7 +1,8 @@
 import {
     FETCH_LOGIN_REQUESTED,
     FETCH_LOGIN_SUCCEEDED,
-    FETCH_SESSION_REQUESTED
+    FETCH_SESSION_REQUESTED,
+    SET_REQUEST_FLAG
 } from './types';
 
 const initialState = {
@@ -10,12 +11,17 @@ const initialState = {
         userAgent: {}
     },
     isAuthenticate: false,
-    reCaptcha: {}
+    flagRequest: false
 };
 
-// eslint-disable-next-line no-unused-vars
 const Session = (state = initialState, {type, ...props}) => {
     switch (type) {
+        case SET_REQUEST_FLAG: {
+            return {
+                ...state,
+                flagRequest: props.flag
+            };
+        }
         case FETCH_LOGIN_REQUESTED:
             return {
                 ...state,
