@@ -9,7 +9,9 @@ const mainRoutes = {
     category: '/categories',
     slides: '/slides',
     user: '/users',
-    member: '/members'
+    member: '/members',
+    us: '/us',
+    novelty: '/novelties'
 };
 
 export default {

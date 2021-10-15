@@ -3,6 +3,8 @@ import {Route, Switch, useLocation} from 'react-router-dom';
 import {Container} from 'reactstrap';
 import {getRoutes} from '@utils';
 import {motion} from 'framer-motion';
+import {useSelector} from 'react-redux';
+import fromState from '@selectors';
 import Home from '@pages/Home';
 import Organization from '@pages/Organization';
 import Activity from '@pages/Activity';
@@ -10,6 +12,7 @@ import News from '@pages/News';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
+import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
 
@@ -22,8 +25,10 @@ const Router = () => {
         visible: {opacity: 1},
         hidden: {opacity: 0}
     };
-    const inAuthenticate = false;
-    if (!inAuthenticate) {
+    const isAuthenticate = useSelector(fromState.Session.isAuthenticate);
+    const userAgent = useSelector(fromState.Session.getUserAgent);
+    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
+    if (!isAuthenticate) {
         return (
             <>
                 <Header/>
@@ -46,6 +51,15 @@ const Router = () => {
                     </motion.div>
                 </Container>
                 <Footer/>
+            </>
+        );
+    }
+    if (roleId === 1) {
+        return (
+            <>
+                <Switch>
+                    <Route exact path={mainRoutes.home} key="activePerson" component={Home}/>
+                </Switch>
             </>
         );
     }
