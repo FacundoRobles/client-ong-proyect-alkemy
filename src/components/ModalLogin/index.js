@@ -48,7 +48,7 @@ ModalLogin.propTypes = {
     isOpen: PropTypes.bool,
     toggle: PropTypes.func,
     proceed: PropTypes.func,
-    children: PropTypes.elementType,
+    children: PropTypes.node,
     title: PropTypes.string,
     className: PropTypes.string,
     buttonConfirm: PropTypes.string,
