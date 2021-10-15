@@ -22,11 +22,13 @@ import {
 } from './types';
 
 import {
-    fetchLoginSucceeded
+    fetchLoginSucceeded,
+    setRequestFlag
 } from './actions';
 
 function* fetchLogin(values) {
     try {
+        yield put(setRequestFlag({flag: true}));
         const responseLogin = yield Api.post(`${AUTH}/${LOGIN}`, values.payload);
         const success = get(responseLogin, 'data.success');
         if (success) {
@@ -41,6 +43,8 @@ function* fetchLogin(values) {
         }
     } catch (err) {
         console.log(err);
+    } finally {
+        yield put(setRequestFlag({flag: false}));
     }
 }
 

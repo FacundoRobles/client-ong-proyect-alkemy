@@ -1,6 +1,6 @@
 import React from 'react';
 import {HashRouter} from 'react-router-dom';
-
+import {AnimatePresence} from 'framer-motion';
 import Router from './Router';
 import ErrorBoundary from './ErrorBoundary';
 import LoaderComponent from '../components/LoaderComponent';
@@ -9,7 +9,9 @@ const App = () => (
     <HashRouter>
         <ErrorBoundary>
             <LoaderComponent/>
-            <Router/>
+            <AnimatePresence exitBeforeEnter>
+                <Router/>
+            </AnimatePresence>
         </ErrorBoundary>
     </HashRouter>
 );
