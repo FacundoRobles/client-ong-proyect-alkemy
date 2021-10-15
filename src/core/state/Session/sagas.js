@@ -27,12 +27,9 @@ import {
 
 import {
     fetchLoginSucceeded,
-    setRequestFlag
-} from './actions';
-
-import {
+    setRequestFlag,
     setSystemMessage
-} from '../Alert/actions';
+} from './actions';
 
 function* fetchLogin(values) {
     try {
