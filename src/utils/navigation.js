@@ -6,12 +6,12 @@ const mainRoutes = {
     testimonial: '/testimonials',
     contact: '/contact',
     contribute: '/contribute',
-    login: '/login',
-    register: '/register',
     category: '/categories',
     slides: '/slides',
     user: '/users',
-    member: '/members'
+    member: '/members',
+    us: '/us',
+    novelty: '/novelties'
 };
 
 export default {

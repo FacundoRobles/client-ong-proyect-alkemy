@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, connect, useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useSelector, connect, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import {NavLink as RRNavLink} from 'react-router-dom';
 import map from 'lodash/map';
 import {
     Collapse,
@@ -16,16 +16,16 @@ import {
     Col,
     Button
 } from 'reactstrap';
-import { getRoutes } from '@utils';
-import { useFormik } from 'formik';
-import { getNavigationHeader } from '@core/state/Session/selectors';
-import { fetchLoginRequested, fetchSessionLogout } from '@core/state/Session/actions';
-import { submitUserRequested } from '@core/state/User/actions';
+import {getRoutes} from '@utils';
+import {useFormik} from 'formik';
+import {getNavigationHeader} from '@core/state/Session/selectors';
+import {fetchLoginRequested, fetchSessionLogout} from '@core/state/Session/actions';
+import {submitUserRequested} from '@core/state/User/actions';
 import ModalLogin from '@components/ModalLogin';
 import FormLogin from '@components/FormLogin';
 import fromState from '@core/selectors';
 import logo from '../images/LOGO-HEADER.png';
-import { HOME } from '../utils/constants';
+import {HOME} from '../utils/constants';
 import RegisterForm from '../components/RegisterForm';
 
 const mainRoutes = getRoutes('mainRoutes');
@@ -44,8 +44,6 @@ const Header = ({
     const toggle = () => setIsOpen(!isOpen);
     const state = useSelector(() => getNavigationHeader());
     const token = localStorage.getItem('token_agent');
-    const userAgent = useSelector(fromState.Session.getUserAgent);
-    console.log(userAgent);
     const logout = () => {
         dispatch(fetchSessionLogout());
     };
@@ -124,7 +122,7 @@ const Header = ({
                                     />
                                 </NavbarBrand>
                             </Col>
-                            <NavbarToggler onClick={toggle} />
+                            <NavbarToggler onClick={toggle}/>
                             <Collapse className="d-md-flex justify-content-lg-between" isOpen={isOpen} navbar>
                                 <Col
                                     sm="8"
@@ -138,7 +136,7 @@ const Header = ({
                                                     <NavLink
                                                         className={
                                                             activeTab
-                                                                === route.name
+                                                                  === route.name
                                                                 ? 'active links p-1 ml-md-1 ml-lg-4 ml-xl-5 '
                                                                 : 'links p-1 ml-md-1 ml-lg-4 ml-xl-5'
                                                         }
@@ -158,7 +156,12 @@ const Header = ({
                                             ? (
                                                 <>
                                                     <NavItem>
-                                                        <Button outline color="primary" onClick={() => setModalLogin(!modalLogin)} className={btnLogin}>
+                                                        <Button
+                                                            outline
+                                                            color="primary"
+                                                            onClick={() => setModalLogin(!modalLogin)}
+                                                            className={btnLogin}
+                                                        >
                                                             Log In
                                                         </Button>
                                                         <ModalLogin
@@ -169,11 +172,15 @@ const Header = ({
                                                             buttonConfirm="Entrar"
                                                             buttonCancel="Cancelar"
                                                         >
-                                                            <FormLogin key="LoginForm" fields={loginFields} Formik={FormikLogin} />
+                                                            <FormLogin key="LoginForm" fields={loginFields} Formik={FormikLogin}/>
                                                         </ModalLogin>
                                                     </NavItem>
                                                     <NavItem>
-                                                        <Button color="danger" onClick={() => setModalRegister(!modalRegister)} className={btnRegister}>
+                                                        <Button
+                                                            color="danger"
+                                                            onClick={() => setModalRegister(!modalRegister)}
+                                                            className={btnRegister}
+                                                        >
                                                             Registrate
                                                         </Button>
                                                         <ModalLogin
@@ -184,7 +191,7 @@ const Header = ({
                                                             buttonConfirm="Registrar"
                                                             buttonCancel="Cancelar"
                                                         >
-                                                            <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister} />
+                                                            <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
                                                         </ModalLogin>
                                                     </NavItem>
                                                 </>
