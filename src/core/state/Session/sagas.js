@@ -11,12 +11,13 @@ import {
     AUTH,
     LOGIN,
     ME
+
 } from '@Api/Urls';
 
 import Api from '@Api/Api';
 
 import {
-    // LOGOUT,
+    LOGOUT,
     FETCH_SESSION_REQUESTED,
     FETCH_LOGIN_REQUESTED
 } from './types';
@@ -33,7 +34,10 @@ function* fetchLogin(values) {
         const success = get(responseLogin, 'data.success');
         if (success) {
             const token = get(responseLogin, 'data.data');
-            localStorage.setItem('token_agent', token);
+            const storage = localStorage.getItem('token_agent');
+            if (!storage) {
+                localStorage.setItem('token_agent', token);
+            }
             const dataUser = yield Api.get(`${AUTH}/${ME}`);
             const userSuccess = get(dataUser, 'data.success');
             if (userSuccess) {
@@ -61,9 +65,15 @@ function* verifyUser() {
     }
 }
 
+function* logout() {
+    yield localStorage.removeItem('token_agent');
+    yield window.location.reload();
+}
+
 export default function* sessionSagas() {
     yield all([
         takeLatest(FETCH_LOGIN_REQUESTED, fetchLogin),
-        takeLatest(FETCH_SESSION_REQUESTED, verifyUser)
+        takeLatest(FETCH_SESSION_REQUESTED, verifyUser),
+        takeLatest(LOGOUT, logout)
     ]);
 }
