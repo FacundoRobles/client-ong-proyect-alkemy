@@ -5,10 +5,6 @@ const initialState = {
         email: '',
         password: ''
     },
-    loginForm: {
-        email: '',
-        password: ''
-    },
     registerFields: [
         {
             label: 'Nombre',
@@ -24,22 +20,6 @@ const initialState = {
             id: 'lastName',
             name: 'lastName'
         },
-        {
-            label: 'Email',
-            placeholder: 'Email',
-            type: 'email',
-            id: 'email',
-            name: 'email'
-        },
-        {
-            label: 'Contraseña',
-            placeholder: 'Contraseña',
-            type: 'password',
-            id: 'password',
-            name: 'password'
-        }
-    ],
-    loginFields: [
         {
             label: 'Email',
             placeholder: 'Email',

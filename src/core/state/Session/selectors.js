@@ -92,3 +92,26 @@ export const menuOffice = () => {
 
     return menu;
 };
+
+export const getLoginInit = () => ({
+    form: {
+        email: '',
+        password: ''
+    },
+    fields: [
+        {
+            label: 'Email',
+            placeholder: 'Email',
+            type: 'email',
+            id: 'email',
+            name: 'email'
+        },
+        {
+            label: 'Contraseña',
+            placeholder: 'Contraseña',
+            type: 'password',
+            id: 'password',
+            name: 'password'
+        }
+    ],
+});
