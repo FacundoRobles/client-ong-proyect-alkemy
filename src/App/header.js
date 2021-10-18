@@ -19,7 +19,7 @@ import {
 import {getRoutes} from '@utils';
 import {useFormik} from 'formik';
 import {getNavigationHeader} from '@core/state/Session/selectors';
-import {fetchLoginRequested} from '@core/state/Session/actions';
+import {fetchLoginRequested, fetchSessionLogout} from '@core/state/Session/actions';
 import {submitUserRequested} from '@core/state/User/actions';
 import ModalLogin from '@components/ModalLogin';
 import FormLogin from '@components/FormLogin';
@@ -43,6 +43,10 @@ const Header = ({
     const [activeTab, setActiveTab] = useState(null);
     const toggle = () => setIsOpen(!isOpen);
     const state = useSelector(() => getNavigationHeader());
+    const token = localStorage.getItem('token_agent');
+    const logout = () => {
+        dispatch(fetchSessionLogout());
+    };
     const validateLoginForm = values => {
         const errors = {};
         if (!values.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
@@ -101,7 +105,7 @@ const Header = ({
         // eslint-disable-next-line
         setActiveTab(location.hash.slice(2) === '' ? HOME : location.hash.slice(2));
         // eslint-disable-next-line
-    },[location.hash]);
+    }, [location.hash]);
     return (
         <header className="bg mb-2">
             <Container fluid className="p-0 m-0">
@@ -148,36 +152,57 @@ const Header = ({
                                 </Col>
                                 <Col md="auto" xl="3" className="px-0">
                                     <Nav className="d-block d-md-flex align-items-center justify-content-md-end p-0">
-                                        <NavItem>
-                                            <Button outline color="primary" onClick={() => setModalLogin(!modalLogin)} className={btnLogin}>
-                                                Log In
-                                            </Button>
-                                            <ModalLogin
-                                                isOpen={modalLogin}
-                                                toggle={() => setModalLogin(!modalLogin)}
-                                                proceed={FormikLogin.handleSubmit}
-                                                title="Iniciar sesion"
-                                                buttonConfirm="Entrar"
-                                                buttonCancel="Cancelar"
-                                            >
-                                                <FormLogin key="LoginForm" fields={loginFields} Formik={FormikLogin}/>
-                                            </ModalLogin>
-                                        </NavItem>
-                                        <NavItem>
-                                            <Button color="danger" onClick={() => setModalRegister(!modalRegister)} className={btnRegister}>
-                                                Registrate
-                                            </Button>
-                                            <ModalLogin
-                                                isOpen={modalRegister}
-                                                toggle={() => setModalRegister(!modalRegister)}
-                                                proceed={FormikRegister.handleSubmit}
-                                                title="Registrate"
-                                                buttonConfirm="Registrar"
-                                                buttonCancel="Cancelar"
-                                            >
-                                                <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
-                                            </ModalLogin>
-                                        </NavItem>
+                                        {!token
+                                            ? (
+                                                <>
+                                                    <NavItem>
+                                                        <Button
+                                                            outline
+                                                            color="primary"
+                                                            onClick={() => setModalLogin(!modalLogin)}
+                                                            className={btnLogin}
+                                                        >
+                                                            Log In
+                                                        </Button>
+                                                        <ModalLogin
+                                                            isOpen={modalLogin}
+                                                            toggle={() => setModalLogin(!modalLogin)}
+                                                            proceed={FormikLogin.handleSubmit}
+                                                            title="Iniciar sesion"
+                                                            buttonConfirm="Entrar"
+                                                            buttonCancel="Cancelar"
+                                                        >
+                                                            <FormLogin key="LoginForm" fields={loginFields} Formik={FormikLogin}/>
+                                                        </ModalLogin>
+                                                    </NavItem>
+                                                    <NavItem>
+                                                        <Button
+                                                            color="danger"
+                                                            onClick={() => setModalRegister(!modalRegister)}
+                                                            className={btnRegister}
+                                                        >
+                                                            Registrate
+                                                        </Button>
+                                                        <ModalLogin
+                                                            isOpen={modalRegister}
+                                                            toggle={() => setModalRegister(!modalRegister)}
+                                                            proceed={FormikRegister.handleSubmit}
+                                                            title="Registrate"
+                                                            buttonConfirm="Registrar"
+                                                            buttonCancel="Cancelar"
+                                                        >
+                                                            <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
+                                                        </ModalLogin>
+                                                    </NavItem>
+                                                </>
+                                            )
+                                            : (
+                                                <NavItem>
+                                                    <Button className="ml-md-3" color="info" onClick={logout}>
+                                                        Logout
+                                                    </Button>
+                                                </NavItem>
+                                            )}
                                     </Nav>
                                 </Col>
                             </Collapse>

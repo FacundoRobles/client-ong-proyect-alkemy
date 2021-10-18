@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import {
     FETCH_LOGIN_SUCCEEDED,
     SET_REQUEST_FLAG,
+    LOGOUT,
     SET_SYSTEM_MSG
 } from './types';
 
@@ -22,6 +23,16 @@ const Session = (state = initialState, {type, ...props}) => {
                 flagRequest: props.flag
             };
         }
+
+        case LOGOUT:
+            return {
+                requestingSession: false,
+                user: {
+                    userAgent: {}
+                },
+                isAuthenticate: false
+            };
+
         case FETCH_LOGIN_SUCCEEDED:
             return {
                 ...state,
@@ -31,9 +42,12 @@ const Session = (state = initialState, {type, ...props}) => {
                 },
                 isAuthenticate: true
             };
+
         case SET_SYSTEM_MSG:
             Swal.fire(props);
-            return {...state};
+            return {
+                ...state
+            };
         default:
             return state;
     }
