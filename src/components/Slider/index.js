@@ -8,6 +8,7 @@ import {
     CarouselCaption
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import '../../scss/slider.scss';
 
 const Slider = ({items}) => {
     const [activeIndex, setActiveIndex] = useState(0);

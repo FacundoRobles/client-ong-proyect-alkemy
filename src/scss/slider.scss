@@ -6,8 +6,20 @@
   width: 100%;
 }
 
+.carousel-item:active{
+  align-items: center;
+  height: 487px;
+  max-height: 487px;
+  overflow: hidden;
+  width: 100%;
+}
+
 .carousel-item img {
   height: 487px;
   object-fit: cover;
   width: 100%;
 } 
+
+.carousel {
+  margin-top: 3rem;
+}
