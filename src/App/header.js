@@ -18,7 +18,7 @@ import {
 } from 'reactstrap';
 import {getRoutes} from '@utils';
 import {useFormik} from 'formik';
-import {getNavigationHeader} from '@core/state/Session/selectors';
+import {getNavigationHeader, getLoginInit} from '@core/state/Session/selectors';
 import {fetchLoginRequested, fetchSessionLogout} from '@core/state/Session/actions';
 import {submitUserRequested} from '@core/state/User/actions';
 import ModalLogin from '@components/ModalLogin';
@@ -31,10 +31,8 @@ import RegisterForm from '../components/RegisterForm';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Header = ({
-    registerForm, registerFields, loginForm, loginFields
+    registerForm, registerFields
 }) => {
-    const btnLogin = 'btn-login my-1 my-md-0 px-sm-4 px-md-2 px-lg-4 ml-0 ml-md-1 ml-lg-5 mr-2 mr-lg-4';
-    const btnRegister = 'btn-register my-2 px-sm-3 px-md-1 px-lg-3 my-md-0 mr-3';
     const [modalLogin, setModalLogin] = useState(false);
     const [modalRegister, setModalRegister] = useState(false);
     const dispatch = useDispatch();
@@ -42,7 +40,8 @@ const Header = ({
     const [routes, setRoutes] = useState(null);
     const [activeTab, setActiveTab] = useState(null);
     const toggle = () => setIsOpen(!isOpen);
-    const state = useSelector(() => getNavigationHeader());
+    const navigationRoutes = useSelector(() => getNavigationHeader());
+    const loginInit = useSelector(() => getLoginInit());
     const token = localStorage.getItem('token_agent');
     const logout = () => {
         dispatch(fetchSessionLogout());
@@ -75,8 +74,7 @@ const Header = ({
 
     const FormikLogin = useFormik({
         initialValues: {
-            email: loginForm.email,
-            password: loginForm.password
+            ...loginInit.form
         },
         validate: validateLoginForm,
         onSubmit: values => {
@@ -86,10 +84,7 @@ const Header = ({
     });
     const FormikRegister = useFormik({
         initialValues: {
-            firstName: registerForm.firstName,
-            lastName: registerForm.lastName,
-            email: registerForm.email,
-            password: registerForm.password
+            ...registerForm
         },
         validate: validateRegisterForm,
         onSubmit: values => {
@@ -99,8 +94,8 @@ const Header = ({
     });
 
     useEffect(() => {
-        if (state) {
-            setRoutes(state);
+        if (navigationRoutes) {
+            setRoutes(navigationRoutes);
         }
         // eslint-disable-next-line
         setActiveTab(location.hash.slice(2) === '' ? HOME : location.hash.slice(2));
@@ -160,7 +155,7 @@ const Header = ({
                                                             outline
                                                             color="primary"
                                                             onClick={() => setModalLogin(!modalLogin)}
-                                                            className={btnLogin}
+                                                            className="btn-login my-1 my-md-0 px-sm-4 px-md-2 px-lg-4 ml-0 ml-md-1 mr-2 mx-lg-4"
                                                         >
                                                             Log In
                                                         </Button>
@@ -172,14 +167,14 @@ const Header = ({
                                                             buttonConfirm="Entrar"
                                                             buttonCancel="Cancelar"
                                                         >
-                                                            <FormLogin key="LoginForm" fields={loginFields} Formik={FormikLogin}/>
+                                                            <FormLogin key="LoginForm" fields={loginInit.fields} Formik={FormikLogin}/>
                                                         </ModalLogin>
                                                     </NavItem>
                                                     <NavItem>
                                                         <Button
                                                             color="danger"
                                                             onClick={() => setModalRegister(!modalRegister)}
-                                                            className={btnRegister}
+                                                            className="btn-register my-2 px-sm-3 px-md-1 px-lg-3 my-md-0 mr-3"
                                                         >
                                                             Registrate
                                                         </Button>
@@ -216,9 +211,7 @@ const Header = ({
 
 const mapStateToProps = state => ({
     registerForm: fromState.User.getRegisterForm(state),
-    registerFields: fromState.User.getRegisterFields(state),
-    loginForm: fromState.User.getLoginForm(state),
-    loginFields: fromState.User.getLoginFields(state)
+    registerFields: fromState.User.getRegisterFields(state)
 });
 
 export default connect(
@@ -233,19 +226,6 @@ Header.propTypes = {
         password: PropTypes.string.isRequired
     }).isRequired,
     registerFields: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.string.isRequired,
-            placeholder: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired,
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
-    loginForm: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired
-    }).isRequired,
-    loginFields: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string.isRequired,
             placeholder: PropTypes.string.isRequired,

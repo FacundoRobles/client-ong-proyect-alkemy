@@ -5,13 +5,15 @@ import {
 } from 'redux-saga/effects';
 import {
     AUTH,
-    REGISTER
+    REGISTER,
+    HOME
 } from '@Api/Urls';
 
 import get from 'lodash/get';
 import Api from '@Api/Api';
 import {SUBMIT_USER_REQUESTED} from './types';
 import {setRequestFlag, fetchLoginRequested} from '../Session/actions';
+import {push} from '@core/middlewares/history';
 
 function* submitUserRequestedSagas(values) {
     try {
@@ -19,13 +21,14 @@ function* submitUserRequestedSagas(values) {
         yield put(setRequestFlag({flag: true}));
         const responseRegister = yield Api.post(`${AUTH}/${REGISTER}`, values.payload);
         const success = get(responseRegister, 'data.success');
-        if (success) {
-            yield put(fetchLoginRequested({email, password}));
+        if(success){
+            yield put(fetchLoginRequested({email,password}));
         }
     } catch (err) {
         throw Error(err);
     } finally {
         yield put(setRequestFlag({flag: false}));
+        yield push(HOME);
     }
 }
 
