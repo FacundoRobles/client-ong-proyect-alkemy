@@ -8,6 +8,10 @@ import {
 import get from 'lodash/get';
 
 import {
+    SUCCESS,
+    ERROR
+} from '@utils/constants';
+import {
     AUTH,
     LOGIN,
     ME
@@ -24,7 +28,8 @@ import {
 
 import {
     fetchLoginSucceeded,
-    setRequestFlag
+    setRequestFlag,
+    setSystemMessage
 } from './actions';
 
 function* fetchLogin(values) {
@@ -43,10 +48,13 @@ function* fetchLogin(values) {
             if (userSuccess) {
                 const user = get(dataUser, 'data.data');
                 yield put(fetchLoginSucceeded(user));
+                yield put(setSystemMessage(SUCCESS));
+                return;
             }
         }
+        yield put(setSystemMessage(ERROR));
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
     }
