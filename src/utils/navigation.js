@@ -6,8 +6,6 @@ const mainRoutes = {
     testimonial: '/testimonials',
     contact: '/contact',
     contribute: '/contribute',
-    login: '/login',
-    register: '/register',
     category: '/categories',
     slides: '/slides',
     user: '/users',

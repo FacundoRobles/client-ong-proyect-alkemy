@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Label,
-    Col,
-    FormGroup
+    Label, Col, FormGroup
 } from 'reactstrap';
 import map from 'lodash/map';
 
-const FormLogin = ({
-    Formik,
-    fields
-}) => (
+const RegisterForm = ({fields, Formik}) => (
     <>
-        <form className="form" onSubmit={Formik.handleSubmit}>
+        <form key="form" onSubmit={Formik.handleSubmit} className="form">
             {map(fields, field => (
                 <FormGroup key={field.id} className="text-center">
                     <Col className="text-center">
@@ -42,16 +37,23 @@ const FormLogin = ({
                 </FormGroup>
             ))}
         </form>
+
     </>
 );
 
-FormLogin.propTypes = {
+export default RegisterForm;
+
+RegisterForm.propTypes = {
     Formik: PropTypes.shape({
         errors: PropTypes.shape({
+            firstName: PropTypes.string,
+            lastName: PropTypes.string,
             email: PropTypes.string,
             password: PropTypes.string
         }),
         touched: PropTypes.shape({
+            firstName: PropTypes.bool,
+            lastName: PropTypes.bool,
             email: PropTypes.bool,
             password: PropTypes.bool
         }),
@@ -59,6 +61,8 @@ FormLogin.propTypes = {
         handleBlur: PropTypes.func.isRequired,
         handleSubmit: PropTypes.func.isRequired,
         values: PropTypes.shape({
+            firstName: PropTypes.string,
+            lastName: PropTypes.string,
             email: PropTypes.string,
             password: PropTypes.string
         }),
@@ -75,8 +79,6 @@ FormLogin.propTypes = {
     ).isRequired
 };
 
-FormLogin.defaultProps = {
+RegisterForm.defaultProps = {
     Formik: {}
 };
-
-export default FormLogin;
