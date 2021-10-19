@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
     Col,
@@ -6,12 +7,11 @@ import {
     Button
 } from 'reactstrap';
 import {getRoutes} from '@utils';
-import {news, items} from '@utils/constants';
 import Slider from '@components/Slider';
 // import map from 'lodash/map';
 import {Link} from 'react-router-dom';
-import Slick from '../../components/Slick';
-import '../../scss/home.scss';
+import Slick from '@components/Slick';
+import fromState from '@selectors';
 
 const mainRoutes = getRoutes('mainRoutes');
 
@@ -22,6 +22,9 @@ const Component = ({
         // eslint-disable-next-line no-console
         console.log(welcomeText);
     });
+    const items = useSelector(fromState.Session.getSliderItems);
+    const news = useSelector(fromState.News.getSlickNews);
+    const testimonials = useSelector(fromState.Testimonial.getSlickTestimonials);
 
     return (
         <>
@@ -45,7 +48,7 @@ const Component = ({
                 </Col>
             </Row>
             <Row><Col className="center-col-test"><h1 className="title-md">Testimonios</h1></Col></Row>
-            <Row><Col className="slick-col"><Slick items={news}/></Col></Row>
+            <Row><Col className="slick-col"><Slick items={testimonials}/></Col></Row>
         </>
     );
 };

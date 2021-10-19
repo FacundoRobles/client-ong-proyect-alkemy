@@ -4,14 +4,14 @@ import {
     CardTitle, Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import '../../scss/card.scss';
+import get from 'lodash/get';
 
-const CardComponent = props => (
+const CardComponent = ({items}) => (
     <Card>
-        <CardImg top width="100%" src={props.items.imageUrl} alt="Card image cap"/>
+        <CardImg top width="100%" src={get(items, 'imageUrl')} alt="Card image cap"/>
         <CardBody>
-            <CardTitle tag="h5">{props.items.title}</CardTitle>
-            <CardText><p style={{lineHeight: '1.3rem'}}>{props.items.text}</p></CardText>
+            <CardTitle tag="h5">{get(items, 'title')}</CardTitle>
+            <CardText><p style={{lineHeight: '1.3rem'}}>{get(items, 'text')}</p></CardText>
             <Button outline color="info">Leer más</Button>
         </CardBody>
     </Card>
