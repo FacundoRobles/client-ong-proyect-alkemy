@@ -113,5 +113,5 @@ export const getLoginInit = () => ({
             id: 'password',
             name: 'password'
         }
-    ],
+    ]
 });
