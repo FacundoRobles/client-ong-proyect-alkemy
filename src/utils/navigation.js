@@ -11,7 +11,8 @@ const mainRoutes = {
     user: '/users',
     member: '/members',
     us: '/us',
-    novelty: '/novelties'
+    novelty: '/novelties',
+    editProfile: '/edit-profile'
 };
 
 export default {

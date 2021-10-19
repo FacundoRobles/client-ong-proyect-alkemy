@@ -88,6 +88,11 @@ export const menuOffice = () => {
         title: 'Miembros',
         icon: PeopleAltIcon,
         path: mainRoutes.member
+    },
+    {
+        title: 'Editar perfil',
+        icon: PeopleAltIcon,
+        path: mainRoutes.editProfile
     }];
 
     return menu;
@@ -113,5 +118,5 @@ export const getLoginInit = () => ({
             id: 'password',
             name: 'password'
         }
-    ],
+    ]
 });
