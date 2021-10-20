@@ -12,6 +12,7 @@ const mainRoutes = {
     member: '/members',
     us: '/us',
     novelty: '/novelties',
+    editProfile: '/edit-profile',
     backOffice: '/backoffice'
 };
 
