@@ -33,24 +33,27 @@ const Router = () => {
         return (
             <>
                 <Header/>
-                <Container className="background">
-                    <motion.div
-                        key={currentKey}
-                        initial="hidden"
-                        animate="visible"
-                        variants={variants}
-                    >
-                        <Switch location={location}>
+                {/* Aca estaba el container */}
+                <motion.div
+                    key={currentKey}
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                >
+                    <Switch location={location}>
+                        <Container fluid>
                             <Route exact path={mainRoutes.home} component={Home}/>
+                        </Container>
+                        <Container className="background">
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
-                        </Switch>
-                    </motion.div>
-                </Container>
+                        </Container>
+                    </Switch>
+                </motion.div>
                 <Footer/>
             </>
         );

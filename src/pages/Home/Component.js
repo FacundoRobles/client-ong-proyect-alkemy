@@ -1,51 +1,60 @@
 import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {
     Col,
     Row,
-    Nav,
-    NavItem,
-    NavLink
+    Button
 } from 'reactstrap';
+import {getRoutes} from '@utils';
+import Slider from '@components/Slider';
+// import map from 'lodash/map';
+import {Link} from 'react-router-dom';
+import Slick from '@components/Slick';
+import fromState from '@selectors';
 
-import map from 'lodash/map';
+const mainRoutes = getRoutes('mainRoutes');
 
 const Component = ({
-    topNavbar
+    welcomeText
 }) => {
     useEffect(() => {
         // eslint-disable-next-line no-console
-        console.log(topNavbar);
+        console.log(welcomeText);
     });
+    const items = useSelector(fromState.Session.getSliderItems);
+    const news = useSelector(fromState.News.getSlickNews);
+    const testimonials = useSelector(fromState.Testimonial.getSlickTestimonials);
 
     return (
         <>
-            <h1>Hola home</h1>
-            <Row style={{backgroundColor: '#f5f5f5'}}>
-                <Col md="3" className="mr-2">
-                    <Row>
-                        <Col key="topNavbarContainer">
-                            <Nav vertical className="vertical-navbar pt-2" key="topNavbar">
-                                {map(topNavbar, navbar => (
-                                    <NavItem key={navbar.label}>
-                                        <NavLink tag={Link} to={navbar.to} style={{fontSize: '15px', padding: '10px 0'}}>
-                                            {navbar.icon && <navbar.icon className="mr-2"/>}
-                                            {navbar.label}
-                                        </NavLink>
-                                    </NavItem>
-                                ))}
-                            </Nav>
-                        </Col>
-                    </Row>
+            <Slider items={items}/>
+            <Row>
+                <Col className="center-col">
+                    <h1 className="title-lg">Texto de bienvenida</h1>
                 </Col>
             </Row>
+            <Row>
+                <Col className="news-col">
+                    <h1 className="title-md">Últimas novedades</h1>
+                </Col>
+            </Row>
+            <Row><Col className="slick-col"><Slick items={news}/></Col></Row>
+            <Row>
+                <Col className="center-col">
+                    <Link to={mainRoutes.news}>
+                        <Button outline color="primary" className="btn-news">Ver noticias</Button>
+                    </Link>
+                </Col>
+            </Row>
+            <Row><Col className="center-col-test"><h1 className="title-md">Testimonios</h1></Col></Row>
+            <Row><Col className="slick-col"><Slick items={testimonials}/></Col></Row>
         </>
     );
 };
 
 Component.propTypes = {
-    topNavbar: PropTypes.shape({}).isRequired
+    welcomeText: PropTypes.string.isRequired
 };
 
 export default Component;
