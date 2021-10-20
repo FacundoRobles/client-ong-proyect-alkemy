@@ -12,11 +12,14 @@ import News from '@pages/News';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
+import BackOffice from '@pages/BackOffice';
+import BackNews from '@pages/BackNews';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
 
 const mainRoutes = getRoutes('mainRoutes');
+const backOfficeRoutes = getRoutes('backOffice');
 
 const Router = () => {
     const location = useLocation();
@@ -59,6 +62,9 @@ const Router = () => {
             <>
                 <Switch>
                     <Route exact path={mainRoutes.home} key="activePerson" component={Home}/>
+                    <Route exact path={mainRoutes.backOffice} key="activePerson" component={BackOffice}/>
+                    <Route exact path={backOfficeRoutes.news.form} key="activePerson" component={BackNews}/>
+                    <Route exact path={backOfficeRoutes.news.edit} key="activePerson" component={BackNews}/>
                 </Switch>
             </>
         );
