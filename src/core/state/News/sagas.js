@@ -5,6 +5,11 @@ import {
     takeLatest
 } from 'redux-saga/effects';
 
+import {
+    SUCCESS,
+    ERROR
+} from '@utils/constants';
+
 import get from 'lodash/get';
 
 import {
@@ -20,17 +25,26 @@ import {
 import {
     fetchNewsSucceeded
 } from './actions';
+import {
+    setRequestFlag,
+    setSystemMessage
+} from '../Session/actions';
 
 function* fetchNews() {
     try {
+        yield put(setRequestFlag({flag: true}));
         const responseNews = yield Api.get(`${NEWS}`);
         const success = get(responseNews, 'data.success');
         if (success) {
             const news = get(responseNews, 'data.data');
             yield put(fetchNewsSucceeded(news));
+            yield put(setSystemMessage(SUCCESS));
+            return;
         }
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
+    } finally {
+        yield put(setRequestFlag({flag: false}));
     }
 }
 
