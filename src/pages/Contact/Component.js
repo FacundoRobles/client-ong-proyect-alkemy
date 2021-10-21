@@ -10,7 +10,7 @@ import BackForm from '@components/BackForm';
 const Component = ({
     form,
     fields,
-    createContactRequested
+    submitContactRequested
 }) => {
     const validate = values => {
         const errors = {};
@@ -24,18 +24,22 @@ const Component = ({
 
     return (
         <Container>
-            <Row><h1>Contactate con nosotros</h1></Row>
+            <Row>
+                <Col className="text-center"><h1 className="mt-3">Contactate con nosotros</h1></Col>
+            </Row>
             <Row>
                 <Col>
-                    <BackForm
-                        key="NewsForm"
-                        form={form}
-                        fields={fields}
-                        submit={createContactRequested}
-                        fetch={id => id}
-                        id={null}
-                        validate={validate}
-                    />
+                    <div className="form">
+                        <BackForm
+                            key="NewsForm"
+                            form={form}
+                            fields={fields}
+                            submit={submitContactRequested}
+                            fetch={id => id}
+                            id={{id: null}}
+                            validate={validate}
+                        />
+                    </div>
                 </Col>
             </Row>
         </Container>
@@ -49,11 +53,11 @@ Component.propTypes = {
         message: PropTypes.string.isRequired
     }).isRequired,
     fields: PropTypes.arrayOf(),
-    createContactRequested: PropTypes.func
+    submitContactRequested: PropTypes.func
 };
 
 Component.defaultProps = {
-    createContactRequested: null,
+    submitContactRequested: null,
     fields: null
 };
 

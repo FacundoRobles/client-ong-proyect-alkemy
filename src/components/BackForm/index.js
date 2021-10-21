@@ -4,7 +4,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {useFormik} from 'formik';
 import {
-    Label, Col, Button, FormGroup, Card, CardBody
+    Label, Col, Button, FormGroup, Card, CardBody, Input
 } from 'reactstrap';
 import map from 'lodash/map';
 
@@ -72,7 +72,7 @@ const BackForm = ({
                                                     md={{size: 10, offset: 1}}
                                                     className="mb-3 p-0"
                                                 >
-                                                    <input
+                                                    <Input
                                                         className="form-control"
                                                         onChange={Formik.handleChange}
                                                         onBlur={Formik.handleBlur}

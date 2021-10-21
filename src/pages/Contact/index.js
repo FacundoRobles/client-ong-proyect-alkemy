@@ -12,6 +12,6 @@ export default connect(
         form: fromState.Contact.getForm(state)
     }),
     dispatch => bindActionCreators({
-        createContactRequested: obj => dispatch(Contact.createContactRequested(obj))
+        submitContactRequested: obj => dispatch(Contact.submitContactRequested(obj))
     }, dispatch)
 )(Component);
