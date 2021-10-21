@@ -12,11 +12,14 @@ import News from '@pages/News';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
+import BackOffice from '@pages/BackOffice';
+import BackNewsForm from '@pages/BackNewsForm';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
 
 const mainRoutes = getRoutes('mainRoutes');
+const backOfficeRoutes = getRoutes('backOffice');
 
 const Router = () => {
     const location = useLocation();
@@ -29,6 +32,35 @@ const Router = () => {
     const userAgent = useSelector(fromState.Session.getUserAgent);
     const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
     if (!isAuthenticate) {
+        return (
+            <>
+                <Header/>
+                {/* Aca estaba el container */}
+                <motion.div
+                    key={currentKey}
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                >
+                    <Switch location={location}>
+                        <Container fluid>
+                            <Route exact path={mainRoutes.home} component={Home}/>
+                        </Container>
+                        <Container className="background">
+                            <Route exact path={mainRoutes.organization} component={Organization}/>
+                            <Route exact path={mainRoutes.activity} component={Activity}/>
+                            <Route exact path={mainRoutes.news} component={News}/>
+                            <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
+                            <Route exact path={mainRoutes.contact} component={Contact}/>
+                            <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                        </Container>
+                    </Switch>
+                </motion.div>
+                <Footer/>
+            </>
+        );
+    }
+    if (roleId === 1) {
         return (
             <>
                 <Header/>
@@ -47,6 +79,9 @@ const Router = () => {
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                            <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
+                            <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>
+                            <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
                         </Switch>
                     </motion.div>
                 </Container>
@@ -54,21 +89,29 @@ const Router = () => {
             </>
         );
     }
-    if (roleId === 1) {
-        return (
-            <>
-                <Switch>
-                    <Route exact path={mainRoutes.home} key="activePerson" component={Home}/>
-                </Switch>
-            </>
-        );
-    }
 
     return (
         <>
-            <Switch>
-                <Route exact path={mainRoutes.home} key="activePerson" component={Home}/>
-            </Switch>
+            <Header/>
+            <Container className="background">
+                <motion.div
+                    key={currentKey}
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                >
+                    <Switch location={location}>
+                        <Route exact path={mainRoutes.home} component={Home}/>
+                        <Route exact path={mainRoutes.organization} component={Organization}/>
+                        <Route exact path={mainRoutes.activity} component={Activity}/>
+                        <Route exact path={mainRoutes.news} component={News}/>
+                        <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
+                        <Route exact path={mainRoutes.contact} component={Contact}/>
+                        <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                    </Switch>
+                </motion.div>
+            </Container>
+            <Footer/>
         </>
     );
 };

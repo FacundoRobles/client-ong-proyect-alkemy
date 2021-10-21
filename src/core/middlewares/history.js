@@ -1,7 +1,7 @@
-import {createBrowserHistory} from 'history';
+import {createHashHistory} from 'history';
 import qs from 'qs';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 history.location = {
     ...history.location,
     query: qs.parse(history.location.search.substr(1)),

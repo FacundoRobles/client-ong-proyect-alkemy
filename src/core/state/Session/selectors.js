@@ -92,3 +92,82 @@ export const menuOffice = () => {
 
     return menu;
 };
+
+export const getLoginInit = () => ({
+    form: {
+        email: '',
+        password: ''
+    },
+    fields: [
+        {
+            label: 'Email',
+            placeholder: 'Email',
+            type: 'email',
+            id: 'email',
+            name: 'email'
+        },
+        {
+            label: 'Contraseña',
+            placeholder: 'Contraseña',
+            type: 'password',
+            id: 'password',
+            name: 'password'
+        }
+    ]
+});
+
+export const getSlickSettings = () => {
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+    return settings;
+};
+
+export const getSliderItems = () => {
+    const items = [{
+        imageUrl: 'https://wallpaperaccess.com/full/170249.jpg',
+        text: 'A great landscape'
+    },
+    {
+        imageUrl: 'https://fondosmil.com/fondo/2256.jpg',
+        text: 'A greater landscape'
+    },
+    {
+        imageUrl: 'https://www.solofondos.com/wp-content/uploads/2016/04/3e2af664e061013a3d05aa99fa20c1d4.jpg',
+        text: 'A greatest landscape'
+    }
+    ];
+    return items;
+};

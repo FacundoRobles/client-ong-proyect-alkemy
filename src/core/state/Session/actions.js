@@ -1,9 +1,11 @@
 import constant from 'lodash/constant';
 import {
     SET_REQUEST_FLAG,
+    SET_SYSTEM_MSG,
     FETCH_SESSION_REQUESTED,
     FETCH_LOGIN_REQUESTED,
-    FETCH_LOGIN_SUCCEEDED
+    FETCH_LOGIN_SUCCEEDED,
+    LOGOUT
 } from './types';
 
 export const fetchLoginRequested = values => ({
@@ -22,5 +24,15 @@ export const fetchSessionRequested = constant({
 
 export const setRequestFlag = props => ({
     type: SET_REQUEST_FLAG,
+    ...props
+});
+
+export const fetchSessionLogout = props => ({
+    type: LOGOUT,
+    ...props
+});
+
+export const setSystemMessage = props => ({
+    type: SET_SYSTEM_MSG,
     ...props
 });
