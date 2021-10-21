@@ -1,7 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import get from 'lodash/get';
 
+const path = 'testimonial';
+
 export const testimonials = state => get(state, 'testimonial.list.testimonials');
+export const getTestimonials = state => get(state, `${path}.list.documents.testimonial`);
+export const getForm = state => get(state, `${path}.form`);
+export const getFields = state => get(state, `${path}.fields`);
 
 export const getSlickTestimonials = () => {
     const testimonials = [

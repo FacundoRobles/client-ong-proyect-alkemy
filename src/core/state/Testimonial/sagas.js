@@ -4,41 +4,49 @@ import {
     put,
     takeLatest
 } from 'redux-saga/effects';
-
 import get from 'lodash/get';
-
+import Api from '@Api/Api';
+import {
+    TESTIMONIAL
+} from '@Api/Urls';
 import {
     SUCCESS,
     ERROR
 } from '@utils/constants';
-
-import {
-    TESTIMONIAL
-} from '@Api/Urls';
-
-import Api from '@Api/Api';
-
-import {
-    FETCH_TESTIMONIALS_REQUESTED
-} from './types';
 import {
     setRequestFlag,
     setSystemMessage
-} from '../Session/actions';
+} from '@core/state/Session/actions';
 import {
-    fetchTestimonialsSucceeded
+    fetchTestimonialsSucceeded,
+    fetchTestimonialSucceeded,
+    cleanRegisterForm
 } from './actions';
+import {
+    FETCH_TESTIMONIAL_REQUESTED,
+    SUBMIT_TESTIMONIAL_REQUESTED,
+    DELETE_TESTIMONIAL_REQUESTED
+} from './types';
 
-function* fetchTestimonials() {
+function* requestTestimonialSagas({id}) {
     try {
         yield put(setRequestFlag({flag: true}));
-        const responseTestimonials = yield Api.get(`${TESTIMONIAL}`);
-        const success = get(responseTestimonials, 'data.success');
+
+        if (id) {
+            const fetchTestimonial = yield Api.get(`${TESTIMONIAL}/${id}`);
+            const success = get(fetchTestimonial, 'data.success');
+            if (success) {
+                const testimonial = get(fetchTestimonial, 'data.data.testimonials');
+                yield put(fetchTestimonialSucceeded({testimonial}));
+                return;
+            }
+        }
+
+        const fetchTestimonials = yield Api.get(`${TESTIMONIAL}`);
+        const success = get(fetchTestimonials, 'data.success');
         if (success) {
-            const news = get(responseTestimonials, 'data.data');
-            yield put(fetchTestimonialsSucceeded(news));
-            yield put(setSystemMessage(SUCCESS));
-            return;
+            const testimonial = get(fetchTestimonials, 'data.data.testimonials');
+            yield put(fetchTestimonialsSucceeded({testimonial}));
         }
     } catch (err) {
         yield put(setSystemMessage(ERROR));
@@ -47,8 +55,61 @@ function* fetchTestimonials() {
     }
 }
 
-export default function* newsSagas() {
+function* submitTestimonialSagas({payload, id}) {
+    try {
+        yield put(setRequestFlag({flag: true}));
+
+        if (id) {
+            const editTestimonial = yield Api.put(`${TESTIMONIAL}/${id}`, payload);
+            const success = get(editTestimonial, 'data.success');
+            if (success) {
+                const testimonial = get(editTestimonial, 'data.data.testimonials');
+                yield put(fetchTestimonialSucceeded({testimonial}));
+                yield put(cleanRegisterForm());
+                yield put(setSystemMessage(SUCCESS));
+                return;
+            }
+        }
+
+        const createTestimonial = yield Api.post(`${TESTIMONIAL}`, payload);
+        const success = get(createTestimonial, 'data.success');
+        if (success) {
+            yield put(cleanRegisterForm());
+            yield put(setSystemMessage(SUCCESS));
+            return;
+        }
+
+        yield put(setSystemMessage(ERROR));
+    } catch (err) {
+        yield put(setSystemMessage(ERROR));
+    } finally {
+        yield put(setRequestFlag({flag: false}));
+    }
+}
+
+function* deleteTestimonialSagas({id}) {
+    try {
+        yield put(setRequestFlag({flag: true}));
+        const deleteTestimonial = yield Api.delete(`${TESTIMONIAL}/${id}`);
+        const success = get(deleteTestimonial, 'data.success');
+        if (success) {
+            yield put(setSystemMessage(SUCCESS));
+            return;
+        }
+        yield put(setSystemMessage(ERROR));
+    } catch (err) {
+        yield put(setSystemMessage(ERROR));
+    } finally {
+        yield put(cleanRegisterForm());
+        yield put(setRequestFlag({flag: false}));
+        yield requestTestimonialSagas({});
+    }
+}
+
+export default function* testimonialSagas() {
     yield all([
-        takeLatest(FETCH_TESTIMONIALS_REQUESTED, fetchTestimonials)
+        takeLatest(FETCH_TESTIMONIAL_REQUESTED, requestTestimonialSagas),
+        takeLatest(SUBMIT_TESTIMONIAL_REQUESTED, submitTestimonialSagas),
+        takeLatest(DELETE_TESTIMONIAL_REQUESTED, deleteTestimonialSagas)
     ]);
 }
