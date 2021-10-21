@@ -1,5 +1,4 @@
 /* eslint-disable lodash/collection-method-value */
-/* eslint no-nested-ternary: "error" */
 import React from 'react';
 import {Row, Col, Container} from 'reactstrap';
 import {useSelector} from 'react-redux';
@@ -86,7 +85,7 @@ const Footer = () => {
                             {!isEmpty(selector) ? (
                                 map(selector, (value, key) => (
                                     <li key={{key}}>
-                                        <button onClick={() => { goPage(value); }} >
+                                        <button onClick={() => { goPage(value); }} className="btn-network" >
                                             <img
                                                 src={getNetwork(key)}
                                                 alt="icon network"
