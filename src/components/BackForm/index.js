@@ -7,6 +7,8 @@ import {
     Label, Col, Button, FormGroup, Card, CardBody
 } from 'reactstrap';
 import map from 'lodash/map';
+import get from 'lodash/get';
+import {SEND, CANCEL} from '../../utils/constants';
 
 const editorConfig = {
     toolbar: [
@@ -56,19 +58,19 @@ const BackForm = ({
                         >
                             {map(fields, field => (
                                 <FormGroup
-                                    key={field.id}
+                                    key={get(field, 'id')}
                                 >
                                     <Col
                                         className="mb-3 px-2"
                                         tag="h5"
                                     >
                                         <Label
-                                            for={field.id}
+                                            for={get(field, 'id')}
                                         >
-                                            {field.label}
+                                            {get(field, 'label')}
                                         </Label>
                                     </Col>
-                                    {field.type !== 'CKEditor'
+                                    {get(field, 'type') !== 'CKEditor'
                                         ? (
                                             <>
                                                 <Col
@@ -78,21 +80,21 @@ const BackForm = ({
                                                         className="form-control"
                                                         onChange={Formik.handleChange}
                                                         onBlur={Formik.handleBlur}
-                                                        value={Formik.values[field.name]}
-                                                        placeholder={field.placeholder}
-                                                        type={field.type}
-                                                        name={field.name}
-                                                        id={field.id}
+                                                        value={Formik.values[get(field, 'name')]}
+                                                        placeholder={get(field, 'placeholder')}
+                                                        type={get(field, 'type')}
+                                                        name={get(field, 'name')}
+                                                        id={get(field, 'id')}
                                                     />
                                                 </Col>
                                                 <Col
                                                     className="mb-3 p-0"
                                                 >
-                                                    {Formik.errors[field.name]
-                                                && Formik.touched[field.name]
+                                                    {Formik.errors[get(field, 'name')]
+                                                && Formik.touched[get(field, 'name')]
                                                 && (
                                                     <p className="error text-center">
-                                                        {Formik.errors[field.name]}
+                                                        {Formik.errors[get(field, 'name')]}
                                                     </p>
                                                 )}
                                                 </Col>
@@ -104,21 +106,21 @@ const BackForm = ({
                                                     className="mb-3 px-2"
                                                 >
                                                     <CKEditor
-                                                        id={field.name}
+                                                        id={get(field, 'name')}
                                                         editor={ClassicEditor}
-                                                        data={form[field.name]}
-                                                        config={{...editorConfig, placeholder: field.placeholder}}
-                                                        onChange={(event, editor) => Formik.setFieldValue(field.name, editor.getData())}
+                                                        data={form[get(field, 'name')]}
+                                                        config={{...editorConfig, placeholder: get(field, 'placeholder')}}
+                                                        onChange={(event, editor) => Formik.setFieldValue(get(field, 'name'), editor.getData())}
                                                     />
                                                 </Col>
                                                 <Col
                                                     className="mb-3 px-2"
                                                 >
-                                                    {Formik.errors[field.name]
-                                            && Formik.touched[field.name]
+                                                    {Formik.errors[get(field, 'name')]
+                                            && Formik.touched[get(field, 'name')]
                                             && (
                                                 <p className="error text-center">
-                                                    {Formik.errors[field.name]}
+                                                    {Formik.errors[get(field, 'name')]}
                                                 </p>
                                             )}
                                                 </Col>
@@ -134,17 +136,15 @@ const BackForm = ({
                                     color="danger"
                                     className="btn-cancel"
                                 >
-                                    Cancelar
+                                    {CANCEL}
                                 </Button>
-                                {' '}
                                 <Button
                                     type="submit"
                                     color="primary"
                                     className="px-4 btn-submit"
                                 >
-                                    Envíar
+                                    {SEND}
                                 </Button>
-                                {' '}
                             </Col>
                         </form>
                     </CardBody>

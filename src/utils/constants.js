@@ -13,3 +13,6 @@ export const ERROR = {
 export const WARNING = 'warning';
 export const LOADING = 'loading';
 export const HOME = 'home';
+export const REQUIRED = 'Todos los campos requeridos';
+export const SEND = 'Envíar';
+export const CANCEL = 'Cancelar';

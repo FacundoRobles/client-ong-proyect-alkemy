@@ -1,6 +1,7 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
 import BackForm from '../../components/BackForm';
+import {REQUIRED} from '../../utils/constants';
 
 const Component = ({
     form, fields, submitNewsRequested, fetchNewsRequested, match
@@ -8,9 +9,9 @@ const Component = ({
     const validate = values => {
         const errors = {};
         if (!values.name || !values.image || !values.content) {
-            errors.name = 'Todos los campos requeridos';
-            errors.image = 'Todos los campos requeridos';
-            errors.content = 'Todos los campos requeridos';
+            errors.name = REQUIRED;
+            errors.image = REQUIRED;
+            errors.content = REQUIRED;
         }
         return errors;
     };
