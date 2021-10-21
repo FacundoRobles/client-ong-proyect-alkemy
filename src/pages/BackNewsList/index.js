@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fromState from '@core/selectors';
-import {fetchNewsRequested} from '@core/state/News/actions';
+import {fetchNewsRequested, deleteNewsRequested} from '@core/state/News/actions';
 import Component from './Component';
 
 const mapStateToProps = state => ({
@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     dispatch => bindActionCreators({
-        fetchNewsRequested
+        fetchNewsRequested,
+        deleteNewsRequested
     }, dispatch)
 )(Component);

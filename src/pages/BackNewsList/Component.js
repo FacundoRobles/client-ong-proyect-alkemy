@@ -8,13 +8,14 @@ import {
 import get from 'lodash/get';
 import {getRoutes} from '@utils';
 import TableList from '@components/TableList';
-import {GOBACK, ADD} from '../../utils/constants';
+import {GOBACK, ADD, swalConfirmAction} from '../../utils/constants';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 
 const Component = ({
     fetchNewsRequested,
+    deleteNewsRequested,
     list,
     table,
     history: {push}
@@ -22,7 +23,12 @@ const Component = ({
     useEffect(() => {
         fetchNewsRequested();
     }, [fetchNewsRequested]);
-
+    const onDelete = prop => {
+        const deleteField = () => {
+            deleteNewsRequested(get(prop, 'id'));
+        };
+        swalConfirmAction('warning', 'Eliminar Registro', '', 'Confirmar', 'Cancelar', deleteField);
+    };
     return (
         <>
             <Row className="list-row">
@@ -36,7 +42,11 @@ const Component = ({
                             {ADD}
                         </Button>
                     </Row>
-                    <TableList documents={get(list, 'documents')} {...table}/>
+                    <TableList 
+                        documents={get(list, 'documents')}
+                        onDelete={onDelete}
+                        {...table}
+                    />
                 </Col>
             </Row>
         </>
@@ -45,6 +55,7 @@ const Component = ({
 
 Component.propTypes = {
     fetchNewsRequested: PropTypes.func.isRequired,
+    deleteNewsRequested: PropTypes.func.isRequired,
     list: PropTypes.shape({}).isRequired,
     table: PropTypes.shape({}).isRequired,
     history: PropTypes.shape({

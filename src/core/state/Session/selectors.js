@@ -13,6 +13,7 @@ export const isAuthenticate = state => get(state, 'session.isAuthenticate');
 export const getRequestFlag = state => get(state, 'session.flagRequest');
 export const getUserAgent = state => get(state, 'session.data.user.userAgent');
 const mainRoutes = getRoutes('mainRoutes');
+const backOfficeRoutes = getRoutes('backOffice');
 
 export const getNavigationHeader = () => {
     const navigationHeader = [
@@ -59,7 +60,7 @@ export const menuOffice = () => {
     const menu = [{
         title: 'Novedades',
         icon: MenuBookIcon,
-        path: mainRoutes.news
+        path: backOfficeRoutes.news.list
     }, {
         title: 'Actividades',
         icon: AssignmentRoundedIcon,
