@@ -33,11 +33,9 @@ export default class Api {
             return await axios.post(
                 `${API}/${URL}`, isString(body) ? body : JSON.stringify(body), {
                     mode: 'cors',
-                    headers: token ? {
-                        Authorization: token
-                    } : {
+                    headers: {
                         'Content-Type': 'application/json',
-                        Authorization: false
+                        Authorization: token || false
                     }
                 }
             );

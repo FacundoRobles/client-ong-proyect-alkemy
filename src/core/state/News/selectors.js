@@ -1,6 +1,9 @@
-/* eslint-disable import/prefer-default-export */
 import get from 'lodash/get';
 
+const path = 'news';
+
+export const getNewsForm = state => get(state, `${path}.newsForm`);
+export const getNewsFields = state => get(state, `${path}.newsFields`);
 export const news = state => get(state, 'news.list.news');
 
 export const getSlickNews = () => {
