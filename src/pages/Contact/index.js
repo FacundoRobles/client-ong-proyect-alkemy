@@ -8,9 +8,10 @@ import Component from './Component';
 
 export default connect(
     state => ({
-        fields: fromState.Contact.getFields(state)
+        fields: fromState.Contact.getFields(state),
+        form: fromState.Contact.getForm(state)
     }),
     dispatch => bindActionCreators({
-        createContact: obj => dispatch(Contact.createContactRequested(obj))
+        createContactRequested: obj => dispatch(Contact.createContactRequested(obj))
     }, dispatch)
 )(Component);
