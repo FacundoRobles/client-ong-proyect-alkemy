@@ -1,13 +1,10 @@
+/* eslint-disable import/prefer-default-export */
 import get from 'lodash/get';
 
-const path = 'news';
+export const testimonials = state => get(state, 'testimonial.list.testimonials');
 
-export const getNewsForm = state => get(state, `${path}.newsForm`);
-export const getNewsFields = state => get(state, `${path}.newsFields`);
-export const news = state => get(state, 'news.list.news');
-
-export const getSlickNews = () => {
-    const news = [
+export const getSlickTestimonials = () => {
+    const testimonials = [
         {
             imageUrl: 'https://www3.pictures.itsrosy.com/mp/Vw5LjH_gfy2l.jpg',
             title: 'Una noticia importante',
@@ -55,5 +52,5 @@ export const getSlickNews = () => {
             Nulla dui urna, vulputate quis lobortis eget, vulputate at risus. Nunc non pharetra urna.`
         }
     ];
-    return news;
+    return testimonials;
 };

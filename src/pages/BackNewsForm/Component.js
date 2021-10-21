@@ -1,22 +1,34 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import NewsForm from '../../components/NewsForm';
+import BackForm from '../../components/BackForm';
 
 const Component = ({
     form, fields, submitNewsRequested, fetchNewsRequested, match
-}) => (
-    <>
-        <h1 className="text-center mb-4">Novedades</h1>
-        <NewsForm
-            key="NewsForm"
-            form={form}
-            fields={fields}
-            submitNewsRequested={submitNewsRequested}
-            fetchNewsRequested={fetchNewsRequested}
-            id={match.params}
-        />
-    </>
-);
+}) => {
+    const validate = values => {
+        const errors = {};
+        if (!values.name || !values.image || !values.content) {
+            errors.name = 'Todos los campos requeridos';
+            errors.image = 'Todos los campos requeridos';
+            errors.content = 'Todos los campos requeridos';
+        }
+        return errors;
+    };
+    return (
+        <>
+            <h1 className="text-center mb-4">Administrar Novedades</h1>
+            <BackForm
+                key="NewsForm"
+                form={form}
+                fields={fields}
+                submit={submitNewsRequested}
+                fetch={fetchNewsRequested}
+                id={match.params.id}
+                validate={validate}
+            />
+        </>
+    );
+};
 
 export default Component;
 

@@ -1,4 +1,8 @@
-import {FETCH_NEWS_SUCCEEDED, FETCH_ONE_NEWS_SUCCEEDED} from './types';
+import {
+    FETCH_NEWS_SUCCEEDED,
+    FETCH_ONE_NEWS_SUCCEEDED,
+    CLEAN_NEWS_FORM
+} from './types';
 
 const initialState = {
     newsForm: {
@@ -37,7 +41,7 @@ const initialState = {
     }
 };
 
-const newsForm = (state = {...initialState}, {type, ...props}) => {
+const News = (state = {...initialState}, {type, ...props}) => {
     switch (type) {
         case FETCH_ONE_NEWS_SUCCEEDED: {
             return {
@@ -57,8 +61,18 @@ const newsForm = (state = {...initialState}, {type, ...props}) => {
                 }
             };
         }
+        case CLEAN_NEWS_FORM: {
+            return {
+                ...state,
+                newsForm: {
+                    ...state,
+                    ...initialState.newsForm
+                }
+            };
+        }
         default:
             return state;
     }
 };
-export default newsForm;
+
+export default News;

@@ -7,9 +7,9 @@ import {
     CLEAN_NEWS_FORM
 } from './types';
 
-export const submitNewsRequested = values => ({
+export const submitNewsRequested = props => ({
     type: SUBMIT_NEWS_REQUESTED,
-    values
+    ...props
 });
 
 export const fetchNewsRequested = props => ({
