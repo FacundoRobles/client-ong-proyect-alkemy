@@ -18,8 +18,7 @@ function* submitUserRequestedSagas(values) {
         yield Api.post(`${AUTH}/${REGISTER}`, values.payload);
     } catch (err) {
         throw Error(err);
-    }
-    finally{
+    } finally {
         yield put(setRequestFlag({flag: false}));
     }
 }

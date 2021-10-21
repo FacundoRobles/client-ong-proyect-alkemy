@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
     FETCH_ORGANIZATION_SUCCEEDED
 } from './types';
@@ -11,7 +12,7 @@ const Organization = (state = initialState, {type, ...props}) => {
         case FETCH_ORGANIZATION_SUCCEEDED:
             return {
                 ...state,
-                organizations: props
+                organizations: props.documents
             };
         default:
             return state;

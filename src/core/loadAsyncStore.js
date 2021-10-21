@@ -3,6 +3,6 @@ import {fetchSessionRequested} from './state/Session/actions';
 
 export default store => {
     store.dispatch(fetchSessionRequested());
-    store.dispatch(fetchOrganizationsRequested());
+    store.dispatch(fetchOrganizationsRequested({id: 1}));
     return store;
 };

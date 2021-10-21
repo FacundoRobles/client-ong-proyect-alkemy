@@ -20,7 +20,7 @@
 
 .fixed {
   bottom: 0;
-  position: absolute;
+  position: relative;
   right: 0;
   width: 100%;
 }
@@ -31,9 +31,7 @@
 
 .img-silueta {
   box-sizing: border-box;
-  height: 44px;
   margin-right: 5px;
-  width: 44px;
 }
 
 .margin-bottom {

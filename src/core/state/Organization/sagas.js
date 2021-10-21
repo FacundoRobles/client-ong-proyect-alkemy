@@ -14,25 +14,23 @@ import {
 } from './actions';
 
 function* getOrganizations(values) {
+    const idRequest = values.idOrganization.id;
     try {
-        if (values.payload) {
-            const getOrganizationsApi = yield Api.get(`${ORGANIZATION}/${values.payload}`);
+        if (idRequest) {
+            const getOrganizationsApi = yield Api.get(`${ORGANIZATION}/${idRequest}`);
             const success = get(getOrganizationsApi, 'data.success');
             if (success) {
-                const data = get(getOrganizationsApi, 'data.data');
-                console.log(data);
-                yield put(fetchOrganizationSucceeded(data));
+                const documents = get(getOrganizationsApi, 'data.data');
+                yield put(fetchOrganizationSucceeded({documents}));
             }
             return;
         }
         const getOrganizationsApi = yield Api.get(`${ORGANIZATION}`);
         const success = get(getOrganizationsApi, 'data.success');
         if (success) {
-            const data = get(getOrganizationsApi, 'data.data');
-            console.log(data);
-            yield put(fetchOrganizationSucceeded(data));
+            const documents = get(getOrganizationsApi, 'data.data');
+            yield put(fetchOrganizationSucceeded({documents}));
         }
-        return;
     } catch (err) {
         console.log(err);
     }

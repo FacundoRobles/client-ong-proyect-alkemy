@@ -3,9 +3,9 @@ import {
     FETCH_ORGANIZATION_SUCCEEDED
 } from './types';
 
-export const fetchOrganizationsRequested = id => ({
+export const fetchOrganizationsRequested = idOrganization => ({
     type: FETCH_ORGANIZATIONS_REQUESTED,
-    payload: id
+    idOrganization
 });
 
 export const fetchOrganizationSucceeded = props => ({

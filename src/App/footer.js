@@ -1,4 +1,5 @@
-/* eslint-disable no-console */
+/* eslint-disable lodash/collection-method-value */
+/* eslint no-nested-ternary: "error" */
 import React from 'react';
 import {Row, Col, Container} from 'reactstrap';
 import {useSelector} from 'react-redux';
@@ -6,14 +7,29 @@ import {getRoutes} from '@utils';
 import {Link} from 'react-router-dom';
 import '../scss/footer.scss';
 import fromState from '@core/selectors';
+import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import logo from '../images/LOGO.png';
-import silueta from '../images/silueta.png';
+import facebook from '../images/facebook.png';
+import instagram from '../images/instagram.png';
+import linkedin from '../images/linkedin.png';
 
 const mainRoutes = getRoutes('mainRoutes');
 
 const Footer = () => {
     const selector = useSelector(fromState.Organization.isOrganization);
-    console.log(selector);
+    const goPage = val => {
+        const network = val;
+        window.open(`http://${network}`, '_blank');
+    };
+    const getNetwork = (val => {
+        if (val === 'facebook') {
+            return facebook;
+        } if (val === 'linkedin') {
+            return linkedin;
+        }
+        return instagram;
+    });
     return (
         <footer className="top-more fixed">
             <Container fluid>
@@ -67,26 +83,19 @@ const Footer = () => {
                 <Row className="link-container margin-bottom align-center">
                     <Col sm="auto" class="container-link-social">
                         <ul className="link-social">
-                            <li>
-                                <a href="https://facebook.com">
-                                    <img src={silueta} alt="icono Facebook" className="img-silueta"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://instagram.com">
-                                    <img src={silueta} alt="icono Instagram" className="img-silueta"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com">
-                                    <img src={silueta} alt="icono Twitter" className="img-silueta"/>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://whatsapp.com">
-                                    <img src={silueta} alt="icono WhatsApp" className="img-silueta"/>
-                                </a>
-                            </li>
+                            {!isEmpty(selector) ? (
+                                map(selector, (value, key) => (
+                                    <li key={{key}}>
+                                        <button onClick={() => { goPage(value); }} >
+                                            <img
+                                                src={getNetwork(key)}
+                                                alt="icon network"
+                                                className="img-silueta"
+                                            />
+                                        </button>
+                                    </li>
+                                ))
+                            ) : <></>}
                         </ul>
                     </Col>
                 </Row>
