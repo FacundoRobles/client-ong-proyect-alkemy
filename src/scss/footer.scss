@@ -32,9 +32,8 @@
 
 .img-silueta {
   box-sizing: border-box;
-  height: 44px;
   margin-right: 5px;
-  width: 44px;
+  width: 100%;
 }
 
 .margin-bottom {
@@ -51,4 +50,9 @@
 
 .container-link-social {
   text-align: center;
+}
+
+.btn-network {
+  background-color: transparent;
+  border: 0;
 }
