@@ -1,8 +1,6 @@
 import constant from 'lodash/constant';
 import {
     SUBMIT_CONTACT_REQUESTED,
-    CREATE_CONTACT_REQUESTED,
-    FETCH_CONTACT_REQUESTED,
     FETCH_CONTACT_SUCCEEDED,
     FETCH_CONTACTS_REQUESTED,
     FETCH_CONTACTS_SUCCEEDED,
@@ -10,14 +8,9 @@ import {
     CLEAN_REGISTER_FORM
 } from './types';
 
-export const submitContactRequested = values => ({
+export const submitContactRequested = props => ({
     type: SUBMIT_CONTACT_REQUESTED,
-    payload: values
-});
-
-export const createContactRequested = values => ({
-    type: CREATE_CONTACT_REQUESTED,
-    payload: values
+    ...props
 });
 
 export const fetchContactsRequested = props => ({
@@ -28,11 +21,6 @@ export const fetchContactsRequested = props => ({
 export const fetchContactsSucceeded = props => ({
     type: FETCH_CONTACTS_SUCCEEDED,
     ...props
-});
-
-export const fetchContactRequested = idContact => ({
-    type: FETCH_CONTACT_REQUESTED,
-    idContact
 });
 
 export const fetchContactSucceeded = props => ({

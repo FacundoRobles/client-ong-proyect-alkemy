@@ -1,59 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {useFormik} from 'formik';
 import {
-    // Col,
+    Col,
     Container,
     Row
 } from 'reactstrap';
-import FormEdit from '@components/FormReusable';
+import BackForm from '@components/BackForm';
 
 const Component = ({
+    form,
     fields,
-    createContact
+    submitContactRequested
 }) => {
-    const validateContact = values => {
+    const validate = values => {
         const errors = {};
-        if (!values.name) {
-            errors.name = 'Campo requerido';
+        if (!values.name || !values.email || !values.message) {
+            errors.name = 'Todos los campos requeridos';
+            errors.email = 'Todos los campos requeridos';
+            errors.message = 'Todos los campos requeridos';
         }
         return errors;
     };
 
-    const FormikContact = useFormik({
-        enableReinitialize: true,
-        initialValues: {
-            name: '',
-            email: '',
-            message: ''
-        },
-        validate: validateContact,
-        onSubmit: values => {
-            const obj = values;
-            createContact(obj);
-        }
-    });
     return (
         <Container>
-            <Row><h1>Contactate con nosotros</h1></Row>
             <Row>
-                <FormEdit
-                    Formik={FormikContact}
-                    camps={{}}
-                    fields={fields}
-                />
+                <Col className="text-center"><h1 className="mt-3">Contactate con nosotros</h1></Col>
+            </Row>
+            <Row>
+                <Col>
+                    <div className="form">
+                        <BackForm
+                            key="NewsForm"
+                            form={form}
+                            fields={fields}
+                            submit={submitContactRequested}
+                            fetch={id => id}
+                            id={{id: null}}
+                            validate={validate}
+                        />
+                    </div>
+                </Col>
             </Row>
         </Container>
     );
 };
 
 Component.propTypes = {
+    form: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        message: PropTypes.string.isRequired
+    }).isRequired,
     fields: PropTypes.arrayOf(),
-    createContact: PropTypes.func
+    submitContactRequested: PropTypes.func
 };
 
 Component.defaultProps = {
-    createContact: null,
+    submitContactRequested: null,
     fields: null
 };
 
