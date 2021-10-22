@@ -8,7 +8,8 @@ import {
 import get from 'lodash/get';
 import {getRoutes} from '@utils';
 import TableList from '@components/TableList';
-import {GOBACK, ADD, swalConfirmAction} from '../../utils/constants';
+import {GOBACK, ADD} from '@utils/constants';
+import swalConfirmAction from '@utils/swalConfirmAction';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
@@ -42,7 +43,7 @@ const Component = ({
                             {ADD}
                         </Button>
                     </Row>
-                    <TableList 
+                    <TableList
                         documents={get(list, 'documents')}
                         onDelete={onDelete}
                         {...table}

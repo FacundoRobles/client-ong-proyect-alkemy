@@ -30,16 +30,10 @@ const editorConfig = {
 };
 
 const BackForm = ({
-    form,
-    fields,
-    submit,
-    fetch,
-    id,
-    validate,
-    goBack
+    form, fields, submit, fetch, id, validate, goBack
 }) => {
     useEffect(() => {
-        fetch({id});
+        fetch(id);
     }, [fetch, id]);
 
     const Formik = useFormik({

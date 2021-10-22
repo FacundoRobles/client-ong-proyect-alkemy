@@ -36,26 +36,27 @@ const Router = () => {
         return (
             <>
                 <Header/>
-                {/* Aca estaba el container */}
                 <motion.div
                     key={currentKey}
                     initial="hidden"
                     animate="visible"
                     variants={variants}
                 >
-                    <Switch location={location}>
-                        <Container fluid>
+                    <Container fluid>
+                        <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
-                        </Container>
-                        <Container className="background">
+                        </Switch>
+                    </Container>
+                    <Container className="background">
+                        <Switch location={location}>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
-                        </Container>
-                    </Switch>
+                        </Switch>
+                    </Container>
                 </motion.div>
                 <Footer/>
             </>
@@ -65,15 +66,19 @@ const Router = () => {
         return (
             <>
                 <Header/>
-                <Container className="background">
-                    <motion.div
-                        key={currentKey}
-                        initial="hidden"
-                        animate="visible"
-                        variants={variants}
-                    >
+                <motion.div
+                    key={currentKey}
+                    initial="hidden"
+                    animate="visible"
+                    variants={variants}
+                >
+                    <Container fluid>
                         <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
+                        </Switch>
+                    </Container>
+                    <Container className="background">
+                        <Switch location={location}>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
@@ -85,8 +90,8 @@ const Router = () => {
                             <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.list} component={BackNewsList}/>
                         </Switch>
-                    </motion.div>
-                </Container>
+                    </Container>
+                </motion.div>
                 <Footer/>
             </>
         );
@@ -95,15 +100,19 @@ const Router = () => {
     return (
         <>
             <Header/>
-            <Container className="background">
-                <motion.div
-                    key={currentKey}
-                    initial="hidden"
-                    animate="visible"
-                    variants={variants}
-                >
+            <motion.div
+                key={currentKey}
+                initial="hidden"
+                animate="visible"
+                variants={variants}
+            >
+                <Container fluid>
                     <Switch location={location}>
                         <Route exact path={mainRoutes.home} component={Home}/>
+                    </Switch>
+                </Container>
+                <Container className="background">
+                    <Switch location={location}>
                         <Route exact path={mainRoutes.organization} component={Organization}/>
                         <Route exact path={mainRoutes.activity} component={Activity}/>
                         <Route exact path={mainRoutes.news} component={News}/>
@@ -111,8 +120,8 @@ const Router = () => {
                         <Route exact path={mainRoutes.contact} component={Contact}/>
                         <Route exact path={mainRoutes.contribute} component={Contribute}/>
                     </Switch>
-                </motion.div>
-            </Container>
+                </Container>
+            </motion.div>
             <Footer/>
         </>
     );
