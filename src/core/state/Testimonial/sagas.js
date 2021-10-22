@@ -28,12 +28,13 @@ import {
     DELETE_TESTIMONIAL_REQUESTED
 } from './types';
 
-function* requestTestimonialSagas({id}) {
+function* requestTestimonialSagas(props) {
+    console.log(props[0])
     try {
         yield put(setRequestFlag({flag: true}));
 
-        if (id) {
-            const fetchTestimonial = yield Api.get(`${TESTIMONIAL}/${id}`);
+        if (props[0]) {
+            const fetchTestimonial = yield Api.get(`${TESTIMONIAL}/${props[0]}`);
             const success = get(fetchTestimonial, 'data.success');
             if (success) {
                 const testimonial = get(fetchTestimonial, 'data.data.testimonials');
@@ -47,7 +48,10 @@ function* requestTestimonialSagas({id}) {
         if (success) {
             const testimonial = get(fetchTestimonials, 'data.data.testimonials');
             yield put(fetchTestimonialsSucceeded({testimonial}));
+            return;
         }
+
+        yield put(setSystemMessage(ERROR));
     } catch (err) {
         yield put(setSystemMessage(ERROR));
     } finally {

@@ -41,11 +41,7 @@ const testimonialForm = (state = {...initialState}, {type, ...props}) => {
         case FETCH_TESTIMONIAL_SUCCEEDED:
             return {
                 ...state,
-                form: {
-                    name: props.testimonial.name,
-                    image: props.testimonial.image,
-                    content: props.testimonial.content
-                }
+                form: {...props.testimonial}
             };
         case CLEAN_REGISTER_FORM:
             return {
