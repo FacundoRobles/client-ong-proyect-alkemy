@@ -6,3 +6,5 @@ export const TESTIMONIAL = 'testimonial';
 export const NEWS = 'news';
 export const REGISTER = 'register';
 export const CONTACT = 'contacts';
+export const ORGANIZATION = 'organizations';
+export const BACKOFFICE = 'backoffice';

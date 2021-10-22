@@ -7,6 +7,8 @@ import {
     Label, Col, Button, FormGroup, Card, CardBody, Input
 } from 'reactstrap';
 import map from 'lodash/map';
+import get from 'lodash/get';
+import {SEND, CANCEL} from '../../utils/constants';
 
 const editorConfig = {
     toolbar: [
@@ -28,7 +30,7 @@ const editorConfig = {
 };
 
 const BackForm = ({
-    form, fields, submit, fetch, id, validate
+    form, fields, submit, fetch, id, validate, goBack
 }) => {
     useEffect(() => {
         fetch(id);
@@ -43,7 +45,11 @@ const BackForm = ({
 
     return (
         <>
-            <Col sm="4" className="mx-auto mt-5 p-0">
+            <Col
+                md={{size: 8, offset: 2}}
+                lg={{size: 6, offset: 3}}
+                className="my-5 p-0"
+            >
                 <Card className="form-card">
                     <CardBody>
                         <form
@@ -52,46 +58,43 @@ const BackForm = ({
                         >
                             {map(fields, field => (
                                 <FormGroup
-                                    key={field.id}
+                                    key={get(field, 'id')}
                                 >
                                     <Col
-                                        md={{size: 10, offset: 1}}
-                                        className="mb-3 p-0"
+                                        className="mb-3 px-2"
                                         tag="h5"
                                     >
                                         <Label
-                                            for={field.id}
+                                            for={get(field, 'id')}
                                         >
-                                            {field.label}
+                                            {get(field, 'label')}
                                         </Label>
                                     </Col>
-                                    {field.type !== 'CKEditor'
+                                    {get(field, 'type') !== 'CKEditor'
                                         ? (
                                             <>
                                                 <Col
-                                                    md={{size: 10, offset: 1}}
-                                                    className="mb-3 p-0"
+                                                    className="mb-3 px-2"
                                                 >
-                                                    <Input
+                                                    <input
                                                         className="form-control"
                                                         onChange={Formik.handleChange}
                                                         onBlur={Formik.handleBlur}
-                                                        value={Formik.values[field.name]}
-                                                        placeholder={field.placeholder}
-                                                        type={field.type}
-                                                        name={field.name}
-                                                        id={field.id}
+                                                        value={Formik.values[get(field, 'name')]}
+                                                        placeholder={get(field, 'placeholder')}
+                                                        type={get(field, 'type')}
+                                                        name={get(field, 'name')}
+                                                        id={get(field, 'id')}
                                                     />
                                                 </Col>
                                                 <Col
-                                                    md={{size: 10, offset: 1}}
                                                     className="mb-3 p-0"
                                                 >
-                                                    {Formik.errors[field.name]
-                                                && Formik.touched[field.name]
+                                                    {Formik.errors[get(field, 'name')]
+                                                && Formik.touched[get(field, 'name')]
                                                 && (
-                                                    <p className="error">
-                                                        {Formik.errors[field.name]}
+                                                    <p className="error text-center">
+                                                        {Formik.errors[get(field, 'name')]}
                                                     </p>
                                                 )}
                                                 </Col>
@@ -100,25 +103,24 @@ const BackForm = ({
                                         : (
                                             <>
                                                 <Col
-                                                    md={{size: 10, offset: 1}}
-                                                    className="mb-3 p-0"
+                                                    className="mb-3 px-2"
                                                 >
                                                     <CKEditor
+                                                        id={get(field, 'name')}
                                                         editor={ClassicEditor}
-                                                        data={form[field.name]}
-                                                        config={{...editorConfig, placeholder: field.placeholder}}
-                                                        onChange={(event, editor) => Formik.setFieldValue(field.name, editor.getData())}
+                                                        data={form[get(field, 'name')]}
+                                                        config={{...editorConfig, placeholder: get(field, 'placeholder')}}
+                                                        onChange={(event, editor) => Formik.setFieldValue(get(field, 'name'), editor.getData())}
                                                     />
                                                 </Col>
                                                 <Col
-                                                    md={{size: 10, offset: 1}}
-                                                    className="mb-3 p-0"
+                                                    className="mb-3 px-2"
                                                 >
-                                                    {Formik.errors[field.name]
-                                            && Formik.touched[field.name]
+                                                    {Formik.errors[get(field, 'name')]
+                                            && Formik.touched[get(field, 'name')]
                                             && (
-                                                <p className="error">
-                                                    {Formik.errors[field.name]}
+                                                <p className="error text-center">
+                                                    {Formik.errors[get(field, 'name')]}
                                                 </p>
                                             )}
                                                 </Col>
@@ -126,29 +128,25 @@ const BackForm = ({
                                         )}
                                 </FormGroup>
                             ))}
-                            <div className="d-flex justify-content-between">
-                                <Col
-                                    md={{size: 10, offset: 1}}
-                                    className="mt-4 d-flex justify-content-between p-0"
+                            <Col
+                                className="mt-4 d-flex justify-content-between px-2"
+                            >
+                                <Button
+                                    type="submit"
+                                    color="danger"
+                                    className="btn-cancel"
+                                    onClick={goBack}
                                 >
-                                    <Button
-                                        type="submit"
-                                        color="danger"
-                                        className="btn-cancel"
-                                    >
-                                        Cancelar
-                                    </Button>
-                                    {' '}
-                                    <Button
-                                        type="submit"
-                                        color="primary"
-                                        className="px-4 btn-submit"
-                                    >
-                                        Enviar
-                                    </Button>
-                                    {' '}
-                                </Col>
-                            </div>
+                                    {CANCEL}
+                                </Button>
+                                <Button
+                                    type="submit"
+                                    color="primary"
+                                    className="px-4 btn-submit"
+                                >
+                                    {SEND}
+                                </Button>
+                            </Col>
                         </form>
                     </CardBody>
                 </Card>
@@ -174,10 +172,11 @@ BackForm.propTypes = {
             name: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
-    id: PropTypes.shape({id: PropTypes.string}),
+    id: PropTypes.string,
     submit: PropTypes.func.isRequired,
     fetch: PropTypes.func.isRequired,
-    validate: PropTypes.func.isRequired
+    validate: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired
 };
 
 BackForm.defaultProps = {
