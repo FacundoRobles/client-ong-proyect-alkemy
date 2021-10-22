@@ -1,0 +1,38 @@
+.form-card {
+  box-shadow: 3px 5px 15px var(--sky-drive);
+  
+  h5 {
+    color: var(--secondary);
+    text-shadow: 1px 1px 5px var(--sky-drive);
+  }
+}
+
+.btn-cancel,
+.btn-submit {
+  border-style: none !important;
+}
+
+.btn-cancel {
+  background-color: var(--red-drive);
+}
+
+.btn-submit {
+  background-color: var(--sky-drive);
+}
+
+.btn-cancel:hover,
+.btn-submit:hover {
+  box-shadow: 1px 2px 7px var(--secondary);
+}
+
+.btn-cancel:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-submit:hover {
+  background-color: var(--secondary);
+}
+
+.error {
+  color: var(--red-drive);
+}

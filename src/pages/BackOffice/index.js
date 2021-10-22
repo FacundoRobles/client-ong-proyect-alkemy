@@ -6,9 +6,9 @@ import Component from './Component';
 
 export default connect(
     state => ({
-        // selectorrs
+
     }),
     dispatch => bindActionCreators({
-        // actions
+
     }, dispatch)
 )(Component);

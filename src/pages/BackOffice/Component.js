@@ -1,10 +1,10 @@
 import React from 'react';
-import backOffice from '@components/backOffice';
+import BackOffice from '../../components/backOffice';
 
-const BackOffice = () => (
+const Component = () => (
     <div>
-        <backOffice/>
+        <BackOffice/>
     </div>
 );
 
-export default BackOffice;
+export default Component;

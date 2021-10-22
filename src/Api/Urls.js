@@ -5,4 +5,7 @@ export const ME = 'me';
 export const TESTIMONIAL = 'testimonial';
 export const CATEGORIES = 'categories';
 export const REGISTER = 'register';
+export const NEWS = 'news';
+export const CONTACT = 'contacts';
+export const ORGANIZATION = 'organizations';
 export const BACKOFFICE = 'backoffice';
