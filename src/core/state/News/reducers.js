@@ -65,7 +65,6 @@ const News = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 newsForm: {
-                    ...state,
                     ...initialState.newsForm
                 }
             };

@@ -9,6 +9,7 @@ import Home from '@pages/Home';
 import Organization from '@pages/Organization';
 import Activity from '@pages/Activity';
 import News from '@pages/News';
+import NewsDetail from '@pages/NewsDetail';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
@@ -44,13 +45,12 @@ const Router = () => {
                     variants={variants}
                 >
                     <Switch location={location}>
-                        <Container fluid>
-                            <Route exact path={mainRoutes.home} component={Home}/>
-                        </Container>
                         <Container className="background">
+                            <Route exact path={mainRoutes.home} component={Home}/>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
+                            <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
@@ -77,6 +77,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
+                            <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>

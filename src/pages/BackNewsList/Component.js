@@ -8,7 +8,8 @@ import {
 import get from 'lodash/get';
 import {getRoutes} from '@utils';
 import TableList from '@components/TableList';
-import {GOBACK, ADD, swalConfirmAction} from '../../utils/constants';
+import {GOBACK, ADD} from '../../utils/constants';
+import swalConfirmAction from '../../utils/swalConfirmAction';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
@@ -23,12 +24,24 @@ const Component = ({
     useEffect(() => {
         fetchNewsRequested();
     }, [fetchNewsRequested]);
+
     const onDelete = prop => {
         const deleteField = () => {
             deleteNewsRequested(get(prop, 'id'));
         };
         swalConfirmAction('warning', 'Eliminar Registro', '', 'Confirmar', 'Cancelar', deleteField);
     };
+
+    const onEdit = prop => {
+        const id = get(prop, 'id');
+        push(`${backOfficeRoutes.news.list}/${id}/edit`);
+    };
+
+    const onView = prop => {
+        const id = get(prop, 'id');
+        push(`${mainRoutes.news}/${id}`);
+    };
+
     return (
         <>
             <Row className="list-row">
@@ -42,9 +55,11 @@ const Component = ({
                             {ADD}
                         </Button>
                     </Row>
-                    <TableList 
+                    <TableList
                         documents={get(list, 'documents')}
                         onDelete={onDelete}
+                        onEdit={onEdit}
+                        onView={onView}
                         {...table}
                     />
                 </Col>
