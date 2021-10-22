@@ -37,14 +37,15 @@ const initialState = {
 };
 
 const contactForm = (state = {...initialState}, {type, ...props}) => {
+    const {contact} = props;
     switch (type) {
         case FETCH_CONTACT_SUCCEEDED:
             return {
                 ...state,
                 form: {
-                    name: props.contact.name,
-                    email: props.contact.email,
-                    message: props.contact.message
+                    name: contact.name,
+                    email: contact.email,
+                    message: contact.message
                 }
             };
         case CLEAN_REGISTER_FORM:
@@ -60,7 +61,7 @@ const contactForm = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 list: {
-                    documents: props
+                    documents: contact
                 }
             };
         default:

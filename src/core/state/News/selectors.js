@@ -1,7 +1,62 @@
-/* eslint-disable import/prefer-default-export */
 import get from 'lodash/get';
 
+const path = 'news';
+
+export const getNewsForm = state => get(state, `${path}.newsForm`);
+export const getNewsFields = state => get(state, `${path}.newsFields`);
 export const news = state => get(state, 'news.list.news');
+export const getList = state => get(state, `${path}.list`);
+
+export const getTableProps = () => {
+    const headers = [
+        {
+            label: '#ID',
+            key: 'id',
+            className: 'border-0 pointer'
+        },
+        {
+            label: 'Nombre',
+            key: 'name',
+            className: 'border-0 pointer text-left'
+        },
+        {
+            label: 'Image',
+            key: 'description',
+            className: 'border-0 pointer'
+        },
+        {
+            label: 'Acciones',
+            key: 'actions',
+            className: 'border-0 pointer text-center'
+        }
+    ];
+    const columns = [
+        {
+            key: 'id',
+            drawInformation: document => get(document, 'id')
+        },
+        {
+            key: 'name',
+            drawInformation: document => get(document, 'name'),
+            className: 'text-left'
+        },
+        {
+            key: 'image',
+            drawInformation: document => get(document, 'image')
+        },
+        {
+            actions: true,
+            edit: true,
+            view: true,
+            delete: true,
+            className: 'text-center'
+        }
+    ];
+    return {
+        headers,
+        columns
+    };
+};
 
 export const getSlickNews = () => {
     const news = [
