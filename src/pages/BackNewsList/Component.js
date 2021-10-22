@@ -8,8 +8,8 @@ import {
 import get from 'lodash/get';
 import {getRoutes} from '@utils';
 import TableList from '@components/TableList';
-import {GOBACK, ADD} from '../../utils/constants';
-import swalConfirmAction from '../../utils/swalConfirmAction';
+import {GOBACK, ADD} from '@utils/constants';
+import swalConfirmAction from '@utils/swalConfirmAction';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');

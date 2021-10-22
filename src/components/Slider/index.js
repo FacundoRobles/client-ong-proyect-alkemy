@@ -34,7 +34,7 @@ const Slider = ({items}) => {
         <CarouselItem
             onExiting={() => setAnimating(true)}
             onExited={() => setAnimating(false)}
-            key={item.src}
+            key={item.key}
         >
             <img src={item.imageUrl} alt={item.text}/>
             <CarouselCaption captionText={item.text}/>
@@ -57,6 +57,7 @@ const Slider = ({items}) => {
 
 Slider.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.number.isRequired,
         imageUrl: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
     })).isRequired

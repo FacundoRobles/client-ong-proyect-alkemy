@@ -1,13 +1,13 @@
 export const SUCCESS = {
     icon: 'success',
     title: 'Genial',
-    text: 'la accion se concreto correctamente!'
+    text: 'La acción se concretó correctamente!'
 };
 
 export const ERROR = {
     icon: 'error',
     title: 'Oops...',
-    text: 'Algo salio mal!'
+    text: 'Algo salió mal!'
 };
 
 export const WARNING = 'warning';

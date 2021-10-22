@@ -14,7 +14,7 @@ const Slick = ({items}) => {
         <>
             <Slider {...settings}>
                 {map(items, item => (
-                    <div>
+                    <div key={item.key}>
                         <CardComponent items={item}/>
                     </div>
                 )
@@ -26,6 +26,7 @@ const Slick = ({items}) => {
 
 Slick.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.number.isRequired,
         imageUrl: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
     })).isRequired
