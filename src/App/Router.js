@@ -13,6 +13,7 @@ import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import BackOffice from '@pages/BackOffice';
+import BackCategoriesForm from '@pages/BackCategoriesForm';
 import BackNewsForm from '@pages/BackNewsForm';
 import BackNewsList from '@pages/BackNewsList';
 import BackTestimonial from '@pages/BackTestimonial';
@@ -88,6 +89,8 @@ const Router = () => {
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
+                            <Route exact path={backOfficeRoutes.category.form} component={BackCategoriesForm}/>
+                            <Route exact path={backOfficeRoutes.category.edit} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.list} component={BackNewsList}/>
