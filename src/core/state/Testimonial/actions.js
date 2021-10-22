@@ -6,7 +6,7 @@ import {
     FETCH_TESTIMONIAL_SUCCEEDED,
     FETCH_TESTIMONIALS_REQUESTED,
     FETCH_TESTIMONIALS_SUCCEEDED,
-    SUBMIT_TESTIMONIAL_REQUESTED,
+    SUBMIT_TESTIMONIAL_REQUESTED
 } from './types';
 
 export const deleteTestimonialRequested = props => ({

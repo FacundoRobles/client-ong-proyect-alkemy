@@ -60,7 +60,8 @@ const testimonialForm = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 list: {
-                    documents: {...props}
+                    documents: {...props},
+                    total: props.testimonial.length
                 }
             };
         default:

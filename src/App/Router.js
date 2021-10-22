@@ -15,6 +15,7 @@ import Contribute from '@pages/Contribute';
 import BackOffice from '@pages/BackOffice';
 import BackNewsForm from '@pages/BackNewsForm';
 import BackTestimonial from '@pages/BackTestimonial';
+import BackTestimonialList from '@pages/BackTestimonialList';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
@@ -83,8 +84,9 @@ const Router = () => {
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
-                            <Route exact path={`${mainRoutes.backOffice}${mainRoutes.testimonial}/:id`} component={BackTestimonial}/>
-                            <Route exact path={`${mainRoutes.backOffice}${mainRoutes.testimonial}`} component={BackTestimonial}/>
+                            <Route exact path={backOfficeRoutes.testimonial.edit} component={BackTestimonial}/>
+                            <Route exact path={backOfficeRoutes.testimonial.form} component={BackTestimonial}/>
+                            <Route exact path={backOfficeRoutes.testimonial.list} component={BackTestimonialList}/>
                         </Switch>
                     </motion.div>
                 </Container>

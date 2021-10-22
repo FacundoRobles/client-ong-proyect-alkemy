@@ -7,6 +7,9 @@ import {
     Row
 } from 'reactstrap';
 import BackForm from '@components/BackForm';
+import {getRoutes} from '@utils';
+
+const backOfficeRoutes = getRoutes('backOffice');
 
 const Component = ({
     form,
@@ -26,7 +29,7 @@ const Component = ({
         }
         return errors;
     };
-
+    const goBack = () => push(backOfficeRoutes.testimonial.list);
     return (
         <div className="text-center">
             <Container fluid>
@@ -43,6 +46,7 @@ const Component = ({
                         submit={submitTestimonialRequested}
                         validate={validate}
                         push={push}
+                        goBack={goBack}
                     />
                 </Col>
             </Row>
