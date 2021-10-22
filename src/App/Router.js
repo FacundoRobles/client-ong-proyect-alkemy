@@ -14,6 +14,7 @@ import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import BackOffice from '@pages/BackOffice';
 import BackNewsForm from '@pages/BackNewsForm';
+import BackNewsList from '@pages/BackNewsList';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
@@ -82,6 +83,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
+                            <Route exact path={backOfficeRoutes.news.list} component={BackNewsList}/>
                         </Switch>
                     </motion.div>
                 </Container>

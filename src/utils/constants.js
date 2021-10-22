@@ -16,3 +16,5 @@ export const HOME = 'home';
 export const REQUIRED = 'Todos los campos requeridos';
 export const SEND = 'Envíar';
 export const CANCEL = 'Cancelar';
+export const GOBACK = 'Volver';
+export const ADD = 'Agregar';

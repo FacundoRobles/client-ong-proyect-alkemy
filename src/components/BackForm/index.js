@@ -30,7 +30,13 @@ const editorConfig = {
 };
 
 const BackForm = ({
-    form, fields, submit, fetch, id, validate
+    form,
+    fields,
+    submit,
+    fetch,
+    id,
+    validate,
+    goBack
 }) => {
     useEffect(() => {
         fetch({id});
@@ -135,6 +141,7 @@ const BackForm = ({
                                     type="submit"
                                     color="danger"
                                     className="btn-cancel"
+                                    onClick={goBack}
                                 >
                                     {CANCEL}
                                 </Button>
@@ -174,7 +181,8 @@ BackForm.propTypes = {
     id: PropTypes.string,
     submit: PropTypes.func.isRequired,
     fetch: PropTypes.func.isRequired,
-    validate: PropTypes.func.isRequired
+    validate: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired
 };
 
 BackForm.defaultProps = {
