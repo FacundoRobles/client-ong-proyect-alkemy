@@ -3,7 +3,7 @@ import {PropTypes} from 'prop-types';
 import BackForm from '@components/BackForm';
 
 const Component = ({
-    form, fields, submitActivitiesRequested, fetchActivitiesRequested, match
+    form, fields, submitActivityRequested, fetchActivitiesRequested, match
 }) => {
     const validate = values => {
         const errors = {};
@@ -22,7 +22,7 @@ const Component = ({
                 key="NewsForm"
                 form={form}
                 fields={fields}
-                submit={submitActivitiesRequested}
+                submit={submitActivityRequested}
                 fetch={fetchActivitiesRequested}
                 id={match.params}
                 validate={validate}
@@ -49,7 +49,7 @@ Component.propTypes = {
 
         }).isRequired
     ).isRequired,
-    submitActivitiesRequested: PropTypes.func.isRequired,
+    submitActivityRequested: PropTypes.func.isRequired,
     fetchActivitiesRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({

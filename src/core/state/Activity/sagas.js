@@ -35,7 +35,7 @@ function* requestActivitiesSagas({idActivity}) {
             const getActivity = yield Api.get(`${ACTIVITY}/${idActivity}`);
             const success = get(getActivity, 'data.success');
             if (success) {
-                const activity = get(getActivity, 'data.data.activities');
+                const activity = get(getActivity, 'data.activities');
                 yield put(fetchActivitySucceeded({activity}));
                 return;
             }
@@ -44,7 +44,7 @@ function* requestActivitiesSagas({idActivity}) {
         const getActivities = yield Api.get(ACTIVITY);
         const success = get(getActivities, 'data.success');
         if (success) {
-            const activity = get(getActivities, 'data.data.activities');
+            const activity = get(getActivities, 'data.activities');
             yield put(fetchActivitiesSucceeded({activity}));
             return;
         }
@@ -70,7 +70,7 @@ function* submitActivitiesSagas({
             const editActivity = yield Api.put(`${ACTIVITY}/${idActivity}`, obj);
             const success = get(editActivity, 'data.success');
             if (success) {
-                const activity = get(editActivity, 'data.data.activities');
+                const activity = get(editActivity, 'data.activities');
                 yield put(fetchActivitySucceeded({activity}));
                 yield put(cleanRegisterForm());
                 yield put(setSystemMessage(SUCCESS));

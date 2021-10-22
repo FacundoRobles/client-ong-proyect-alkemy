@@ -12,7 +12,7 @@ export default connect(
         form: fromState.Activity.getForm(state)
     }),
     dispatch => bindActionCreators({
-        submitActivitiesRequested: obj => dispatch(Activity.submitActivitiesRequested(obj)),
+        submitActivityRequested: obj => dispatch(Activity.submitActivityRequested(obj)),
         fetchActivitiesRequested: obj => dispatch(Activity.fetchActivitiesRequested(obj))
     }, dispatch)
 )(Component);
