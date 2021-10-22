@@ -22,5 +22,13 @@ export default {
         form: `${mainRoutes.testimonial}/form`,
         edit: `${mainRoutes.testimonial}/:id`
     },
+    backOffice: {
+        category: {
+            list: `${mainRoutes.backOffice}${mainRoutes.category}`,
+            form: `${mainRoutes.backOffice}${mainRoutes.category}/new`,
+            show: `${mainRoutes.backOffice}${mainRoutes.category}/:id`,
+            edit: `${mainRoutes.backOffice}${mainRoutes.category}/:id/edit`
+        }
+    },
     mainRoutes
 };
