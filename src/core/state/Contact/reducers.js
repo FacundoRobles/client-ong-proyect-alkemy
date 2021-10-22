@@ -36,7 +36,8 @@ const initialState = {
     }
 };
 
-const contactForm = (state = {...initialState}, {type, props: {contact}}) => {
+const contactForm = (state = {...initialState}, {type, ...props}) => {
+    const {contact} = props;
     switch (type) {
         case FETCH_CONTACT_SUCCEEDED:
             return {

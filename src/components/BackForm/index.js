@@ -4,7 +4,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {useFormik} from 'formik';
 import {
-    Label, Col, Button, FormGroup, Card, CardBody, Input
+    Label, Col, Button, FormGroup, Card, CardBody
 } from 'reactstrap';
 import map from 'lodash/map';
 import get from 'lodash/get';
