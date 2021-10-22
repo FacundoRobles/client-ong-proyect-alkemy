@@ -13,6 +13,7 @@ export const isAuthenticate = state => get(state, 'session.isAuthenticate');
 export const getRequestFlag = state => get(state, 'session.flagRequest');
 export const getUserAgent = state => get(state, 'session.data.user.userAgent');
 const mainRoutes = getRoutes('mainRoutes');
+const backOfficeRoutes = getRoutes('backOffice');
 
 export const getNavigationHeader = () => {
     const navigationHeader = [
@@ -59,7 +60,7 @@ export const menuOffice = () => {
     const menu = [{
         title: 'Novedades',
         icon: MenuBookIcon,
-        path: mainRoutes.news
+        path: backOfficeRoutes.news.list
     }, {
         title: 'Actividades',
         icon: AssignmentRoundedIcon,
@@ -115,3 +116,67 @@ export const getLoginInit = () => ({
         }
     ]
 });
+
+export const getSlickSettings = () => {
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        arrows: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+    return settings;
+};
+
+export const getSliderItems = () => {
+    const items = [{
+        key: 1,
+        imageUrl: 'https://wallpaperaccess.com/full/170249.jpg',
+        text: 'A great landscape'
+    },
+    {
+        key: 2,
+        imageUrl: 'https://fondosmil.com/fondo/2256.jpg',
+        text: 'A greater landscape'
+    },
+    {
+        key: 3,
+        imageUrl: 'https://www.solofondos.com/wp-content/uploads/2016/04/3e2af664e061013a3d05aa99fa20c1d4.jpg',
+        text: 'A greatest landscape'
+    }
+    ];
+    return items;
+};
+
+export const getWelcomeText = () => {
+    const text = 'Texto de bienvenida';
+    return text;
+};
