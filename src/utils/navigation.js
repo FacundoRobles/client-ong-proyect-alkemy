@@ -23,6 +23,12 @@ export default {
         edit: `${mainRoutes.testimonial}/:id`
     },
     backOffice: {
+        category: {
+            list: `${mainRoutes.backOffice}${mainRoutes.category}`,
+            form: `${mainRoutes.backOffice}${mainRoutes.category}/new`,
+            show: `${mainRoutes.backOffice}${mainRoutes.category}/:id`,
+            edit: `${mainRoutes.backOffice}${mainRoutes.category}/:id/edit`
+        },
         news: {
             list: `${mainRoutes.backOffice}${mainRoutes.news}`,
             form: `${mainRoutes.backOffice}${mainRoutes.news}/new`,
