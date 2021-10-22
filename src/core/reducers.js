@@ -6,6 +6,7 @@ import testimonial from './state/Testimonial/reducers';
 import news from './state/News/reducers';
 import user from './state/User/reducers';
 import contact from './state/Contact/reducers';
+import activity from './state/Activity/reducers';
 
 export default history => combineReducers({
     router: connectRouter(history),
@@ -13,5 +14,6 @@ export default history => combineReducers({
     user,
     contact,
     testimonial,
-    news
+    news,
+    activity
 });

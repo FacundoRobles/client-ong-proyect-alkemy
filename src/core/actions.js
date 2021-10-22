@@ -4,11 +4,13 @@ import * as User from './state/User/actions';
 import * as Contact from './state/Contact/actions';
 import * as Testimonial from './state/Testimonial/actions';
 import * as News from './state/News/actions';
+import * as Activity from './state/Activity/actions';
 
 export {
     Session,
     User,
     Contact,
     Testimonial,
-    News
+    News,
+    Activity
 };

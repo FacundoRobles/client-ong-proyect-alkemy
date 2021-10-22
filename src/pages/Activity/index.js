@@ -3,13 +3,16 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import fromState from '@core/selectors';
+import {Activity} from '@core/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        // selectorrs
+        fields: fromState.Activity.getFields(state),
+        form: fromState.Activity.getForm(state)
     }),
     dispatch => bindActionCreators({
-        // actions
+        submitActivitiesRequested: obj => dispatch(Activity.submitActivitiesRequested(obj)),
+        fetchActivitiesRequested: obj => dispatch(Activity.fetchActivitiesRequested(obj))
     }, dispatch)
 )(Component);

@@ -6,3 +6,4 @@ export const TESTIMONIAL = 'testimonial';
 export const NEWS = 'news';
 export const REGISTER = 'register';
 export const CONTACT = 'contacts';
+export const ACTIVITY = 'activities';
