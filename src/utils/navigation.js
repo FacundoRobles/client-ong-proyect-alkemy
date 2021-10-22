@@ -29,6 +29,11 @@ export default {
             form: `${mainRoutes.backOffice}${mainRoutes.testimonial}/new`,
             edit: `${mainRoutes.backOffice}${mainRoutes.testimonial}/:id`
         },
+        organization: {
+            list: `${mainRoutes.backOffice}${mainRoutes.organization}`,
+            form: `${mainRoutes.backOffice}${mainRoutes.organization}/new`,
+            edit: `${mainRoutes.backOffice}${mainRoutes.organization}/:id`
+        }
     },
     mainRoutes
 };

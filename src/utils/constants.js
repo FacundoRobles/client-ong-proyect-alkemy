@@ -36,7 +36,7 @@ export function swalConfirmAction(
         cancelButtonColor: '#d33',
         reverseButtons: true,
         confirmButtonText,
-        cancelButtonText,
+        cancelButtonText
     }).then(result => {
         if (!result.value) {
             return CancelConfirm;

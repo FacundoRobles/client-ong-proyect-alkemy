@@ -34,15 +34,17 @@ const TableListNew = ({
                         <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/>
                         <p className="align-self-center m-0 p-0 w-50">{current.name}</p>
                         <div className="content-testimonial align-self-center m-0 p-0 w-50">
-                            <p // eslint-disable-next-line
-                                dangerouslySetInnerHTML={
-                                    {__html: current.content.substr(0, 45)}
-                                }
-                                data-bs-toggle="tooltip"
-                                data-bs-html="true"
-                                data-bs-placement="top"
-                                title={replace(current.content, /<[^>]*>/g, '')}
-                            />
+                            {current.content && (
+                                <p // eslint-disable-next-line
+                                    dangerouslySetInnerHTML={
+                                        {__html: current.content.substr(0, 45)}
+                                    }
+                                    data-bs-toggle="tooltip"
+                                    data-bs-html="true"
+                                    data-bs-placement="top"
+                                    title={replace(current.content, /<[^>]*>/g, '')}
+                                />
+                            )}
                         </div>
                         <div className="align-self-center flex-nowrap">
                             <EditIcon
