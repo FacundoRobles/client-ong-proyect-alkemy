@@ -11,7 +11,7 @@ import get from 'lodash/get';
 
 export const isAuthenticate = state => get(state, 'session.isAuthenticate');
 export const getRequestFlag = state => get(state, 'session.flagRequest');
-export const getUserAgent = state => get(state, 'session.data.user.userAgent');
+export const getUserAgent = state => get(state, 'session.user.userAgent');
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -72,7 +72,7 @@ export const menuOffice = () => {
     }, {
         title: 'Testimonios',
         icon: ChatRoundedIcon,
-        path: mainRoutes.testimonial
+        path: backOfficeRoutes.testimonial.list
     }, {
         title: 'Organizacion',
         icon: HomeWorkIcon,
