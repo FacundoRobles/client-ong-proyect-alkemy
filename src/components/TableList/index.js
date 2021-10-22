@@ -73,7 +73,7 @@ const TableList = ({
                             {map(documents, document => (
                                 <tr
                                     key={uniqueId('tableListBodyTr')}
-                                    labelById={get(document, '_id')}
+                                    labelById={get(document, 'id')}
                                 >
                                     {map(columns, column => (
                                         <td

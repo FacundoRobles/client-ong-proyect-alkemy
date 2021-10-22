@@ -13,7 +13,11 @@ import {
 
 import get from 'lodash/get';
 import Api from '@Api/Api';
-import {SUBMIT_NEWS_REQUESTED, FETCH_NEWS_REQUESTED} from './types';
+import {
+    SUBMIT_NEWS_REQUESTED,
+    FETCH_NEWS_REQUESTED,
+    DELETE_NEWS_REQUESTED
+} from './types';
 import {setRequestFlag, setSystemMessage} from '../Session/actions';
 import {
     fetchNewsRequested,
@@ -66,9 +70,24 @@ function* fetchNewsRequestedSagas({id}) {
     }
 }
 
+function* deleteNewsRequestedSagas({id}) {
+    try {
+        yield put(setRequestFlag({flag: true}));
+        yield Api.delete(`${NEWS}/${id}`);
+        yield put(fetchNewsRequested());
+        return yield put(setSystemMessage(SUCCESS));
+    } catch (err) {
+        yield put(setSystemMessage(ERROR));
+        throw Error(err);
+    } finally {
+        yield put(setRequestFlag({flag: false}));
+    }
+}
+
 export default function* userSagas() {
     yield all([
         takeLatest(SUBMIT_NEWS_REQUESTED, submitNewsRequestedSagas),
-        takeLatest(FETCH_NEWS_REQUESTED, fetchNewsRequestedSagas)
+        takeLatest(FETCH_NEWS_REQUESTED, fetchNewsRequestedSagas),
+        takeLatest(DELETE_NEWS_REQUESTED, deleteNewsRequestedSagas)
     ]);
 }

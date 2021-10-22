@@ -17,7 +17,9 @@ const Component = ({
     history: {push},
     testimonial,
     deleteTestimonialRequested,
-    fetchTestimonialRequested
+    fetchTestimonialRequested,
+    title,
+    buttonText
 }) => {
     useEffect(() => {
         fetchTestimonialRequested({})
@@ -25,7 +27,7 @@ const Component = ({
     return (
         <div className="text-center">
             <Container fluid>
-                <h1>Listado de testimonios</h1>
+                <h1>{title}</h1>
             </Container>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
@@ -38,7 +40,7 @@ const Component = ({
                 </Col>
                 <Col>
                     <Button onClick={() => push(backOfficeRoutes.testimonial.form)}>
-                        Crear uno nuevo
+                        {buttonText}
                     </Button>
                 </Col>
             </Row>
@@ -56,11 +58,15 @@ Component.propTypes = {
         name: PropTypes.string,
         image: PropTypes.string,
         content: PropTypes.string
-    }))
+    })),
+    title: PropTypes.string,
+    buttonText: PropTypes.string
 };
 
 Component.defaultProps = {
-    testimonial: null
+    testimonial: null,
+    title: 'Listado de testimonios',
+    buttonText: 'crear uno nuevo'
 };
 
 export default Component;

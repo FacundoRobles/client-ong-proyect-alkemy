@@ -1,10 +1,18 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
+import {getRoutes} from '@utils';
 import BackForm from '../../components/BackForm';
 import {REQUIRED} from '../../utils/constants';
 
+const backOfficeRoutes = getRoutes('backOffice');
+
 const Component = ({
-    form, fields, submitNewsRequested, fetchNewsRequested, match
+    form,
+    fields,
+    submitNewsRequested,
+    fetchNewsRequested,
+    match,
+    history: {push}
 }) => {
     const validate = values => {
         const errors = {};
@@ -15,6 +23,9 @@ const Component = ({
         }
         return errors;
     };
+
+    const goBackToList = () => push(backOfficeRoutes.news.list);
+
     return (
         <>
             <h1 className="text-center mb-4">Administrar Novedades</h1>
@@ -26,6 +37,7 @@ const Component = ({
                 fetch={fetchNewsRequested}
                 id={match.params.id}
                 validate={validate}
+                goBack={goBackToList}
             />
         </>
     );
@@ -55,7 +67,10 @@ Component.propTypes = {
         params: PropTypes.shape({
             id: PropTypes.string
         })
-    })
+    }),
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired
 };
 
 Component.defaultProps = {

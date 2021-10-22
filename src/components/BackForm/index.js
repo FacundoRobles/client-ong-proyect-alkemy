@@ -33,7 +33,7 @@ const BackForm = ({
     form, fields, submit, fetch, id, validate, goBack, push
 }) => {
     useEffect(() => {
-        fetch({id});
+        fetch(id);
     }, [fetch, id]);
 
     const Formik = useFormik({

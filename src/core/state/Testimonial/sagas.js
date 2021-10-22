@@ -32,12 +32,12 @@ import {
 
 const backOfficeRoutes = getRoutes('backOffice');
 
-function* requestTestimonialSagas({id}) {
+function* requestTestimonialSagas(props) {
     try {
         yield put(setRequestFlag({flag: true}));
 
-        if (id) {
-            const fetchTestimonial = yield Api.get(`${TESTIMONIAL}/${id}`);
+        if (props[0]) {
+            const fetchTestimonial = yield Api.get(`${TESTIMONIAL}/${props[0]}`);
             const success = get(fetchTestimonial, 'data.success');
             if (success) {
                 const testimonial = get(fetchTestimonial, 'data.data.testimonials');
