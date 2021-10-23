@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 export const SUCCESS = {
     icon: 'success',
     title: 'Genial',
@@ -9,6 +11,39 @@ export const ERROR = {
     title: 'Oops...',
     text: 'Algo salió mal!'
 };
+
+export const CANCELALERT = {
+    icon: 'info',
+    title: 'Buena decision',
+    text: 'la accion no se realizara'
+};
+
+export function swalConfirmAction(
+    icon,
+    title,
+    text,
+    confirmButtonText,
+    cancelButtonText,
+    actionConfirm,
+    CancelConfirm
+) {
+    return Swal.fire({
+        title,
+        text,
+        icon,
+        showCancelButton: true,
+        confirmButtonColor: '#3085D6',
+        cancelButtonColor: '#d33',
+        reverseButtons: true,
+        confirmButtonText,
+        cancelButtonText
+    }).then(result => {
+        if (!result.value) {
+            return CancelConfirm;
+        }
+        return actionConfirm();
+    });
+}
 
 export const WARNING = 'warning';
 export const LOADING = 'loading';
@@ -22,3 +57,5 @@ export const GO_NEWS_LIST = 'Todas las Novedades';
 export const NEWS404TITLE = 'Oops... Algo salió mal!';
 export const NEWS404CONTENT = 'No pudimos encontrar esa Novedad, intenta con otra!';
 export const NOT_FOUND_IMG = 'https://image.freepik.com/free-vector/error-404-concept-landing-page_114360-2279.jpg';
+export const ERROR_NAME = 'Campo requerido';
+export const ERROR_IMAGE = 'Deberia de ser una URL';

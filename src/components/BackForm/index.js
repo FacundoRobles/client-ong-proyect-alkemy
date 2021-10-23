@@ -30,7 +30,7 @@ const editorConfig = {
 };
 
 const BackForm = ({
-    form, fields, submit, fetch, id, validate, goBack
+    form, fields, submit, fetch, id, validate, goBack, push
 }) => {
     useEffect(() => {
         fetch(id);
@@ -40,7 +40,7 @@ const BackForm = ({
         enableReinitialize: true,
         initialValues: {...form},
         validate,
-        onSubmit: payload => submit({payload, id})
+        onSubmit: payload => submit({payload, id, push})
     });
 
     return (
@@ -93,7 +93,7 @@ const BackForm = ({
                                                     {Formik.errors[get(field, 'name')]
                                                 && Formik.touched[get(field, 'name')]
                                                 && (
-                                                    <p className="error text-center">
+                                                    <p className="error animate__animated animate__shakeX text-center">
                                                         {Formik.errors[get(field, 'name')]}
                                                     </p>
                                                 )}
@@ -119,7 +119,7 @@ const BackForm = ({
                                                     {Formik.errors[get(field, 'name')]
                                             && Formik.touched[get(field, 'name')]
                                             && (
-                                                <p className="error text-center">
+                                                <p className="error animate__animated animate__shakeX text-center">
                                                     {Formik.errors[get(field, 'name')]}
                                                 </p>
                                             )}
@@ -132,7 +132,6 @@ const BackForm = ({
                                 className="mt-4 d-flex justify-content-between px-2"
                             >
                                 <Button
-                                    type="submit"
                                     color="danger"
                                     className="btn-cancel"
                                     onClick={goBack}
@@ -168,11 +167,12 @@ BackForm.propTypes = {
             name: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
+    goBack: PropTypes.func.isRequired,
     id: PropTypes.string,
     submit: PropTypes.func.isRequired,
     fetch: PropTypes.func.isRequired,
-    validate: PropTypes.func.isRequired,
-    goBack: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
+    validate: PropTypes.func.isRequired
 };
 
 BackForm.defaultProps = {
