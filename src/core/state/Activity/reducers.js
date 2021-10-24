@@ -37,14 +37,15 @@ const initialState = {
 };
 
 const activityForm = (state = {...initialState}, {type, ...props}) => {
+    const {activity} = props;
     switch (type) {
         case FETCH_ACTIVITY_SUCCEEDED:
             return {
                 ...state,
                 form: {
-                    name: props.contact.name,
-                    image: props.contact.image,
-                    content: props.contact.content
+                    name: activity.name,
+                    image: activity.image,
+                    content: activity.content
                 }
             };
         case CLEAN_REGISTER_FORM:
