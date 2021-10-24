@@ -22,8 +22,8 @@ const Component = ({
     buttonText
 }) => {
     useEffect(() => {
-        fetchTestimonialRequested({})
-    }, [])
+        fetchTestimonialRequested({});
+    }, [fetchTestimonialRequested]);
     return (
         <div className="text-center">
             <Container fluid>
@@ -46,7 +46,7 @@ const Component = ({
             </Row>
         </div>
     );
-}
+};
 
 Component.propTypes = {
     deleteTestimonialRequested: PropTypes.func.isRequired,

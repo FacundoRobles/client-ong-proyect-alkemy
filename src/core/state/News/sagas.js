@@ -10,9 +10,10 @@ import {
     SUCCESS,
     ERROR
 } from '@utils/constants';
-
+import {getRoutes} from '@utils';
 import get from 'lodash/get';
 import Api from '@Api/Api';
+import {push} from '@core/middlewares/history';
 import {
     SUBMIT_NEWS_REQUESTED,
     FETCH_NEWS_REQUESTED,
@@ -26,6 +27,9 @@ import {
     cleanNewsForm
 } from './actions';
 
+const mainRoutes = getRoutes('mainRoutes');
+const backOfficeRoutes = getRoutes('backOffice');
+
 function* submitNewsRequestedSagas({payload, id}) {
     try {
         let success = null;
@@ -33,10 +37,12 @@ function* submitNewsRequestedSagas({payload, id}) {
         if (id) {
             const responseNews = yield Api.put(`${NEWS}/${id}`, payload);
             success = get(responseNews, 'data.success');
+            yield push(`${mainRoutes.news}/${id}`);
         }
         if (!id) {
             const responseNews = yield Api.post(`${NEWS}`, payload);
             success = get(responseNews, 'data.success');
+            yield push(backOfficeRoutes.news.list);
         }
         if (success) {
             yield put(setSystemMessage(SUCCESS));
@@ -57,6 +63,9 @@ function* fetchNewsRequestedSagas({id}) {
         if (id) {
             const response = yield Api.get(`${NEWS}/${id}`);
             const entry = get(response, 'data.data');
+            if (!entry) {
+                return yield put(cleanNewsForm({}));
+            }
             return yield put(fetchOneNewsSucceeded({entry}));
         }
         const entries = yield Api.get(`${NEWS}`);
