@@ -1,7 +1,7 @@
 import {
     FETCH_ACTIVITY_SUCCEEDED,
     FETCH_ACTIVITIES_SUCCEEDED,
-    CLEAN_REGISTER_FORM
+    CLEAN_ACTIVITY_FORM
 } from './types';
 
 const initialState = {
@@ -48,7 +48,7 @@ const activityForm = (state = {...initialState}, {type, ...props}) => {
                     content: activity.content
                 }
             };
-        case CLEAN_REGISTER_FORM:
+        case CLEAN_ACTIVITY_FORM:
             return {
                 ...state,
                 form: {

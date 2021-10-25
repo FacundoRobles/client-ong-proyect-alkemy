@@ -1,5 +1,3 @@
-import Swal from 'sweetalert2';
-
 export const SUCCESS = {
     icon: 'success',
     title: 'Genial',
@@ -18,33 +16,6 @@ export const CANCELALERT = {
     text: 'la accion no se realizara'
 };
 
-export function swalConfirmAction(
-    icon,
-    title,
-    text,
-    confirmButtonText,
-    cancelButtonText,
-    actionConfirm,
-    CancelConfirm
-) {
-    return Swal.fire({
-        title,
-        text,
-        icon,
-        showCancelButton: true,
-        confirmButtonColor: '#3085D6',
-        cancelButtonColor: '#d33',
-        reverseButtons: true,
-        confirmButtonText,
-        cancelButtonText
-    }).then(result => {
-        if (!result.value) {
-            return CancelConfirm;
-        }
-        return actionConfirm();
-    });
-}
-
 export const WARNING = 'warning';
 export const LOADING = 'loading';
 export const HOME = 'home';
@@ -54,8 +25,9 @@ export const CANCEL = 'Cancelar';
 export const GOBACK = 'Volver';
 export const ADD = 'Agregar';
 export const GO_NEWS_LIST = 'Todas las Novedades';
-export const NEWS404TITLE = 'Oops... Algo salió mal!';
 export const NEWS404CONTENT = 'No pudimos encontrar esa Novedad, intenta con otra!';
+export const ACTIVITY404CONTENT = 'No pudimos encontrar esa Actividad, intenta con otra!';
+export const NOT_FOUND_TITLE = 'Oops... Algo salió mal!';
 export const NOT_FOUND_IMG = 'https://image.freepik.com/free-vector/error-404-concept-landing-page_114360-2279.jpg';
 export const ERROR_NAME = 'Campo requerido';
 export const ERROR_IMAGE = 'Deberia de ser una URL';
