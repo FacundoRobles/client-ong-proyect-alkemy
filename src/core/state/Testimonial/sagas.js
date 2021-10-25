@@ -55,7 +55,7 @@ function* requestTestimonialSagas(props) {
         }
         yield put(setSystemMessage(ERROR));
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
     }

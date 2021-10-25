@@ -34,7 +34,7 @@ export default {
             list: `${mainRoutes.backOffice}${mainRoutes.testimonial}`,
             form: `${mainRoutes.backOffice}${mainRoutes.testimonial}/new`,
             edit: `${mainRoutes.backOffice}${mainRoutes.testimonial}/:id`
-        },
+        }
     },
     mainRoutes
 };
