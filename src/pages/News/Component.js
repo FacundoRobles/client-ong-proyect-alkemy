@@ -10,7 +10,8 @@ import {getRoutes} from '@utils';
 
 const Component = ({
     news, fetchNewsRequested,
-    history: {push}
+    history: {push},
+    labelButton
 }) => {
     useEffect(() => {
         fetchNewsRequested({});
@@ -26,7 +27,7 @@ const Component = ({
                             <CardTitle tag="h4" className="mt-3">{get(item, 'title')}</CardTitle>
                             <CardText className="mt-2 mb-1"><p style={{lineHeight: '1.3rem'}}>{get(item, 'text')}</p></CardText>
                             <Button className="button m-auto pl-2 pr-2" onClick={() => push(`${mainRoutes.news}/${get(item, 'id')}`)}>
-                                Ver novedad
+                                {labelButton}
                             </Button>
                         </Card>
                     ))}
@@ -45,10 +46,12 @@ Component.propTypes = {
         name: PropTypes.string,
         image: PropTypes.string,
         content: PropTypes.string
-    }))
+    })),
+    labelButton: PropTypes.string
 };
 Component.defaultProps = {
-    news: null
+    news: null,
+    labelButton: 'Ver novedad'
 };
 
 export default Component;
