@@ -3,16 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Container,
     Row
 } from 'reactstrap';
-import {
-    ERROR_NAME,
-    ERROR_IMAGE
-} from '@utils/constants';
-import isEmpty from 'lodash/isEmpty';
 import BackForm from '@components/BackForm';
 import {getRoutes} from '@utils';
+import {
+    ERROR_IMAGE,
+    ERROR_NAME
+} from '@utils/constants';
 
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -21,36 +19,34 @@ const Component = ({
     fields,
     match: {params: {id}},
     history: {push},
-    submitTestimonialRequested,
-    fetchTestimonialRequested,
+    submitOrganizationRequested,
+    fetchOrganizationRequested,
     title,
-    subTitle
+    subtitle
 }) => {
     const validate = values => {
         const errors = {};
-        if (isEmpty(values.name)) {
+        if (!values.name) {
             errors.name = ERROR_NAME;
         }
-        if (isEmpty(values.image) || !/^(ftp|http|https):\/\/[^ "]+$/.test(values.image)) {
+        if (!values.image || !/^(ftp|http|https):\/\/[^ "]+$/.test(values.image)) {
             errors.image = ERROR_IMAGE;
         }
         return errors;
     };
-    const goBack = () => push(backOfficeRoutes.testimonial.list);
+    const goBack = () => push(backOfficeRoutes.organization.list);
     return (
         <div className="text-center">
-            <Container fluid>
-                <h1>{title}</h1>
-            </Container>
+            <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12">
-                    <h5 className="m-2">{subTitle}</h5>
+                    <h5 className="m-2">{subtitle}</h5>
                     <BackForm
                         fields={fields}
-                        fetch={fetchTestimonialRequested}
+                        fetch={fetchOrganizationRequested}
                         form={form}
                         id={id}
-                        submit={submitTestimonialRequested}
+                        submit={submitOrganizationRequested}
                         validate={validate}
                         push={push}
                         goBack={goBack}
@@ -62,14 +58,14 @@ const Component = ({
 };
 
 Component.propTypes = {
-    fetchTestimonialRequested: PropTypes.func.isRequired,
+    fetchOrganizationRequested: PropTypes.func.isRequired,
     fields: PropTypes.arrayOf(),
     form: PropTypes.shape({
         name: PropTypes.string,
         image: PropTypes.string,
         content: PropTypes.string
     }),
-    submitTestimonialRequested: PropTypes.func.isRequired,
+    submitOrganizationRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string
@@ -79,14 +75,14 @@ Component.propTypes = {
         push: PropTypes.func
     }).isRequired,
     title: PropTypes.string,
-    subTitle: PropTypes.string
+    subtitle: PropTypes.string
 };
 
 Component.defaultProps = {
     form: null,
     fields: null,
-    title: 'Administrar testimonios',
-    subTitle: 'Agrega un nuevo testimonio'
+    title: 'Administrar organizaciones',
+    subtitle: 'Agregar una nueva administracion'
 };
 
 export default Component;
