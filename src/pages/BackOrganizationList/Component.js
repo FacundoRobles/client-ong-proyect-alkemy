@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Container,
     Row
 } from 'reactstrap';
 import TableListNew from '@components/TableListNew';
@@ -13,6 +12,7 @@ const backOfficeRoutes = getRoutes('backOffice');
 const backOrganizationRoute = backOfficeRoutes.organization.list;
 
 const Component = ({
+    title,
     history: {push},
     organizations,
     fetchOrganizationRequested,
@@ -20,12 +20,10 @@ const Component = ({
 }) => {
     useEffect(() => {
         fetchOrganizationRequested({});
-    }, []);
+    }, [fetchOrganizationRequested]);
     return (
         <div className="text-center">
-            <Container fluid>
-                <h1>Listado de organizaciones</h1>
-            </Container>
+            <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
                     <TableListNew
@@ -50,11 +48,13 @@ Component.propTypes = {
         name: PropTypes.string,
         image: PropTypes.string,
         content: PropTypes.string
-    }))
+    })),
+    title: PropTypes.string
 };
 
 Component.defaultProps = {
-    organizations: null
+    organizations: null,
+    title: 'Listado de organizaciones'
 };
 
 export default Component;

@@ -10,9 +10,9 @@ import {
     SUBMIT_ORGANIZATION_REQUESTED
 } from './types';
 
-export const deleteOrganizationRequested = props => ({
+export const deleteOrganizationRequested = id => ({
     type: DELETE_ORGANIZATION_REQUESTED,
-    ...props
+    id
 });
 
 export const fetchOrganizationFormSucceeded = props => ({
@@ -20,9 +20,9 @@ export const fetchOrganizationFormSucceeded = props => ({
     ...props
 });
 
-export const fetchOrganizationRequested = props => ({
+export const fetchOrganizationRequested = id => ({
     type: FETCH_ORGANIZATION_REQUESTED,
-    ...props
+    id
 });
 
 export const fetchOrganizationSucceeded = props => ({

@@ -12,8 +12,7 @@ import {
 } from '@Api/Urls';
 import {
     SUCCESS,
-    ERROR,
-    swalConfirmAction
+    ERROR
 } from '@utils/constants';
 import {
     setRequestFlag,
@@ -55,7 +54,7 @@ function* requestTestimonialSagas(props) {
         }
         yield put(setSystemMessage(ERROR));
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
     }
@@ -94,17 +93,10 @@ function* submitTestimonialSagas({payload, id, push}) {
 }
 
 function* deleteTestimonialSagas({id}) {
-    const confirm = () => Api.delete(`${TESTIMONIAL}/${id}`);
     try {
         yield put(setRequestFlag({flag: true}));
-        yield swalConfirmAction(
-            'warning',
-            'Seguro que desea eliminar?',
-            'esta accion es irreversible',
-            'Si, eliminar',
-            'No, gracias',
-            confirm
-        );
+        yield Api.delete(`${TESTIMONIAL}/${id}`);
+        yield put(setSystemMessage(SUCCESS));
     } catch (err) {
         console.log(err);
     } finally {

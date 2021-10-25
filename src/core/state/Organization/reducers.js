@@ -34,10 +34,7 @@ const Organization = (state = initialState, {type, ...props}) => {
         case FETCH_ORGANIZATIONFORM_SUCCEEDED:
             return {
                 ...state,
-                form: {
-                    name: props.documents.name,
-                    image: props.documents.image
-                }
+                form: props.documents
             };
         case CLEAN_ORGANIZATION_FORM:
             return {

@@ -9,8 +9,7 @@ import Api from '@Api/Api';
 import {getRoutes} from '@utils';
 import {
     SUCCESS,
-    ERROR,
-    swalConfirmAction
+    ERROR
 } from '@utils/constants';
 import {
     FETCH_ORGANIZATION_REQUESTED,
@@ -56,11 +55,12 @@ function* getOrganizations({id}) {
 }
 
 function* submitOrganizationSagas({payload, id, push}) {
+    const {name, image} = payload;
     try {
         yield put(setRequestFlag({flag: true}));
 
         if (id) {
-            const editOrganization = yield Api.put(`${ORGANIZATION}/${id}`, payload);
+            const editOrganization = yield Api.put(`${ORGANIZATION}/${id}`, {name, image});
             const success = get(editOrganization, 'data.success');
             if (success) {
                 const documents = get(editOrganization, 'data.data');
@@ -71,7 +71,7 @@ function* submitOrganizationSagas({payload, id, push}) {
             }
         }
 
-        const createOrganization = yield Api.post(`${ORGANIZATION}`, payload);
+        const createOrganization = yield Api.post(`${ORGANIZATION}`, {name, image});
         const success = get(createOrganization, 'data.success');
         if (success) {
             yield put(setSystemMessage(SUCCESS));
@@ -87,24 +87,19 @@ function* submitOrganizationSagas({payload, id, push}) {
 }
 
 function* deleteOrganizationSagas({id}) {
-    const confirm = () => Api.delete(`${ORGANIZATION}/${id}`);
     try {
         yield put(setRequestFlag({flag: true}));
         if (id) {
-            yield swalConfirmAction(
-                'warning',
-                'Seguro que desea eliminar?',
-                'esta accion es irreversible',
-                'Si, eliminar',
-                'No, gracias',
-                confirm
-            );
+            yield Api.delete(`${ORGANIZATION}/${id}`);
+            yield put(setSystemMessage(SUCCESS));
+            return;
         }
+        yield put(setSystemMessage(ERROR));
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
-        yield getOrganizations({});
+        yield getOrganizations({})
     }
 }
 

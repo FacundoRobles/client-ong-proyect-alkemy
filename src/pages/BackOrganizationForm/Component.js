@@ -3,11 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Container,
     Row
 } from 'reactstrap';
 import BackForm from '@components/BackForm';
 import {getRoutes} from '@utils';
+import {
+    ERROR_IMAGE,
+    ERROR_NAME
+} from '@utils/constants'
 
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -17,27 +20,27 @@ const Component = ({
     match: {params: {id}},
     history: {push},
     submitOrganizationRequested,
-    fetchOrganizationRequested
+    fetchOrganizationRequested,
+    title,
+    subtitle
 }) => {
     const validate = values => {
         const errors = {};
         if (!values.name) {
-            errors.name = 'Campo requerido';
+            errors.name = ERROR_NAME;
         }
         if (!values.image || !/^(ftp|http|https):\/\/[^ "]+$/.test(values.image)) {
-            errors.image = 'Deberia de ser una URL';
+            errors.image = ERROR_IMAGE;
         }
         return errors;
     };
     const goBack = () => push(backOfficeRoutes.organization.list);
     return (
         <div className="text-center">
-            <Container fluid>
-                <h1>Administrar organizaciones</h1>
-            </Container>
+            <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12">
-                    <h5 className="m-2">Agrega una nueva organizacion</h5>
+                    <h5 className="m-2">{subtitle}</h5>
                     <BackForm
                         fields={fields}
                         fetch={fetchOrganizationRequested}
@@ -70,12 +73,16 @@ Component.propTypes = {
     }).isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
-    }).isRequired
+    }).isRequired,
+    title: PropTypes.string,
+    subtitle: PropTypes.string
 };
 
 Component.defaultProps = {
     form: null,
-    fields: null
+    fields: null,
+    title: 'Administrar organizaciones',
+    subtitle: 'Agregar una nueva administracion'
 };
 
 export default Component;
