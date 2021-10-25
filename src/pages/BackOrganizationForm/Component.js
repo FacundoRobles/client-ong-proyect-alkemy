@@ -10,7 +10,7 @@ import {getRoutes} from '@utils';
 import {
     ERROR_IMAGE,
     ERROR_NAME
-} from '@utils/constants'
+} from '@utils/constants';
 
 const backOfficeRoutes = getRoutes('backOffice');
 

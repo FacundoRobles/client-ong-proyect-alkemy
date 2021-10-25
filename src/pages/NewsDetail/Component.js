@@ -4,8 +4,8 @@ import {getRoutes} from '@utils';
 import ShowDetail from '@components/ShowDetail';
 import DetailNotFound from '@components/DetailNotFound';
 import {
-    NEWS404TITLE,
     NEWS404CONTENT,
+    NOT_FOUND_TITLE,
     NOT_FOUND_IMG
 } from '@utils/constants';
 import get from 'lodash-es/get';
@@ -31,7 +31,7 @@ const Component = ({
     };
 
     const detailNotFoundData = {
-        title: NEWS404TITLE,
+        title: NOT_FOUND_TITLE,
         content: NEWS404CONTENT,
         image: NOT_FOUND_IMG
     };

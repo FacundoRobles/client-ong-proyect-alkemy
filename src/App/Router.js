@@ -8,6 +8,7 @@ import fromState from '@selectors';
 import Home from '@pages/Home';
 import Organization from '@pages/Organization';
 import Activity from '@pages/Activity';
+import ActivityDetail from '@pages/ActivityDetail';
 import News from '@pages/News';
 import NewsDetail from '@pages/NewsDetail';
 import Testimonial from '@pages/Testimonial';
@@ -57,6 +58,7 @@ const Router = () => {
                         <Switch location={location}>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
+                            <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                             <Route exact path={mainRoutes.news} component={News}/>
                             <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
@@ -88,6 +90,7 @@ const Router = () => {
                         <Switch location={location}>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
+                            <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                             <Route exact path={mainRoutes.news} component={News}/>
                             <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
