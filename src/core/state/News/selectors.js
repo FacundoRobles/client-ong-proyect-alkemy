@@ -4,7 +4,7 @@ const path = 'news';
 
 export const getNewsForm = state => get(state, `${path}.newsForm`);
 export const getNewsFields = state => get(state, `${path}.newsFields`);
-export const news = state => get(state, 'news.list.news');
+export const getNews = state => get(state, `${path}.list.documents`);
 export const getList = state => get(state, `${path}.list`);
 
 export const getTableProps = () => {

@@ -1,0 +1,12 @@
+.button {
+  background-color: var(--button-background);
+  border-style: none;
+  outline: none;
+  padding-bottom: 0.3em !important;
+  padding-top: 0.2em !important;
+  
+  a {
+    color: var(--white);
+    text-decoration: none !important;
+  }
+}
