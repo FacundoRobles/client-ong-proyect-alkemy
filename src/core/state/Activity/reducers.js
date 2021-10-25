@@ -1,6 +1,6 @@
 import {
-    FETCH_TESTIMONIAL_SUCCEEDED,
-    FETCH_TESTIMONIALS_SUCCEEDED,
+    FETCH_ACTIVITY_SUCCEEDED,
+    FETCH_ACTIVITIES_SUCCEEDED,
     CLEAN_REGISTER_FORM
 } from './types';
 
@@ -12,22 +12,22 @@ const initialState = {
     },
     fields: [
         {
-            label: 'Titulo',
-            placeholder: 'Peticion al gobierno',
+            label: 'Nombre',
+            placeholder: 'Nombre',
             type: 'text',
             name: 'name'
         },
         {
-            label: 'Imagen',
-            placeholder: 'https://picsum.photos/200?random=0',
+            label: 'Image',
+            placeholder: 'Image',
             type: 'text',
             name: 'image'
         },
         {
-            label: 'Contenido',
-            placeholder: 'Lorem Ipsum is simply dummy text...',
+            label: 'Content',
+            placeholder: 'Content',
             type: 'CKEditor',
-            name: 'content'
+            name: 'message'
         }
     ],
     list: {
@@ -36,12 +36,17 @@ const initialState = {
     }
 };
 
-const testimonialForm = (state = {...initialState}, {type, ...props}) => {
+const activityForm = (state = {...initialState}, {type, ...props}) => {
+    const {activity} = props;
     switch (type) {
-        case FETCH_TESTIMONIAL_SUCCEEDED:
+        case FETCH_ACTIVITY_SUCCEEDED:
             return {
                 ...state,
-                form: {...props.testimonial}
+                form: {
+                    name: activity.name,
+                    image: activity.image,
+                    content: activity.content
+                }
             };
         case CLEAN_REGISTER_FORM:
             return {
@@ -52,16 +57,15 @@ const testimonialForm = (state = {...initialState}, {type, ...props}) => {
                     content: ''
                 }
             };
-        case FETCH_TESTIMONIALS_SUCCEEDED:
+        case FETCH_ACTIVITIES_SUCCEEDED:
             return {
                 ...state,
                 list: {
-                    documents: {...props},
-                    total: props.testimonial.length
+                    documents: props
                 }
             };
         default:
             return state;
     }
 };
-export default testimonialForm;
+export default activityForm;

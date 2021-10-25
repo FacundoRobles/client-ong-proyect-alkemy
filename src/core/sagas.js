@@ -4,6 +4,7 @@ import testimonial from './state/Testimonial/sagas';
 import news from './state/News/sagas';
 import user from './state/User/sagas';
 import contact from './state/Contact/sagas';
+import activity from './state/Activity/sagas';
 import organization from './state/Organization/sagas';
 
 export default function* rootSagas() {
@@ -13,6 +14,7 @@ export default function* rootSagas() {
         contact(),
         organization(),
         testimonial(),
-        news()
+        news(),
+        activity()
     ]);
 }

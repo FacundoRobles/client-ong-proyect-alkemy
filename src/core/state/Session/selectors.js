@@ -72,7 +72,7 @@ export const menuOffice = () => {
     }, {
         title: 'Testimonios',
         icon: ChatRoundedIcon,
-        path: mainRoutes.testimonial
+        path: backOfficeRoutes.testimonial.list
     }, {
         title: 'Organizacion',
         icon: HomeWorkIcon,

@@ -1,30 +1,29 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
-import BackForm from '@components/BackForm';
+import BackForm from '../../components/BackForm';
 
 const Component = ({
-    form, fields, submitActivityRequested, fetchActivitiesRequested, match
+    form, fields, submitCategoryRequested, fetchCategoryRequested, match
 }) => {
     const validate = values => {
         const errors = {};
-        if (!values.name || !values.image || !values.content) {
+        if (!values.name || !values.description) {
             errors.name = 'Todos los campos requeridos';
-            errors.image = 'Todos los campos requeridos';
-            errors.content = 'Todos los campos requeridos';
+            errors.description = 'Todos los campos requeridos';
         }
         return errors;
     };
 
     return (
         <>
-            <h1 className="text-center mb-4">Administrar Novedades</h1>
+            <h1 className="text-center mb-4">Administrar Categorias</h1>
             <BackForm
-                key="NewsForm"
+                key="CategoryForm"
                 form={form}
                 fields={fields}
-                submit={submitActivityRequested}
-                fetch={fetchActivitiesRequested}
-                id={match.params}
+                submit={submitCategoryRequested}
+                fetch={fetchCategoryRequested}
+                id={match.params.id}
                 validate={validate}
             />
         </>
@@ -36,8 +35,7 @@ export default Component;
 Component.propTypes = {
     form: PropTypes.shape({
         name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired
+        description: PropTypes.string.isRequired
     }).isRequired,
     fields: PropTypes.arrayOf(
         PropTypes.shape({
@@ -49,8 +47,8 @@ Component.propTypes = {
 
         }).isRequired
     ).isRequired,
-    submitActivityRequested: PropTypes.func.isRequired,
-    fetchActivitiesRequested: PropTypes.func.isRequired,
+    submitCategoryRequested: PropTypes.func.isRequired,
+    fetchCategoryRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string

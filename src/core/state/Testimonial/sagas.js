@@ -6,12 +6,14 @@ import {
 } from 'redux-saga/effects';
 import get from 'lodash/get';
 import Api from '@Api/Api';
+import {getRoutes} from '@utils';
 import {
     TESTIMONIAL
 } from '@Api/Urls';
 import {
     SUCCESS,
-    ERROR
+    ERROR,
+    swalConfirmAction
 } from '@utils/constants';
 import {
     setRequestFlag,
@@ -28,8 +30,9 @@ import {
     DELETE_TESTIMONIAL_REQUESTED
 } from './types';
 
+const backOfficeRoutes = getRoutes('backOffice');
+
 function* requestTestimonialSagas(props) {
-    console.log(props[0])
     try {
         yield put(setRequestFlag({flag: true}));
 
@@ -50,7 +53,6 @@ function* requestTestimonialSagas(props) {
             yield put(fetchTestimonialsSucceeded({testimonial}));
             return;
         }
-
         yield put(setSystemMessage(ERROR));
     } catch (err) {
         yield put(setSystemMessage(ERROR));
@@ -59,7 +61,7 @@ function* requestTestimonialSagas(props) {
     }
 }
 
-function* submitTestimonialSagas({payload, id}) {
+function* submitTestimonialSagas({payload, id, push}) {
     try {
         yield put(setRequestFlag({flag: true}));
 
@@ -71,6 +73,7 @@ function* submitTestimonialSagas({payload, id}) {
                 yield put(fetchTestimonialSucceeded({testimonial}));
                 yield put(cleanRegisterForm());
                 yield put(setSystemMessage(SUCCESS));
+                yield push(backOfficeRoutes.testimonial.list);
                 return;
             }
         }
@@ -80,10 +83,9 @@ function* submitTestimonialSagas({payload, id}) {
         if (success) {
             yield put(cleanRegisterForm());
             yield put(setSystemMessage(SUCCESS));
+            yield push(backOfficeRoutes.testimonial.list);
             return;
         }
-
-        yield put(setSystemMessage(ERROR));
     } catch (err) {
         yield put(setSystemMessage(ERROR));
     } finally {
@@ -92,19 +94,20 @@ function* submitTestimonialSagas({payload, id}) {
 }
 
 function* deleteTestimonialSagas({id}) {
+    const confirm = () => Api.delete(`${TESTIMONIAL}/${id}`);
     try {
         yield put(setRequestFlag({flag: true}));
-        const deleteTestimonial = yield Api.delete(`${TESTIMONIAL}/${id}`);
-        const success = get(deleteTestimonial, 'data.success');
-        if (success) {
-            yield put(setSystemMessage(SUCCESS));
-            return;
-        }
-        yield put(setSystemMessage(ERROR));
+        yield swalConfirmAction(
+            'warning',
+            'Seguro que desea eliminar?',
+            'esta accion es irreversible',
+            'Si, eliminar',
+            'No, gracias',
+            confirm
+        );
     } catch (err) {
-        yield put(setSystemMessage(ERROR));
+        console.log(err);
     } finally {
-        yield put(cleanRegisterForm());
         yield put(setRequestFlag({flag: false}));
         yield requestTestimonialSagas({});
     }

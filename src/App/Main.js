@@ -4,6 +4,7 @@ import {AnimatePresence} from 'framer-motion';
 import Router from './Router';
 import ErrorBoundary from './ErrorBoundary';
 import LoaderComponent from '../components/LoaderComponent';
+import 'animate.css';
 
 const App = () => (
     <HashRouter>
