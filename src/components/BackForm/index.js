@@ -33,7 +33,7 @@ const BackForm = ({
     form, fields, submit, fetch, id, validate, goBack, push
 }) => {
     useEffect(() => {
-        fetch({id});
+        fetch(id);
     }, [fetch, id]);
 
     const Formik = useFormik({
@@ -157,11 +157,7 @@ const BackForm = ({
 export default BackForm;
 
 BackForm.propTypes = {
-    form: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired
-    }).isRequired,
+    form: PropTypes.shape({}).isRequired,
     fields: PropTypes.arrayOf(
         PropTypes.shape({
             label: PropTypes.string.isRequired,

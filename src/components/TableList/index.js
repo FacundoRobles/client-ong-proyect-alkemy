@@ -73,7 +73,7 @@ const TableList = ({
                             {map(documents, document => (
                                 <tr
                                     key={uniqueId('tableListBodyTr')}
-                                    labelById={get(document, '_id')}
+                                    labelById={get(document, 'id')}
                                 >
                                     {map(columns, column => (
                                         <td
@@ -174,7 +174,7 @@ TableList.propTypes = {
         records: PropTypes.arrayOf(PropTypes.number)
     }),
     onSelect: PropTypes.shape({}).isRequired,
-    headers: PropTypes.shape({}).isRequired,
+    headers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     i18n: PropTypes.shape({}).isRequired,
     handleChangePage: PropTypes.func.isRequired,
     withOutPagination: PropTypes.bool

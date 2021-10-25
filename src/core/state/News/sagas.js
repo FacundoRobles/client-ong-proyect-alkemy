@@ -10,10 +10,15 @@ import {
     SUCCESS,
     ERROR
 } from '@utils/constants';
-
+import {getRoutes} from '@utils';
 import get from 'lodash/get';
 import Api from '@Api/Api';
-import {SUBMIT_NEWS_REQUESTED, FETCH_NEWS_REQUESTED} from './types';
+import {push} from '@core/middlewares/history';
+import {
+    SUBMIT_NEWS_REQUESTED,
+    FETCH_NEWS_REQUESTED,
+    DELETE_NEWS_REQUESTED
+} from './types';
 import {setRequestFlag, setSystemMessage} from '../Session/actions';
 import {
     fetchNewsRequested,
@@ -22,6 +27,9 @@ import {
     cleanNewsForm
 } from './actions';
 
+const mainRoutes = getRoutes('mainRoutes');
+const backOfficeRoutes = getRoutes('backOffice');
+
 function* submitNewsRequestedSagas({payload, id}) {
     try {
         let success = null;
@@ -29,10 +37,12 @@ function* submitNewsRequestedSagas({payload, id}) {
         if (id) {
             const responseNews = yield Api.put(`${NEWS}/${id}`, payload);
             success = get(responseNews, 'data.success');
+            yield push(`${mainRoutes.news}/${id}`);
         }
         if (!id) {
             const responseNews = yield Api.post(`${NEWS}`, payload);
             success = get(responseNews, 'data.success');
+            yield push(backOfficeRoutes.news.list);
         }
         if (success) {
             yield put(setSystemMessage(SUCCESS));
@@ -53,6 +63,9 @@ function* fetchNewsRequestedSagas({id}) {
         if (id) {
             const response = yield Api.get(`${NEWS}/${id}`);
             const entry = get(response, 'data.data');
+            if (!entry) {
+                return yield put(cleanNewsForm({}));
+            }
             return yield put(fetchOneNewsSucceeded({entry}));
         }
         const entries = yield Api.get(`${NEWS}`);
@@ -66,9 +79,24 @@ function* fetchNewsRequestedSagas({id}) {
     }
 }
 
+function* deleteNewsRequestedSagas({id}) {
+    try {
+        yield put(setRequestFlag({flag: true}));
+        yield Api.delete(`${NEWS}/${id}`);
+        yield put(fetchNewsRequested());
+        return yield put(setSystemMessage(SUCCESS));
+    } catch (err) {
+        yield put(setSystemMessage(ERROR));
+        throw Error(err);
+    } finally {
+        yield put(setRequestFlag({flag: false}));
+    }
+}
+
 export default function* userSagas() {
     yield all([
         takeLatest(SUBMIT_NEWS_REQUESTED, submitNewsRequestedSagas),
-        takeLatest(FETCH_NEWS_REQUESTED, fetchNewsRequestedSagas)
+        takeLatest(FETCH_NEWS_REQUESTED, fetchNewsRequestedSagas),
+        takeLatest(DELETE_NEWS_REQUESTED, deleteNewsRequestedSagas)
     ]);
 }

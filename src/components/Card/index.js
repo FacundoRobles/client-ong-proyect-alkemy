@@ -18,11 +18,11 @@ const CardComponent = ({items}) => (
 );
 
 CardComponent.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
+    items: PropTypes.shape({
         imageUrl: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired
-    })).isRequired
+    }).isRequired
 };
 
 export default CardComponent;

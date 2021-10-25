@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -18,10 +18,6 @@ const mainRoutes = getRoutes('mainRoutes');
 const Component = ({
     welcomeText
 }) => {
-    useEffect(() => {
-        // eslint-disable-next-line no-console
-        console.log(welcomeText);
-    });
     const items = useSelector(fromState.Session.getSliderItems);
     const news = useSelector(fromState.News.getSlickNews);
     const testimonials = useSelector(fromState.Testimonial.getSlickTestimonials);
@@ -31,7 +27,7 @@ const Component = ({
             <Slider items={items}/>
             <Row>
                 <Col className="center-col">
-                    <h1 className="title-lg">Texto de bienvenida</h1>
+                    <h1 className="title-lg">{welcomeText}</h1>
                 </Col>
             </Row>
             <Row>

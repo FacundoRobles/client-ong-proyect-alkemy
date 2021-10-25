@@ -6,8 +6,14 @@ import {
     Container,
     Row
 } from 'reactstrap';
+import {
+    ERROR_NAME,
+    ERROR_IMAGE,
+} from '@utils/constants';
+import isEmpty from 'lodash/isEmpty';
 import BackForm from '@components/BackForm';
 import {getRoutes} from '@utils';
+
 
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -17,15 +23,17 @@ const Component = ({
     match: {params: {id}},
     history: {push},
     submitTestimonialRequested,
-    fetchTestimonialRequested
+    fetchTestimonialRequested,
+    title,
+    subTitle
 }) => {
     const validate = values => {
         const errors = {};
-        if (!values.name) {
-            errors.name = 'Campo requerido';
+        if (isEmpty(values.name)) {
+            errors.name = ERROR_NAME;
         }
-        if (!values.image || !/^(ftp|http|https):\/\/[^ "]+$/.test(values.image)) {
-            errors.image = 'Deberia de ser una URL';
+        if (isEmpty(values.image) || !/^(ftp|http|https):\/\/[^ "]+$/.test(values.image)) {
+            errors.image = ERROR_IMAGE;
         }
         return errors;
     };
@@ -33,11 +41,11 @@ const Component = ({
     return (
         <div className="text-center">
             <Container fluid>
-                <h1>Administrar testimonios</h1>
+                <h1>{title}</h1>
             </Container>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12">
-                    <h5 className="m-2">Agrega un nuevo testimonio</h5>
+                    <h5 className="m-2">{subTitle}</h5>
                     <BackForm
                         fields={fields}
                         fetch={fetchTestimonialRequested}
@@ -70,12 +78,16 @@ Component.propTypes = {
     }).isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
-    }).isRequired
+    }).isRequired,
+    title: PropTypes.string,
+    subTitle: PropTypes.string,
 };
 
 Component.defaultProps = {
     form: null,
-    fields: null
+    fields: null,
+    title: 'Administrar testimonios',
+    subTitle: 'Agrega un nuevo testimonio'
 };
 
 export default Component;
