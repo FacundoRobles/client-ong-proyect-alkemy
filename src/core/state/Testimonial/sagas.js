@@ -98,7 +98,7 @@ function* deleteTestimonialSagas({id}) {
         yield Api.delete(`${TESTIMONIAL}/${id}`);
         yield put(setSystemMessage(SUCCESS));
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
         yield requestTestimonialSagas({});
