@@ -50,7 +50,7 @@ function* getOrganizations({id}) {
             return;
         }
     } catch (err) {
-        console.log(err);
+        yield put(setSystemMessage(ERROR));
     }
 }
 
@@ -99,7 +99,7 @@ function* deleteOrganizationSagas({id}) {
         yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
-        yield getOrganizations({})
+        yield getOrganizations({});
     }
 }
 
