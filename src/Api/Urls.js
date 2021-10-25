@@ -7,5 +7,6 @@ export const CATEGORIES = 'categories';
 export const REGISTER = 'register';
 export const NEWS = 'news';
 export const CONTACT = 'contacts';
+export const ACTIVITY = 'activities';
 export const ORGANIZATION = 'organizations';
 export const BACKOFFICE = 'backoffice';

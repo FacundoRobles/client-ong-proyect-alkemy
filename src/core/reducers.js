@@ -6,6 +6,7 @@ import testimonial from './state/Testimonial/reducers';
 import news from './state/News/reducers';
 import user from './state/User/reducers';
 import contact from './state/Contact/reducers';
+import activity from './state/Activity/reducers';
 import organization from './state/Organization/reducers';
 
 export default history => combineReducers({
@@ -15,5 +16,6 @@ export default history => combineReducers({
     contact,
     organization,
     testimonial,
-    news
+    news,
+    activity
 });
