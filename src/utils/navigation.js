@@ -40,7 +40,7 @@ export default {
             form: `${mainRoutes.backOffice}${mainRoutes.activity}/new`,
             show: `${mainRoutes.backOffice}${mainRoutes.activity}/:id`,
             edit: `${mainRoutes.backOffice}${mainRoutes.activity}/:id/edit`
-        },
+        }
     },
     mainRoutes
 };

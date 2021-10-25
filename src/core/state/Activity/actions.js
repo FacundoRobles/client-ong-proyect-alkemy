@@ -5,7 +5,7 @@ import {
     FETCH_ACTIVITIES_REQUESTED,
     FETCH_ACTIVITIES_SUCCEEDED,
     DELETE_ACTIVITY_REQUESTED,
-    CLEAN_REGISTER_FORM
+    CLEAN_ACTIVITY_FORM
 } from './types';
 
 export const submitActivityRequested = props => ({
@@ -28,12 +28,11 @@ export const fetchActivitySucceeded = props => ({
     ...props
 });
 
-
 export const deleteActivityRequested = idActivity => ({
     type: DELETE_ACTIVITY_REQUESTED,
     idActivity
 });
 
-export const cleanRegisterForm = constant({
-    type: CLEAN_REGISTER_FORM
+export const cleanActivityForm = constant({
+    type: CLEAN_ACTIVITY_FORM
 });
