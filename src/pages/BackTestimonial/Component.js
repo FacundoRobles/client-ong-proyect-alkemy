@@ -8,12 +8,11 @@ import {
 } from 'reactstrap';
 import {
     ERROR_NAME,
-    ERROR_IMAGE,
+    ERROR_IMAGE
 } from '@utils/constants';
 import isEmpty from 'lodash/isEmpty';
 import BackForm from '@components/BackForm';
 import {getRoutes} from '@utils';
-
 
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -80,7 +79,7 @@ Component.propTypes = {
         push: PropTypes.func
     }).isRequired,
     title: PropTypes.string,
-    subTitle: PropTypes.string,
+    subTitle: PropTypes.string
 };
 
 Component.defaultProps = {

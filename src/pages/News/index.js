@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-vars */
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
 import fromState from '@core/selectors';
+import {News} from '@core/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        // selectorrs
+        news: fromState.News.getNews(state)
     }),
     dispatch => bindActionCreators({
-        // actions
+        fetchNewsRequested: id => dispatch(News.fetchNewsRequested(id))
     }, dispatch)
 )(Component);
