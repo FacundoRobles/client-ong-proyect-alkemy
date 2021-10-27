@@ -1,20 +1,30 @@
 import React from 'react';
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, Button
+    Row,
+    Col,
+    Card,
+    CardImg,
+    CardText,
+    CardBody,
+    CardTitle,
+    Button
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
 const CardComponent = ({items}) => (
-    <Card>
-        <CardImg top width="100%" src={get(items, 'imageUrl')} alt="Card image cap"/>
-        <CardBody>
-            <CardTitle tag="h5">{get(items, 'title')}</CardTitle>
-            <CardText><p style={{lineHeight: '1.3rem'}}>{get(items, 'text')}</p></CardText>
-            <Button outline color="info">Leer más</Button>
-        </CardBody>
-    </Card>
+    <Row>
+        <Col>
+            <Card>
+                <CardImg top width="100%" src={get(items, 'imageUrl')} alt="Card image cap"/>
+                <CardBody>
+                    <CardTitle tag="h5">{get(items, 'title')}</CardTitle>
+                    <CardText><p style={{lineHeight: '1.3rem'}}>{get(items, 'text')}</p></CardText>
+                    <Button outline color="info">Leer más</Button>
+                </CardBody>
+            </Card>
+        </Col>
+    </Row>
 );
 
 CardComponent.propTypes = {

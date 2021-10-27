@@ -45,6 +45,10 @@ export default {
             list: `${mainRoutes.backOffice}${mainRoutes.organization}`,
             form: `${mainRoutes.backOffice}${mainRoutes.organization}/new`,
             edit: `${mainRoutes.backOffice}${mainRoutes.organization}/:id`
+        },
+        user: {
+            list: `${mainRoutes.backOffice}${mainRoutes.user}`,
+            edit: `${mainRoutes.backOffice}${mainRoutes.user}/:id/edit`
         }
     },
     mainRoutes

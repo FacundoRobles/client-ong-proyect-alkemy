@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
+import {Col, Row} from 'reactstrap';
 import map from 'lodash/map';
 import fromState from '@selectors';
 import PropTypes from 'prop-types';
@@ -11,16 +12,18 @@ import 'slick-carousel/slick/slick-theme.css';
 const Slick = ({items}) => {
     const settings = useSelector(fromState.Session.getSlickSettings);
     return (
-        <>
-            <Slider {...settings}>
-                {map(items, item => (
-                    <div key={item.key}>
-                        <CardComponent items={item}/>
-                    </div>
-                )
-                )}
-            </Slider>
-        </>
+        <Row>
+            <Col>
+                <Slider {...settings}>
+                    {map(items, item => (
+                        <div key={item.key}>
+                            <CardComponent items={item}/>
+                        </div>
+                    )
+                    )}
+                </Slider>
+            </Col>
+        </Row>
     );
 };
 

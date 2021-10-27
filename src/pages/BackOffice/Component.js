@@ -1,10 +1,15 @@
 import React from 'react';
+import {Container, Col, Row} from 'reactstrap';
 import BackOffice from '../../components/backOffice';
 
 const Component = () => (
-    <div>
-        <BackOffice/>
-    </div>
+    <Container>
+        <Row>
+            <Col>
+                <BackOffice/>
+            </Col>
+        </Row>
+    </Container>
 );
 
 export default Component;
