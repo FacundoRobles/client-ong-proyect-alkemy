@@ -5,6 +5,9 @@ import {
     FETCH_SESSION_REQUESTED,
     FETCH_LOGIN_REQUESTED,
     FETCH_LOGIN_SUCCEEDED,
+    SUBMIT_SLIDES_SUCCEEDED,
+    SUBMIT_SLIDES_REQUESTED,
+    FETCH_SLIDES_SUCCEEDED,
     LOGOUT
 } from './types';
 
@@ -34,5 +37,20 @@ export const fetchSessionLogout = props => ({
 
 export const setSystemMessage = props => ({
     type: SET_SYSTEM_MSG,
+    ...props
+});
+
+export const submitSlideSucceeded = props => ({
+    type: SUBMIT_SLIDES_SUCCEEDED,
+    ...props
+});
+
+export const submitSlideRequested = props => ({
+    type: SUBMIT_SLIDES_REQUESTED,
+    ...props
+});
+
+export const fetchSlidesSucceeded = props => ({
+    type: FETCH_SLIDES_SUCCEEDED,
     ...props
 });

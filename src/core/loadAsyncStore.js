@@ -1,8 +1,8 @@
-import {fetchOrganizationsRequested} from './state/Organization/actions';
+import {fetchOrganizationRequested} from './state/Organization/actions';
 import {fetchSessionRequested} from './state/Session/actions';
 
 export default store => {
+    store.dispatch(fetchOrganizationRequested(1));
     store.dispatch(fetchSessionRequested());
-    store.dispatch(fetchOrganizationsRequested({id: 1}));
     return store;
 };
