@@ -33,7 +33,6 @@ import {
 
 const backOfficeRoutes = getRoutes('backOffice');
 
-
 function* submitUserRequestedSagas({payload, id}) {
     try {
         yield put(setRequestFlag({flag: true}));
@@ -42,7 +41,7 @@ function* submitUserRequestedSagas({payload, id}) {
             const responseUser = yield Api.put(`${USER}/${id.id}`, payload);
             const successEdit = get(responseUser, 'data.success');
             if (successEdit) {
-                yield push(backOfficeRoutes.user.list)
+                yield push(backOfficeRoutes.user.list);
                 yield put(fetchUserRequested({}));
             }
         }
@@ -99,6 +98,6 @@ export default function* userSagas() {
     yield all([
         takeLatest(SUBMIT_USER_REQUESTED, submitUserRequestedSagas),
         takeLatest(FETCH_USER_REQUESTED, fetchUserRequestedSagas),
-        takeLatest(DELETE_USER_REQUESTED, deleteUserRequestedSagas),
+        takeLatest(DELETE_USER_REQUESTED, deleteUserRequestedSagas)
     ]);
 }

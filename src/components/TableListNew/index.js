@@ -13,7 +13,7 @@ import {swalConfirmAction} from '@utils';
 const TableListNew = ({
     props, push, erase, route
 }) => (
-    <Row className="p-0 m-0">
+    <Row className="table-list p-2 mb-4">
         {props && (
             map(props, (current, index) => (
                 <Col
@@ -21,51 +21,67 @@ const TableListNew = ({
                     key={index}
                     className={`
                     d-flex
-                    flex-column
-                    flex-sm-row
-                    align-items-center
-                    justify-content-sm-start
-                    m-2
-                    p-2
+                    p-1
                     border border-ligth
                     rounded
                     `}
                 >
-                    <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/>
-                    <p className="align-self-center m-0 p-0 w-50">{current.name}</p>
-                    <div className="content-testimonial align-self-center m-0 p-0 w-50">
-                        {current.content && (
-                            <p // eslint-disable-next-line
-                                dangerouslySetInnerHTML={
-                                    {__html: current.content.substr(0, 45)}
-                                }
-                                data-bs-toggle="tooltip"
-                                data-bs-html="true"
-                                data-bs-placement="top"
-                                title={replace(current.content, /<[^>]*>/g, '')}
-                            />
+                    <div className="d-flex flex-column flex-sm-row align-items-center justify-content-sm-around w-100">
+                        {current.image && (
+                            <div className="align-self-center">
+                                <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/> 
+                            </div>
                         )}
-                    </div>
-                    <div className="align-self-center flex-nowrap">
-                        <EditIcon
-                            onClick={() => push(`${route}/${current.id}`)}
-                            className="icon-testimonial align-self-center pointer m-2"
-                            role="button"
-                        />
-                        <DeleteForeverIcon
-                            onClick={() => {
-                                swalConfirmAction(
-                                    'warning',
-                                    'Seguro que desea eliminar?',
-                                    'esta accion es irreversible',
-                                    'Si, eliminar',
-                                    'No, gracias',
-                                    () => erase(current.id)
-                                );
-                            }}
-                            className="icon-testimonial align-self-center pointer m-2"
-                            role="button"
-                        />
+                        <div className="align-self-center">
+                            <p className="align-self-center m-0 m-2">{current.name}</p> 
+                        </div>
+                        <div className="align-self-center">
+                            {current.content && (
+                                <p // eslint-disable-next-line
+                                    dangerouslySetInnerHTML={
+                                        {__html: current.content.substr(0, 45)}
+                                    }
+                                    data-bs-toggle="tooltip"
+                                    data-bs-html="true"
+                                    data-bs-placement="top"
+                                    title={replace(current.content, /<[^>]*>/g, '')}
+                                    className="align-self-center m-0 m-2"
+                                />
+                            )}
+                            {current.description && (
+                                <p // eslint-disable-next-line
+                                    dangerouslySetInnerHTML={
+                                        {__html: current.description.substr(0, 45)}
+                                    }
+                                    data-bs-toggle="tooltip"
+                                    data-bs-html="true"
+                                    data-bs-placement="top"
+                                    title={replace(current.description, /<[^>]*>/g, '')}
+                                    className="align-self-center m-0 m-2"
+                                />
+                            )}
+                        </div>
+                        <div className="align-self-center flex-nowrap">
+                            <EditIcon
+                                onClick={() => push(`${route}/${current.id}`)}
+                                className="icon-testimonial align-self-center pointer m-2"
+                                role="button"
+                            />
+                            <DeleteForeverIcon
+                                onClick={() => {
+                                    swalConfirmAction(
+                                        'warning',
+                                        'Seguro que desea eliminar?',
+                                        'esta accion es irreversible',
+                                        'Si, eliminar',
+                                        'No, gracias',
+                                        () => erase(current.id)
+                                    );
+                                }}
+                                className="icon-testimonial align-self-center pointer m-2"
+                                role="button"
+                            />
+                        </div>
                     </div>
                 </Col>
             ))

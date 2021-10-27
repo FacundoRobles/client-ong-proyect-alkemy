@@ -16,6 +16,7 @@ import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import BackOffice from '@pages/BackOffice';
 import BackCategoriesForm from '@pages/BackCategoriesForm';
+import BackCategoriesList from '@pages/BackCategoriesList';
 import BackNewsForm from '@pages/BackNewsForm';
 import BackNewsList from '@pages/BackNewsList';
 import BackTestimonial from '@pages/BackTestimonial';
@@ -111,8 +112,9 @@ const Router = () => {
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.user.edit} component={BackUserForm}/>
                             <Route exact path={backOfficeRoutes.user.list} component={BackUsersList}/>
+                            <Route exact path={backOfficeRoutes.category.list} component={BackCategoriesList}/>
                             <Route exact path={backOfficeRoutes.category.form} component={BackCategoriesForm}/>
-                            <Route exact path={backOfficeRoutes.category.edit} component={BackCategoriesForm}/>
+                            <Route exact path={backOfficeRoutes.category.show} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.list} component={BackNewsList}/>

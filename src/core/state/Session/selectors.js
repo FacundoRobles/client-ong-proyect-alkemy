@@ -71,7 +71,7 @@ export const menuOffice = () => {
     }, {
         title: 'Categorias',
         icon: FormatListBulletedIcon,
-        path: mainRoutes.category
+        path: backOfficeRoutes.category.list
     }, {
         title: 'Testimonios',
         icon: ChatRoundedIcon,

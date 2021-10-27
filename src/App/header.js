@@ -33,7 +33,7 @@ import RegisterForm from '../components/RegisterForm';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Header = ({
-    registerForm, 
+    registerForm,
     registerFields,
     isAuthenticate,
     userAgent,
@@ -253,7 +253,7 @@ Header.propTypes = {
     buttonAdminLogout: PropTypes.string,
     buttonStandardLogout: PropTypes.string,
     buttonLogin: PropTypes.string,
-    buttonRegister: PropTypes.string,
+    buttonRegister: PropTypes.string
 };
 
 Header.defaultProps = {
@@ -262,7 +262,7 @@ Header.defaultProps = {
     buttonStandardLogout: 'Salir',
     buttonLogin: 'Ingresar',
     buttonRegister: 'Registrate'
-}
+};
 
 const mapStateToProps = state => ({
     registerForm: fromState.User.getRegisterForm(state),
@@ -274,4 +274,3 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps
 )(Header);
-
