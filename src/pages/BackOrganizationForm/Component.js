@@ -3,7 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Row
+    Row,
+    Container
 } from 'reactstrap';
 import BackForm from '@components/BackForm';
 import {getRoutes} from '@utils';
@@ -36,7 +37,7 @@ const Component = ({
     };
     const goBack = () => push(backOfficeRoutes.organization.list);
     return (
-        <div className="text-center">
+        <Container className="text-center">
             <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12">
@@ -53,7 +54,7 @@ const Component = ({
                     />
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 

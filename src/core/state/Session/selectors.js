@@ -87,7 +87,7 @@ export const menuOffice = () => {
     }, {
         title: 'Usuarios',
         icon: PersonIcon,
-        path: mainRoutes.user
+        path: backOfficeRoutes.user.list
     }, {
         title: 'Miembros',
         icon: PeopleAltIcon,

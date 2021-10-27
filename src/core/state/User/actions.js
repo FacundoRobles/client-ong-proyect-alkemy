@@ -2,22 +2,28 @@ import {
     SUBMIT_USER_REQUESTED,
     FETCH_USER_REQUESTED,
     FETCH_USER_SUCCEEDED,
+    FETCH_USERS_SUCCEEDED,
     DELETE_USER_REQUESTED,
     CLEAN_REGISTER_FORM
 } from './types';
 
-export const submitUserRequested = values => ({
+export const submitUserRequested = props => ({
     type: SUBMIT_USER_REQUESTED,
-    payload: values
+    ...props
 });
 
 export const fetchUserRequested = props => ({
     type: FETCH_USER_REQUESTED,
-    props
+    ...props
 });
 
 export const fetchUserSucceeded = props => ({
     type: FETCH_USER_SUCCEEDED,
+    ...props
+});
+
+export const fetchUsersSucceeded = props => ({
+    type: FETCH_USERS_SUCCEEDED,
     ...props
 });
 

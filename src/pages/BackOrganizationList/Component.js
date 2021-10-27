@@ -3,7 +3,8 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Row
+    Row,
+    Container
 } from 'reactstrap';
 import TableListNew from '@components/TableListNew';
 import {getRoutes} from '@utils';
@@ -22,7 +23,7 @@ const Component = ({
         fetchOrganizationRequested({});
     }, [fetchOrganizationRequested]);
     return (
-        <div className="text-center">
+        <Container className="text-center">
             <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
@@ -34,7 +35,7 @@ const Component = ({
                     />
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 

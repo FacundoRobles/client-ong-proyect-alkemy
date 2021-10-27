@@ -1,5 +1,6 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
+import {Container, Col, Row} from 'reactstrap';
 import BackForm from '@components/BackForm';
 
 const Component = ({
@@ -16,18 +17,22 @@ const Component = ({
     };
 
     return (
-        <>
-            <h1 className="text-center mb-4">Administrar Novedades</h1>
-            <BackForm
-                key="NewsForm"
-                form={form}
-                fields={fields}
-                submit={submitActivityRequested}
-                fetch={fetchActivitiesRequested}
-                id={match.params}
-                validate={validate}
-            />
-        </>
+        <Container>
+            <Row>
+                <Col>
+                    <h1 className="text-center mb-4">Administrar Novedades</h1>
+                    <BackForm
+                        key="ActivityForm"
+                        form={form}
+                        fields={fields}
+                        submit={submitActivityRequested}
+                        fetch={fetchActivitiesRequested}
+                        id={match.params}
+                        validate={validate}
+                    />
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

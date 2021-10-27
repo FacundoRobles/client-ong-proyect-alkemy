@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {PropTypes} from 'prop-types';
 import {getRoutes} from '@utils';
+import {Container, Col, Row} from 'reactstrap';
 import ShowDetail from '@components/ShowDetail';
 import DetailNotFound from '@components/DetailNotFound';
 import {
@@ -37,23 +38,27 @@ const Component = ({
     };
 
     return (
-        <>
-            {get(form, 'name') && id
-                ? (
-                    <ShowDetail
-                        key="NewsDetail"
-                        form={form}
-                        goList={goList}
-                    />
-                )
-                : (
-                    <DetailNotFound
-                        key="NewsDetailNotFound"
-                        data={detailNotFoundData}
-                        goList={goList}
-                    />
-                )}
-        </>
+        <Container>
+            <Row>
+                <Col>
+                    {get(form, 'name') && id
+                        ? (
+                            <ShowDetail
+                                key="NewsDetail"
+                                form={form}
+                                goList={goList}
+                            />
+                        )
+                        : (
+                            <DetailNotFound
+                                key="NewsDetailNotFound"
+                                data={detailNotFoundData}
+                                goList={goList}
+                            />
+                        )}
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

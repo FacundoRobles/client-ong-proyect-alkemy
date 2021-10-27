@@ -23,6 +23,8 @@ import BackTestimonialList from '@pages/BackTestimonialList';
 import BackOrganizationForm from '@pages/BackOrganizationForm';
 import BackOrganizationList from '@pages/BackOrganizationList';
 import BackHomeForm from '@pages/BackHomeForm';
+import BackUsersList from '@pages/BackUsersList';
+import BackUserForm from '@pages/BackUserForm';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
@@ -107,6 +109,8 @@ const Router = () => {
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
+                            <Route exact path={backOfficeRoutes.user.edit} component={BackUserForm}/>
+                            <Route exact path={backOfficeRoutes.user.list} component={BackUsersList}/>
                             <Route exact path={backOfficeRoutes.category.form} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.category.edit} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>

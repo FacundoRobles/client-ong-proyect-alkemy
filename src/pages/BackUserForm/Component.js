@@ -1,8 +1,8 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
 import {getRoutes} from '@utils';
+import {Container, Row, Col} from 'reactstrap';
 import BackForm from '../../components/BackForm';
-import {Container, Col, Row} from 'reactstrap';
 import {REQUIRED} from '../../utils/constants';
 
 const backOfficeRoutes = getRoutes('backOffice');
@@ -10,34 +10,34 @@ const backOfficeRoutes = getRoutes('backOffice');
 const Component = ({
     form,
     fields,
-    submitNewsRequested,
-    fetchNewsRequested,
+    submitUserRequested,
+    fetchUserRequested,
     match,
     history: {push}
 }) => {
     const validate = values => {
         const errors = {};
-        if (!values.name || !values.image || !values.content) {
-            errors.name = REQUIRED;
-            errors.image = REQUIRED;
-            errors.content = REQUIRED;
+        if (!values.firstName || !values.lastName || !values.email) {
+            errors.firtName = REQUIRED;
+            errors.lastName = REQUIRED;
+            errors.email = REQUIRED;
         }
         return errors;
     };
 
-    const goBackToList = () => push(backOfficeRoutes.news.list);
+    const goBackToList = () => push(backOfficeRoutes.user.list);
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <h1 className="text-center mb-4">Administrar Novedades</h1>
+                    <h1 className="text-center mb-4">Editar Usuario</h1>
                     <BackForm
                         key="NewsForm"
                         form={form}
                         fields={fields}
-                        submit={submitNewsRequested}
-                        fetch={fetchNewsRequested}
+                        submit={submitUserRequested}
+                        fetch={fetchUserRequested}
                         id={match.params}
                         validate={validate}
                         goBack={goBackToList}
@@ -52,9 +52,9 @@ export default Component;
 
 Component.propTypes = {
     form: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired
     }).isRequired,
     fields: PropTypes.arrayOf(
         PropTypes.shape({
@@ -66,8 +66,8 @@ Component.propTypes = {
 
         }).isRequired
     ).isRequired,
-    submitNewsRequested: PropTypes.func.isRequired,
-    fetchNewsRequested: PropTypes.func.isRequired,
+    submitUserRequested: PropTypes.func.isRequired,
+    fetchUserRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string

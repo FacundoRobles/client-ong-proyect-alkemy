@@ -1,3 +1,4 @@
+import Swal, {noop} from 'sweetalert2';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import pick from 'lodash/pick';
@@ -33,3 +34,24 @@ export const jsonToString = (stringOrJson, toString = false) => {
 };
 
 export const convertToParams = formValues => JSON.stringify(formValues);
+
+export function swalConfirmAction(
+    icon, title, text, confirmButtonText, cancelButtonText, actionConfirm, CancelConfirm = noop
+) {
+    return Swal.fire({
+        title,
+        text,
+        icon,
+        showCancelButton: true,
+        confirmButtonColor: '#3085D6',
+        cancelButtonColor: '#d33',
+        reverseButtons: true,
+        confirmButtonText,
+        cancelButtonText
+    }).then(result => {
+        if (!result.value) {
+            return CancelConfirm();
+        }
+        return actionConfirm();
+    });
+}
