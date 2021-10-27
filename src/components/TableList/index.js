@@ -173,10 +173,8 @@ TableList.propTypes = {
         setPageSize: PropTypes.func,
         records: PropTypes.arrayOf(PropTypes.number)
     }),
-    onSelect: PropTypes.shape({}).isRequired,
+    onSelect: PropTypes.shape({}),
     headers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    i18n: PropTypes.shape({}).isRequired,
-    handleChangePage: PropTypes.func.isRequired,
     withOutPagination: PropTypes.bool
 };
 
@@ -190,6 +188,7 @@ TableList.defaultProps = {
     onEdit: noop(),
     onAdd: noop(),
     onButtonAction: noop(),
+    onSelect: noop(),
     onSelectAll: noop(),
     onSettings: noop(),
     onDownload: noop(),

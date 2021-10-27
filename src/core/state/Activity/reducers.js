@@ -61,7 +61,7 @@ const activityForm = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 list: {
-                    documents: props
+                    documents: activity.activities
                 }
             };
         default:

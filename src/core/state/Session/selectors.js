@@ -1,11 +1,7 @@
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
-import ChatRoundedIcon from '@material-ui/icons/ChatRounded';
-import PhotoLibraryRoundedIcon from '@material-ui/icons/PhotoLibraryRounded';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import PersonIcon from '@material-ui/icons/Person';
-import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import {
+    FormatListBulletedRounded, AssignmentRounded, ChatRounded, PhotoLibraryRounded, MenuBookRounded, PeopleAltRounded, PersonRounded, HomeWorkRounded,
+    ContactMailRounded
+} from '@material-ui/icons';
 import {getRoutes} from '@utils';
 import get from 'lodash/get';
 
@@ -59,36 +55,41 @@ export const getNavigationHeader = () => {
 export const menuOffice = () => {
     const menu = [{
         title: 'Novedades',
-        icon: MenuBookIcon,
+        icon: MenuBookRounded,
         path: backOfficeRoutes.news.list
     }, {
         title: 'Actividades',
-        icon: AssignmentRoundedIcon,
+        icon: AssignmentRounded,
         path: mainRoutes.activity
     }, {
         title: 'Categorias',
-        icon: FormatListBulletedIcon,
+        icon: FormatListBulletedRounded,
         path: mainRoutes.category
     }, {
         title: 'Testimonios',
-        icon: ChatRoundedIcon,
+        icon: ChatRounded,
         path: backOfficeRoutes.testimonial.list
     }, {
         title: 'Organizacion',
-        icon: HomeWorkIcon,
+        icon: HomeWorkRounded,
         path: mainRoutes.organization
     }, {
         title: 'Slides',
-        icon: PhotoLibraryRoundedIcon,
+        icon: PhotoLibraryRounded,
         path: mainRoutes.slides
     }, {
         title: 'Usuarios',
-        icon: PersonIcon,
+        icon: PersonRounded,
         path: backOfficeRoutes.user.list
     }, {
         title: 'Miembros',
-        icon: PeopleAltIcon,
+        icon: PeopleAltRounded,
         path: mainRoutes.member
+    },
+    {
+        title: 'Contactos',
+        icon: ContactMailRounded,
+        path: backOfficeRoutes.contact.list
     }];
 
     return menu;
