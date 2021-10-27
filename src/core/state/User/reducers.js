@@ -1,8 +1,8 @@
-import { 
+import {
     FETCH_USER_SUCCEEDED,
     FETCH_USERS_SUCCEEDED,
     CLEAN_REGISTER_FORM
-} from "./types";
+} from './types';
 
 const initialState = {
     registerForm: {

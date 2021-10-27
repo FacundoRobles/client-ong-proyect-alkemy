@@ -94,7 +94,7 @@ function* submitSlideSagas({push, values, id}) {
         yield put(setRequestFlag({flag: true}));
         if (id) {
             const editForm = yield Api.put(`${ORGANIZATION}/${id}`, {welcomeText, items});
-            const success = get(editForm, 'data.success')
+            const success = get(editForm, 'data.success');
             if (success) {
                 yield put(submitSlideSucceeded({welcomeText, items}));
                 yield put(setSystemMessage(SUCCESS));

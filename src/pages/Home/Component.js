@@ -57,7 +57,7 @@ const Component = ({
             <Row>
                 <Col className="center-col">
                     <Link to={mainRoutes.news}>
-                        <Button 
+                        <Button
                             outline
                             color="primary"
                             className="btn-news"
@@ -104,5 +104,5 @@ Component.defaultProps = {
     newsTitle: 'Últimas novedades',
     testimonialTitle: 'Testimonios',
     newsButton: 'Ver noticias'
-}
+};
 export default Component;

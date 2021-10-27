@@ -28,14 +28,14 @@ const Component = ({
         }
         forEach(values.items, current => {
             if (isEmpty(current.imageUrl) || !/^(ftp|http|https):\/\/[^ "]+$/.test(current.imageUrl)) {
-                errors.items = {...errors.items}
+                errors.items = {...errors.items};
                 errors.items.imageUrl = ERROR_IMAGE;
             }
             if (isEmpty(current.text)) {
-                errors.items = {...errors.items}
+                errors.items = {...errors.items};
                 errors.items.text = ERROR_NAME;
             }
-        })
+        });
         return errors;
     };
 
@@ -64,7 +64,7 @@ Component.propTypes = {
     fields: PropTypes.arrayOf().isRequired,
     form: PropTypes.shape({
         welcomeText: PropTypes.string.isRequired,
-        items: PropTypes.arrayOf().isRequired,
+        items: PropTypes.arrayOf().isRequired
     }).isRequired,
     submitSlideRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({

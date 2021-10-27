@@ -73,9 +73,9 @@ const BackFormSlides = ({
                                                                         </Label>
                                                                     </Col>
                                                                     <Col>
-                                                                        <Field 
-                                                                            className="form-control mb-1" 
-                                                                            name={`${get(field, 'name')}[${index}].imageUrl`} 
+                                                                        <Field
+                                                                            className="form-control mb-1"
+                                                                            name={`${get(field, 'name')}[${index}].imageUrl`}
                                                                         />
                                                                         {errors[get(field, 'name')]
                                                                         && touched[get(field, 'name')]
@@ -85,9 +85,9 @@ const BackFormSlides = ({
                                                                                 {errors[get(field, 'name')].imageUrl}
                                                                             </p>
                                                                         )}
-                                                                        <Field 
-                                                                            className="form-control" 
-                                                                            name={`${get(field, 'name')}.${index}.text`} 
+                                                                        <Field
+                                                                            className="form-control"
+                                                                            name={`${get(field, 'name')}.${index}.text`}
                                                                         />
                                                                     </Col>
                                                                     <Col className="p-1">
