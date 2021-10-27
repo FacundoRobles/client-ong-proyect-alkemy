@@ -54,17 +54,12 @@ Component.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,
-    testimonial: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
-        image: PropTypes.string,
-        content: PropTypes.string
-    })),
+    testimonial: PropTypes.arrayOf().isRequired,
     title: PropTypes.string,
     buttonText: PropTypes.string
 };
 
 Component.defaultProps = {
-    testimonial: null,
     title: 'Listado de testimonios',
     buttonText: 'crear uno nuevo'
 };

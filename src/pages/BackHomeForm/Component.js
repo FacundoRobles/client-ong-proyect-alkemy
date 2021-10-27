@@ -1,56 +1,58 @@
-/* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Container,
     Row
 } from 'reactstrap';
 import {
     ERROR_NAME,
     ERROR_IMAGE
 } from '@utils/constants';
+import BackFormSlides from '@components/BackFormSlides';
 import isEmpty from 'lodash/isEmpty';
-import BackForm from '@components/BackForm';
+import forEach from 'lodash/forEach';
 
 const Component = ({
     form,
     fields,
-    match: {params: {id}},
     history: {push, goBack},
-    submitTestimonialRequested,
-    fetchTestimonialRequested,
+    match: {params: {id}},
+    submitSlideRequested,
     title,
     subTitle
 }) => {
     const validate = values => {
         const errors = {};
-        if (isEmpty(values.name)) {
-            errors.name = ERROR_NAME;
+        if (isEmpty(values.welcomeText)) {
+            errors.welcomeText = ERROR_NAME;
         }
-        if (isEmpty(values.image) || !/^(ftp|http|https):\/\/[^ "]+$/.test(values.image)) {
-            errors.image = ERROR_IMAGE;
-        }
+        forEach(values.items, current => {
+            if (isEmpty(current.imageUrl) || !/^(ftp|http|https):\/\/[^ "]+$/.test(current.imageUrl)) {
+                errors.items = {...errors.items}
+                errors.items.imageUrl = ERROR_IMAGE;
+            }
+            if (isEmpty(current.text)) {
+                errors.items = {...errors.items}
+                errors.items.text = ERROR_NAME;
+            }
+        })
         return errors;
     };
 
     return (
         <div className="text-center">
-            <Container fluid>
-                <h1>{title}</h1>
-            </Container>
+            <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12">
                     <h5 className="m-2">{subTitle}</h5>
-                    <BackForm
+                    <BackFormSlides
                         fields={fields}
-                        fetch={fetchTestimonialRequested}
                         form={form}
-                        id={id}
-                        submit={submitTestimonialRequested}
-                        validate={validate}
                         push={push}
+                        submit={submitSlideRequested}
+                        validate={validate}
                         goBack={goBack}
+                        id={id}
                     />
                 </Col>
             </Row>
@@ -59,10 +61,12 @@ const Component = ({
 };
 
 Component.propTypes = {
-    fetchTestimonialRequested: PropTypes.func.isRequired,
     fields: PropTypes.arrayOf().isRequired,
-    form: PropTypes.shape({}).isRequired,
-    submitTestimonialRequested: PropTypes.func.isRequired,
+    form: PropTypes.shape({
+        welcomeText: PropTypes.string.isRequired,
+        items: PropTypes.arrayOf().isRequired,
+    }).isRequired,
+    submitSlideRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.number
@@ -77,8 +81,8 @@ Component.propTypes = {
 };
 
 Component.defaultProps = {
-    title: 'Administrar testimonios',
-    subTitle: 'Agrega un nuevo testimonio'
+    title: 'Administrar Slides Home',
+    subTitle: 'Editar imagenes y titulo'
 };
 
 export default Component;

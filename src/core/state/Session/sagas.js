@@ -14,22 +14,23 @@ import {
 import {
     AUTH,
     LOGIN,
-    ME
-
+    ME,
+    HOME,
+    ORGANIZATION
 } from '@Api/Urls';
-
 import Api from '@Api/Api';
-
 import {
     LOGOUT,
     FETCH_SESSION_REQUESTED,
-    FETCH_LOGIN_REQUESTED
+    FETCH_LOGIN_REQUESTED,
+    SUBMIT_SLIDES_REQUESTED
 } from './types';
 
 import {
     fetchLoginSucceeded,
     setRequestFlag,
-    setSystemMessage
+    setSystemMessage,
+    submitSlideSucceeded
 } from './actions';
 
 function* fetchLogin(values) {
@@ -74,14 +75,46 @@ function* verifyUser() {
 }
 
 function* logout() {
-    yield localStorage.removeItem('token_agent');
-    yield window.location.reload();
+    try {
+        yield put(setRequestFlag({flag: true}));
+        if (localStorage.getItem('token_agent')) {
+            yield localStorage.removeItem('token_agent');
+            yield put(setSystemMessage(SUCCESS));
+        }
+    } catch (err) {
+        yield put(setSystemMessage(ERROR));
+    } finally {
+        yield put(setRequestFlag({flag: false}));
+    }
+}
+
+function* submitSlideSagas({push, values, id}) {
+    const {welcomeText, items} = values;
+    try {
+        yield put(setRequestFlag({flag: true}));
+        if (id) {
+            const editForm = yield Api.put(`${ORGANIZATION}/${id}`, {welcomeText, items});
+            const success = get(editForm, 'data.success')
+            if (success) {
+                yield put(submitSlideSucceeded({welcomeText, items}));
+                yield put(setSystemMessage(SUCCESS));
+                yield push(HOME);
+                return;
+            }
+        }
+        yield put(setSystemMessage(ERROR));
+    } catch (error) {
+        yield put(setSystemMessage(ERROR));
+    } finally {
+        yield put(setRequestFlag({flag: false}));
+    }
 }
 
 export default function* sessionSagas() {
     yield all([
         takeLatest(FETCH_LOGIN_REQUESTED, fetchLogin),
         takeLatest(FETCH_SESSION_REQUESTED, verifyUser),
-        takeLatest(LOGOUT, logout)
+        takeLatest(LOGOUT, logout),
+        takeLatest(SUBMIT_SLIDES_REQUESTED, submitSlideSagas)
     ]);
 }

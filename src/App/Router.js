@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Switch, useLocation} from 'react-router-dom';
 import {Container} from 'reactstrap';
 import {getRoutes} from '@utils';
@@ -22,6 +22,7 @@ import BackTestimonial from '@pages/BackTestimonial';
 import BackTestimonialList from '@pages/BackTestimonialList';
 import BackOrganizationForm from '@pages/BackOrganizationForm';
 import BackOrganizationList from '@pages/BackOrganizationList';
+import BackHomeForm from '@pages/BackHomeForm';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
@@ -31,6 +32,15 @@ const backOfficeRoutes = getRoutes('backOffice');
 
 const Router = () => {
     const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, [location]);
+
     const currentKey = location.pathname;
     const variants = {
         visible: {opacity: 1},
@@ -108,6 +118,7 @@ const Router = () => {
                             <Route exact path={backOfficeRoutes.organization.edit} component={BackOrganizationForm}/>
                             <Route exact path={backOfficeRoutes.organization.form} component={BackOrganizationForm}/>
                             <Route exact path={backOfficeRoutes.organization.list} component={BackOrganizationList}/>
+                            <Route exact path={backOfficeRoutes.slides.edit} component={BackHomeForm}/>
                         </Switch>
                     </Container>
                 </motion.div>

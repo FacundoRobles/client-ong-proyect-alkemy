@@ -23,6 +23,7 @@ import {
     cleanOrganizationForm
 } from './actions';
 import {
+    fetchSlidesSucceeded,
     setRequestFlag,
     setSystemMessage
 } from '../Session/actions';
@@ -38,6 +39,7 @@ function* getOrganizations({id}) {
                 const documents = get(getOrganizationsApi, 'data.data');
                 yield put(fetchOrganizationSucceeded({documents}));
                 yield put(fetchOrganizationFormSucceeded({documents}));
+                yield put(fetchSlidesSucceeded({documents}))
                 return;
             }
         }
