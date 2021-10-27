@@ -21,27 +21,29 @@ const ModalLogin = ({
     buttonConfirm,
     buttonCancel
 }) => (
-    <>
-        <Modal isOpen={isOpen} toggle={toggle} className={className}>
-            <ModalHeader toggle={toggle}>
-                <Row>
-                    <Col md="6">
-                        <img src={logo} alt="logo" width="100px"/>
-                    </Col>
-                    <Col md="6" className="align-self-center text-center">
-                        <h6 className="mb-0">{title}</h6>
-                    </Col>
-                </Row>
-            </ModalHeader>
-            <ModalBody>
-                {children}
-            </ModalBody>
-            <ModalFooter>
-                <Button color="primary" onClick={proceed}>{buttonConfirm}</Button>
-                <Button color="secondary" onClick={toggle}>{buttonCancel}</Button>
-            </ModalFooter>
-        </Modal>
-    </>
+    <Row>
+        <Col>
+            <Modal isOpen={isOpen} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle}>
+                    <Row>
+                        <Col md="6">
+                            <img src={logo} alt="logo" width="100px"/>
+                        </Col>
+                        <Col md="6" className="align-self-center text-center">
+                            <h6 className="mb-0">{title}</h6>
+                        </Col>
+                    </Row>
+                </ModalHeader>
+                <ModalBody>
+                    {children}
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={proceed}>{buttonConfirm}</Button>
+                    <Button color="secondary" onClick={toggle}>{buttonCancel}</Button>
+                </ModalFooter>
+            </Modal>
+        </Col>
+    </Row>
 );
 
 ModalLogin.propTypes = {

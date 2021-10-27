@@ -4,7 +4,13 @@ import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {useFormik} from 'formik';
 import {
-    Label, Col, Button, FormGroup, Card, CardBody
+    Label,
+    Col,
+    Row,
+    Button,
+    FormGroup,
+    Card,
+    CardBody
 } from 'reactstrap';
 import map from 'lodash/map';
 import get from 'lodash/get';
@@ -44,7 +50,7 @@ const BackForm = ({
     });
 
     return (
-        <>
+        <Row>
             <Col
                 md={{size: 8, offset: 2}}
                 lg={{size: 6, offset: 3}}
@@ -150,7 +156,7 @@ const BackForm = ({
                     </CardBody>
                 </Card>
             </Col>
-        </>
+        </Row>
     );
 };
 
@@ -168,7 +174,7 @@ BackForm.propTypes = {
         }).isRequired
     ).isRequired,
     goBack: PropTypes.func.isRequired,
-    id: PropTypes.string,
+    id: PropTypes.shape({}),
     submit: PropTypes.func.isRequired,
     fetch: PropTypes.func.isRequired,
     push: PropTypes.func.isRequired,

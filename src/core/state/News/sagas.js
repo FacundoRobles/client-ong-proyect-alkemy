@@ -30,7 +30,7 @@ import {
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 
-function* submitNewsRequestedSagas({payload, id}) {
+function* submitNewsRequestedSagas({payload, id: {id}}) {
     try {
         let success = null;
         yield put(setRequestFlag({flag: true}));

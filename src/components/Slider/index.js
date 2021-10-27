@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import map from 'lodash/map';
 import {
+    Row,
+    Col,
     Carousel,
     CarouselItem,
     CarouselControl,
@@ -42,16 +44,20 @@ const Slider = ({items}) => {
     ));
 
     return (
-        <Carousel
-            activeIndex={activeIndex}
-            next={next}
-            previous={previous}
-        >
-            <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex}/>
-            {slides}
-            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous}/>
-            <CarouselControl direction="next" directionText="Next" onClickHandler={next}/>
-        </Carousel>
+        <Row>
+            <Col>
+                <Carousel
+                    activeIndex={activeIndex}
+                    next={next}
+                    previous={previous}
+                >
+                    <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex}/>
+                    {slides}
+                    <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous}/>
+                    <CarouselControl direction="next" directionText="Next" onClickHandler={next}/>
+                </Carousel>
+            </Col>
+        </Row>
     );
 };
 
