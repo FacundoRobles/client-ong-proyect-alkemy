@@ -26,6 +26,7 @@ import BackOrganizationList from '@pages/BackOrganizationList';
 import BackHomeForm from '@pages/BackHomeForm';
 import BackUsersList from '@pages/BackUsersList';
 import BackUserForm from '@pages/BackUserForm';
+import BackMembersList from '@pages/BackMembersList';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
@@ -125,6 +126,7 @@ const Router = () => {
                             <Route exact path={backOfficeRoutes.organization.form} component={BackOrganizationForm}/>
                             <Route exact path={backOfficeRoutes.organization.list} component={BackOrganizationList}/>
                             <Route exact path={backOfficeRoutes.slides.edit} component={BackHomeForm}/>
+                            <Route exact path={backOfficeRoutes.member.list} component={BackMembersList}/>
                         </Switch>
                     </Container>
                 </motion.div>

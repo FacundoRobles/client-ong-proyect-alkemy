@@ -29,11 +29,11 @@ const TableListNew = ({
                     <div className="d-flex flex-column flex-sm-row align-items-center justify-content-sm-around w-100">
                         {current.image && (
                             <div className="align-self-center">
-                                <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/> 
+                                <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/>
                             </div>
                         )}
                         <div className="align-self-center">
-                            <p className="align-self-center m-0 m-2">{current.name}</p> 
+                            <p className="align-self-center m-0 m-2">{current.name}</p>
                         </div>
                         <div className="align-self-center">
                             {current.content && (

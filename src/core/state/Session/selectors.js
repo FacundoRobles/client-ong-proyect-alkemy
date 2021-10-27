@@ -91,7 +91,7 @@ export const menuOffice = () => {
     }, {
         title: 'Miembros',
         icon: PeopleAltIcon,
-        path: mainRoutes.member
+        path: backOfficeRoutes.member.list
     }];
 
     return menu;
