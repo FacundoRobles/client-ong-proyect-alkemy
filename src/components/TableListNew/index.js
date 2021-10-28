@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import replace from 'lodash/replace';
+import get from 'lodash/get';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import {swalConfirmAction} from '@utils';
@@ -27,7 +28,7 @@ const TableListNew = ({
                     `}
                 >
                     <div className="d-flex flex-column flex-sm-row align-items-center justify-content-sm-around w-100">
-                        {current.image && (
+                        {get(current, 'image') && (
                             <div className="align-self-center">
                                 <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/>
                             </div>
@@ -36,7 +37,7 @@ const TableListNew = ({
                             <p className="align-self-center m-0 m-2">{current.name}</p>
                         </div>
                         <div className="align-self-center">
-                            {current.content && (
+                            {get(current, 'content') && (
                                 <p // eslint-disable-next-line
                                     dangerouslySetInnerHTML={
                                         {__html: current.content.substr(0, 45)}
@@ -48,7 +49,7 @@ const TableListNew = ({
                                     className="align-self-center m-0 m-2"
                                 />
                             )}
-                            {current.description && (
+                            {get(current, 'description') && (
                                 <p // eslint-disable-next-line
                                     dangerouslySetInnerHTML={
                                         {__html: current.description.substr(0, 45)}

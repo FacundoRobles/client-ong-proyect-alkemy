@@ -35,7 +35,7 @@ function* requestContactSagas({idContact}) {
             const getContact = yield Api.get(`${CONTACT}/${idContact}`);
             const success = get(getContact, 'data.success');
             if (success) {
-                const contact = get(getContact, 'data.contacts');
+                const contact = get(getContact, 'data.data');
                 yield put(fetchContactSucceeded({contact}));
                 return;
             }
@@ -44,7 +44,7 @@ function* requestContactSagas({idContact}) {
         const getContacts = yield Api.get(CONTACT);
         const success = get(getContacts, 'data.success');
         if (success) {
-            const contact = get(getContacts, 'data.contacts');
+            const contact = get(getContacts, 'data.data');
             yield put(fetchContactsSucceeded({contact}));
             return;
         }
@@ -70,7 +70,7 @@ function* submitContactSagas({
             const editContact = yield Api.put(`${CONTACT}/${idContact}`, obj);
             const success = get(editContact, 'data.success');
             if (success) {
-                const contact = get(editContact, 'data.contacts');
+                const contact = get(editContact, 'data.data');
                 yield put(fetchContactSucceeded({contact}));
                 yield put(cleanRegisterForm());
                 yield put(setSystemMessage(SUCCESS));

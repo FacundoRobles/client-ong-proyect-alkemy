@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {
     Col,
     Row,
-    Button,
-    Container
+    Button
 } from 'reactstrap';
 import {getRoutes} from '@utils';
 import Slider from '@components/Slider';
@@ -32,7 +31,7 @@ const Component = ({
     const testimonials = useSelector(fromState.Testimonial.getSlickTestimonials);
     const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
     return (
-        <Container>
+        <>
             <Slider items={items}/>
             <Row className="text-center">
                 <Col md="12">
@@ -77,7 +76,7 @@ const Component = ({
                     <Slick items={testimonials}/>
                 </Col>
             </Row>
-        </Container>
+        </>
     );
 };
 

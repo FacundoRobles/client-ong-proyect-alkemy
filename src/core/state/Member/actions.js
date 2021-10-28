@@ -22,7 +22,6 @@ export const fetchMembersSucceeded = props => ({
     ...props
 });
 
-
 export const submitMemberRequested = props => ({
     type: SUBMIT_MEMBER_REQUESTED,
     ...props

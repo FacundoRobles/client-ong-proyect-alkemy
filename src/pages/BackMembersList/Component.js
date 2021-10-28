@@ -19,9 +19,9 @@ const Component = ({
     }, [fetchMembersRequested]);
     return (
         <Container className="text-center">
-            <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
+                    <h1>{title}</h1>
                     <TableListNew
                         props={members}
                         push={push}

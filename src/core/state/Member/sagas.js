@@ -26,7 +26,7 @@ function* fetchMembersRequestedSagas() {
         const success = get(fetchMembers, 'data.success');
         if (success) {
             const documents = get(fetchMembers, 'data.data');
-            yield put(fetchMembersSucceeded({documents}))
+            yield put(fetchMembersSucceeded({documents}));
             return;
         }
         yield put(setSystemMessage(ERROR));
