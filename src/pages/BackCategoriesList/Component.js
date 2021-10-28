@@ -15,6 +15,7 @@ const backCategoryRoute = backOfficeRoutes.category.list;
 const Component = ({
     history: {push},
     categories,
+    deleteCategoryRequested,
     fetchCategoriesRequested,
     title,
     buttonText
@@ -30,6 +31,7 @@ const Component = ({
                 <Col sm="12" md="12" className="m-auto">
                     <TableListNew
                         props={categories}
+                        erase={deleteCategoryRequested}
                         push={push}
                         route={backCategoryRoute}
                     />
@@ -46,6 +48,7 @@ const Component = ({
 
 Component.propTypes = {
     fetchCategoriesRequested: PropTypes.func.isRequired,
+    deleteCategoryRequested: PropTypes.func.isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,

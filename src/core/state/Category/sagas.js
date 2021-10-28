@@ -13,7 +13,11 @@ import {
 
 import get from 'lodash/get';
 import Api from '@Api/Api';
-import {SUBMIT_CATEGORY_REQUESTED, FETCH_CATEGORY_REQUESTED} from './types';
+import {
+    SUBMIT_CATEGORY_REQUESTED,
+    FETCH_CATEGORY_REQUESTED,
+    DELETE_CATEGORY_REQUESTED
+} from './types';
 import {setRequestFlag, setSystemMessage} from '../Session/actions';
 import {
     fetchCategoryRequested,
@@ -66,9 +70,24 @@ function* fetchCategoryRequestedSagas({id}) {
     }
 }
 
+function* deleteCategoryRequestedSagas({id}) {
+    try {
+        yield put(setRequestFlag({flag: true}));
+        yield Api.delete(`${CATEGORIES}/${id}`);
+        yield put(fetchCategoryRequested());
+        return yield put(setSystemMessage(SUCCESS));
+    } catch (err) {
+        yield put(setSystemMessage(ERROR));
+        throw Error(err);
+    } finally {
+        yield put(setRequestFlag({flag: false}));
+    }
+}
+
 export default function* categorySagas() {
     yield all([
         takeLatest(SUBMIT_CATEGORY_REQUESTED, submitCategoryRequestedSagas),
-        takeLatest(FETCH_CATEGORY_REQUESTED, fetchCategoryRequestedSagas)
+        takeLatest(FETCH_CATEGORY_REQUESTED, fetchCategoryRequestedSagas),
+        takeLatest(DELETE_CATEGORY_REQUESTED, deleteCategoryRequestedSagas)
     ]);
 }

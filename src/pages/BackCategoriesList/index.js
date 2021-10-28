@@ -11,6 +11,7 @@ export default connect(
         categories: fromState.Category.getCategories(state)
     }),
     dispatch => bindActionCreators({
-        fetchCategoriesRequested: id => dispatch(Category.fetchCategoryRequested(id))
+        fetchCategoriesRequested: id => dispatch(Category.fetchCategoryRequested(id)),
+        deleteCategoryRequested: id => dispatch(Category.deleteCategoryRequested(id))
     }, dispatch)
 )(Component);
