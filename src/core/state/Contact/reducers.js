@@ -61,7 +61,8 @@ const contactForm = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 list: {
-                    documents: contact
+                    documents: contact.contacts,
+                    total: contact.length
                 }
             };
         default:

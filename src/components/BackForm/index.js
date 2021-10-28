@@ -10,7 +10,8 @@ import {
     Button,
     FormGroup,
     Card,
-    CardBody
+    CardBody,
+    Input
 } from 'reactstrap';
 import map from 'lodash/map';
 import get from 'lodash/get';
@@ -82,7 +83,7 @@ const BackForm = ({
                                                 <Col
                                                     className="mb-3 px-2"
                                                 >
-                                                    <input
+                                                    <Input
                                                         className="form-control"
                                                         onChange={Formik.handleChange}
                                                         onBlur={Formik.handleBlur}

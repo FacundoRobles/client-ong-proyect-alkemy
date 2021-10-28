@@ -53,6 +53,9 @@ export default {
         user: {
             list: `${mainRoutes.backOffice}${mainRoutes.user}`,
             edit: `${mainRoutes.backOffice}${mainRoutes.user}/:id/edit`
+        },
+        contact: {
+            list: `${mainRoutes.backOffice}${mainRoutes.contact}`
         }
     },
     mainRoutes
