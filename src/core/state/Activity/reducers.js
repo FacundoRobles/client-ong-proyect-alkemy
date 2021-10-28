@@ -37,7 +37,7 @@ const initialState = {
 };
 
 const activityForm = (state = {...initialState}, {type, ...props}) => {
-    const {activity} = props;
+    const {activity, documents} = props;
     switch (type) {
         case FETCH_ACTIVITY_SUCCEEDED:
             return {
@@ -61,7 +61,8 @@ const activityForm = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 list: {
-                    documents: props
+                    documents,
+                    total: documents.length
                 }
             };
         default:

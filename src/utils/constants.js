@@ -31,3 +31,5 @@ export const NOT_FOUND_TITLE = 'Oops... Algo salió mal!';
 export const NOT_FOUND_IMG = 'https://image.freepik.com/free-vector/error-404-concept-landing-page_114360-2279.jpg';
 export const ERROR_NAME = 'Campo requerido';
 export const ERROR_IMAGE = 'Deberia de ser una URL';
+export const ACTIVITIES = 'Actividades';
+export const ACTIVITIES_TEXT = 'Puedes visualizar y acceder a nuestras Actividades aquí';

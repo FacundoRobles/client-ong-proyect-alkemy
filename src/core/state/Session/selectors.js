@@ -120,7 +120,7 @@ export const getLoginInit = () => ({
     ]
 });
 
-export const getSlickSettings = () => {
+export const getSlickHomeSettings = () => {
     const settings = {
         dots: true,
         infinite: false,
@@ -129,7 +129,58 @@ export const getSlickSettings = () => {
         slidesToScroll: 4,
         initialSlide: 0,
         arrows: true,
+        className: 'slides',
         responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+    return settings;
+};
+
+export const getSlickSettings = () => {
+    const settings = {
+        dots: true,
+        accesibility: true,
+        infinite: false,
+        speed: 1000,
+        slidesToShow: 6,
+        slidesToScroll: 6,
+        initialSlide: 0,
+        arrows: true,
+        className: 'slides',
+        responsive: [
+            {
+                breakpoint: 1400,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    infinite: true,
+                    dots: true
+                }
+            },
             {
                 breakpoint: 1024,
                 settings: {

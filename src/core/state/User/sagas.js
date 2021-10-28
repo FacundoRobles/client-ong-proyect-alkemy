@@ -43,6 +43,7 @@ function* submitUserRequestedSagas({payload, id}) {
             if (successEdit) {
                 yield push(backOfficeRoutes.user.list);
                 yield put(fetchUserRequested({}));
+                return yield put(setSystemMessage(SUCCESS));
             }
         }
         if (!id) {
@@ -53,8 +54,9 @@ function* submitUserRequestedSagas({payload, id}) {
                 yield push(HOME);
             }
         }
-        yield put(cleanRegisterForm({}));
+        return yield put(cleanRegisterForm({}));
     } catch (err) {
+        yield put(setSystemMessage(ERROR));
         throw Error(err);
     } finally {
         yield put(setRequestFlag({flag: false}));

@@ -6,6 +6,10 @@
     color: var(--secondary);
     text-shadow: 1px 1px 5px var(--sky-drive);
   }
+
+  .description-text {
+    line-height: 130%;
+  }
 }
 
 .btn-cancel,
