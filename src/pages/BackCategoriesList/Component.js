@@ -4,42 +4,38 @@ import PropTypes from 'prop-types';
 import {
     Button,
     Col,
-    Container,
     Row
 } from 'reactstrap';
 import TableListNew from '@components/TableListNew';
 import {getRoutes} from '@utils';
 
 const backOfficeRoutes = getRoutes('backOffice');
-const backTestimonialRoute = backOfficeRoutes.testimonial.list;
+const backCategoryRoute = backOfficeRoutes.category.list;
 
 const Component = ({
     history: {push},
-    testimonial,
-    deleteTestimonialRequested,
-    fetchTestimonialRequested,
+    categories,
+    fetchCategoriesRequested,
     title,
     buttonText
 }) => {
     useEffect(() => {
-        fetchTestimonialRequested({});
-    }, [fetchTestimonialRequested]);
+        fetchCategoriesRequested();
+    }, [fetchCategoriesRequested]);
+
     return (
         <div className="text-center">
-            <Container fluid>
-                <h1>{title}</h1>
-            </Container>
+            <h1>{title}</h1>
             <Row className="p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
                     <TableListNew
-                        props={testimonial}
-                        erase={deleteTestimonialRequested}
+                        props={categories}
                         push={push}
-                        route={backTestimonialRoute}
+                        route={backCategoryRoute}
                     />
                 </Col>
                 <Col>
-                    <Button onClick={() => push(backOfficeRoutes.testimonial.form)}>
+                    <Button onClick={() => push(backOfficeRoutes.category.form)}>
                         {buttonText}
                     </Button>
                 </Col>
@@ -49,18 +45,17 @@ const Component = ({
 };
 
 Component.propTypes = {
-    deleteTestimonialRequested: PropTypes.func.isRequired,
-    fetchTestimonialRequested: PropTypes.func.isRequired,
+    fetchCategoriesRequested: PropTypes.func.isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,
-    testimonial: PropTypes.arrayOf().isRequired,
+    categories: PropTypes.arrayOf().isRequired,
     title: PropTypes.string,
     buttonText: PropTypes.string
 };
 
 Component.defaultProps = {
-    title: 'Listado de testimonios',
+    title: 'Listado de categorias',
     buttonText: 'crear uno nuevo'
 };
 

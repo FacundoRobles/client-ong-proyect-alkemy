@@ -4,7 +4,7 @@ import {Container, Col, Row} from 'reactstrap';
 import BackForm from '../../components/BackForm';
 
 const Component = ({
-    form, fields, submitCategoryRequested, fetchCategoryRequested, match
+    form, fields, submitCategoryRequested, fetchCategoryRequested, match, history: {goBack}
 }) => {
     const validate = values => {
         const errors = {};
@@ -28,6 +28,7 @@ const Component = ({
                         fetch={fetchCategoryRequested}
                         id={match.params.id}
                         validate={validate}
+                        goBack={goBack}
                     />
                 </Col>
             </Row>
@@ -58,7 +59,10 @@ Component.propTypes = {
         params: PropTypes.shape({
             id: PropTypes.string
         })
-    })
+    }),
+    history: PropTypes.shape({
+        goBack: PropTypes.func
+    }).isRequired
 };
 
 Component.defaultProps = {

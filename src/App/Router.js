@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Switch, useLocation} from 'react-router-dom';
 import {Container} from 'reactstrap';
 import {getRoutes} from '@utils';
@@ -16,12 +16,14 @@ import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import BackOffice from '@pages/BackOffice';
 import BackCategoriesForm from '@pages/BackCategoriesForm';
+import BackCategoriesList from '@pages/BackCategoriesList';
 import BackNewsForm from '@pages/BackNewsForm';
 import BackNewsList from '@pages/BackNewsList';
 import BackTestimonial from '@pages/BackTestimonial';
 import BackTestimonialList from '@pages/BackTestimonialList';
 import BackOrganizationForm from '@pages/BackOrganizationForm';
 import BackOrganizationList from '@pages/BackOrganizationList';
+import BackHomeForm from '@pages/BackHomeForm';
 import BackUsersList from '@pages/BackUsersList';
 import BackUserForm from '@pages/BackUserForm';
 import BackContactList from '@pages/BackContactList';
@@ -34,6 +36,15 @@ const backOfficeRoutes = getRoutes('backOffice');
 
 const Router = () => {
     const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }, [location]);
+
     const currentKey = location.pathname;
     const variants = {
         visible: {opacity: 1},
@@ -102,8 +113,9 @@ const Router = () => {
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.user.edit} component={BackUserForm}/>
                             <Route exact path={backOfficeRoutes.user.list} component={BackUsersList}/>
+                            <Route exact path={backOfficeRoutes.category.list} component={BackCategoriesList}/>
                             <Route exact path={backOfficeRoutes.category.form} component={BackCategoriesForm}/>
-                            <Route exact path={backOfficeRoutes.category.edit} component={BackCategoriesForm}/>
+                            <Route exact path={backOfficeRoutes.category.show} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.news.form} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.edit} component={BackNewsForm}/>
                             <Route exact path={backOfficeRoutes.news.list} component={BackNewsList}/>
@@ -114,6 +126,7 @@ const Router = () => {
                             <Route exact path={backOfficeRoutes.organization.form} component={BackOrganizationForm}/>
                             <Route exact path={backOfficeRoutes.organization.list} component={BackOrganizationList}/>
                             <Route exact path={backOfficeRoutes.contact.list} component={BackContactList}/>
+                            <Route exact path={backOfficeRoutes.slides.edit} component={BackHomeForm}/>
                         </Switch>
                     </Container>
                 </motion.div>

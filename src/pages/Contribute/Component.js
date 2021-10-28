@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container, Col, Row} from 'reactstrap';
 
-
 const Component = () => (
     <Container>
         <Row>

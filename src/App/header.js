@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router';
 import {useSelector, connect, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {NavLink as RRNavLink} from 'react-router-dom';
 import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import {
     Collapse,
     Navbar,
@@ -31,8 +33,17 @@ import RegisterForm from '../components/RegisterForm';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Header = ({
-    registerForm, registerFields
+    registerForm,
+    registerFields,
+    isAuthenticate,
+    userAgent,
+    buttonLogin,
+    buttonRegister,
+    buttonAdminBackoffice,
+    buttonAdminLogout,
+    buttonStandardLogout
 }) => {
+    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
     const [modalLogin, setModalLogin] = useState(false);
     const [modalRegister, setModalRegister] = useState(false);
     const dispatch = useDispatch();
@@ -42,7 +53,7 @@ const Header = ({
     const toggle = () => setIsOpen(!isOpen);
     const navigationRoutes = useSelector(() => getNavigationHeader());
     const loginInit = useSelector(() => getLoginInit());
-    const token = localStorage.getItem('token_agent');
+    const history = useHistory();
     const logout = () => {
         dispatch(fetchSessionLogout());
     };
@@ -147,57 +158,66 @@ const Header = ({
                                 </Col>
                                 <Col md="auto" xl="3" className="px-0">
                                     <Nav className="d-block d-md-flex align-items-center justify-content-md-end p-0">
-                                        {!token
-                                            ? (
-                                                <>
-                                                    <NavItem>
-                                                        <Button
-                                                            outline
-                                                            color="primary"
-                                                            onClick={() => setModalLogin(!modalLogin)}
-                                                            className="btn-login my-1 my-md-0 px-sm-4 px-md-2 px-lg-4 ml-0 ml-md-1 mr-2 mx-lg-4"
-                                                        >
-                                                            Log In
-                                                        </Button>
-                                                        <ModalLogin
-                                                            isOpen={modalLogin}
-                                                            toggle={() => setModalLogin(!modalLogin)}
-                                                            proceed={FormikLogin.handleSubmit}
-                                                            title="Iniciar sesion"
-                                                            buttonConfirm="Entrar"
-                                                            buttonCancel="Cancelar"
-                                                        >
-                                                            <FormLogin key="LoginForm" fields={loginInit.fields} Formik={FormikLogin}/>
-                                                        </ModalLogin>
-                                                    </NavItem>
-                                                    <NavItem>
-                                                        <Button
-                                                            color="danger"
-                                                            onClick={() => setModalRegister(!modalRegister)}
-                                                            className="btn-register my-2 px-sm-3 px-md-1 px-lg-3 my-md-0 mr-3"
-                                                        >
-                                                            Registrate
-                                                        </Button>
-                                                        <ModalLogin
-                                                            isOpen={modalRegister}
-                                                            toggle={() => setModalRegister(!modalRegister)}
-                                                            proceed={FormikRegister.handleSubmit}
-                                                            title="Registrate"
-                                                            buttonConfirm="Registrar"
-                                                            buttonCancel="Cancelar"
-                                                        >
-                                                            <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
-                                                        </ModalLogin>
-                                                    </NavItem>
-                                                </>
-                                            )
-                                            : (
+                                        {!isAuthenticate && (
+                                            <>
                                                 <NavItem>
-                                                    <Button className="ml-md-3" color="info" onClick={logout}>
-                                                        Logout
+                                                    <Button
+                                                        outline
+                                                        color="primary"
+                                                        onClick={() => setModalLogin(!modalLogin)}
+                                                        className="btn-login my-1 my-md-0 px-sm-4 px-md-2 px-lg-4 ml-0 ml-md-1 mr-2 mx-lg-4"
+                                                    >
+                                                        {buttonLogin}
                                                     </Button>
+                                                    <ModalLogin
+                                                        isOpen={modalLogin}
+                                                        toggle={() => setModalLogin(!modalLogin)}
+                                                        proceed={FormikLogin.handleSubmit}
+                                                        title="Iniciar sesion"
+                                                        buttonConfirm="Entrar"
+                                                        buttonCancel="Cancelar"
+                                                    >
+                                                        <FormLogin key="LoginForm" fields={loginInit.fields} Formik={FormikLogin}/>
+                                                    </ModalLogin>
                                                 </NavItem>
-                                            )}
+                                                <NavItem>
+                                                    <Button
+                                                        color="danger"
+                                                        onClick={() => setModalRegister(!modalRegister)}
+                                                        className="btn-register my-2 px-sm-3 px-md-1 px-lg-3 my-md-0 mr-3"
+                                                    >
+                                                        {buttonRegister}
+                                                    </Button>
+                                                    <ModalLogin
+                                                        isOpen={modalRegister}
+                                                        toggle={() => setModalRegister(!modalRegister)}
+                                                        proceed={FormikRegister.handleSubmit}
+                                                        title="Registrate"
+                                                        buttonConfirm="Registrar"
+                                                        buttonCancel="Cancelar"
+                                                    >
+                                                        <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
+                                                    </ModalLogin>
+                                                </NavItem>
+                                            </>
+                                        )}
+                                        {roleId === 1 && (
+                                            <NavItem>
+                                                <Button className="ml-md-3" color="info" onClick={() => history.push(mainRoutes.backOffice)}>
+                                                    {buttonAdminBackoffice}
+                                                </Button>
+                                                <Button className="ml-md-3" color="info" onClick={logout}>
+                                                    {buttonAdminLogout}
+                                                </Button>
+                                            </NavItem>
+                                        )}
+                                        {isAuthenticate && roleId !== 1 && (
+                                            <NavItem>
+                                                <Button className="ml-md-3" color="info" onClick={logout}>
+                                                    {buttonStandardLogout}
+                                                </Button>
+                                            </NavItem>
+                                        )}
                                     </Nav>
                                 </Col>
                             </Collapse>
@@ -208,15 +228,6 @@ const Header = ({
         </header>
     );
 };
-
-const mapStateToProps = state => ({
-    registerForm: fromState.User.getRegisterForm(state),
-    registerFields: fromState.User.getRegisterFields(state)
-});
-
-export default connect(
-    mapStateToProps
-)(Header);
 
 Header.propTypes = {
     registerForm: PropTypes.shape({
@@ -233,5 +244,33 @@ Header.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired
         }).isRequired
-    ).isRequired
+    ).isRequired,
+    userAgent: PropTypes.shape({
+        roleId: PropTypes.number
+    }).isRequired,
+    isAuthenticate: PropTypes.bool.isRequired,
+    buttonAdminBackoffice: PropTypes.string,
+    buttonAdminLogout: PropTypes.string,
+    buttonStandardLogout: PropTypes.string,
+    buttonLogin: PropTypes.string,
+    buttonRegister: PropTypes.string
 };
+
+Header.defaultProps = {
+    buttonAdminBackoffice: 'Administracion',
+    buttonAdminLogout: 'Salir',
+    buttonStandardLogout: 'Salir',
+    buttonLogin: 'Ingresar',
+    buttonRegister: 'Registrate'
+};
+
+const mapStateToProps = state => ({
+    registerForm: fromState.User.getRegisterForm(state),
+    registerFields: fromState.User.getRegisterFields(state),
+    isAuthenticate: fromState.Session.isAuthenticate(state),
+    userAgent: fromState.Session.getUserAgent(state)
+});
+
+export default connect(
+    mapStateToProps
+)(Header);

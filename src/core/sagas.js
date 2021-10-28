@@ -6,6 +6,7 @@ import user from './state/User/sagas';
 import contact from './state/Contact/sagas';
 import activity from './state/Activity/sagas';
 import organization from './state/Organization/sagas';
+import category from './state/Category/sagas';
 
 export default function* rootSagas() {
     yield all([
@@ -15,6 +16,7 @@ export default function* rootSagas() {
         organization(),
         testimonial(),
         news(),
-        activity()
+        activity(),
+        category()
     ]);
 }

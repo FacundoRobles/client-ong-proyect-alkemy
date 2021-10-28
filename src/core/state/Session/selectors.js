@@ -8,6 +8,9 @@ import get from 'lodash/get';
 export const isAuthenticate = state => get(state, 'session.isAuthenticate');
 export const getRequestFlag = state => get(state, 'session.flagRequest');
 export const getUserAgent = state => get(state, 'session.user.userAgent');
+export const getFormWelcomeText = state => get(state, 'session.form');
+export const getFieldsWelcomeText = state => get(state, 'session.fields');
+export const getSliderItems = state => get(state, 'session.form.items');
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -64,7 +67,7 @@ export const menuOffice = () => {
     }, {
         title: 'Categorias',
         icon: FormatListBulletedRounded,
-        path: mainRoutes.category
+        path: backOfficeRoutes.category.list
     }, {
         title: 'Testimonios',
         icon: ChatRounded,
@@ -72,11 +75,11 @@ export const menuOffice = () => {
     }, {
         title: 'Organizacion',
         icon: HomeWorkRounded,
-        path: mainRoutes.organization
+        path: backOfficeRoutes.organization.list
     }, {
         title: 'Slides',
         icon: PhotoLibraryRounded,
-        path: mainRoutes.slides
+        path: backOfficeRoutes.slides.edit
     }, {
         title: 'Usuarios',
         icon: PersonRounded,
@@ -155,29 +158,4 @@ export const getSlickSettings = () => {
         ]
     };
     return settings;
-};
-
-export const getSliderItems = () => {
-    const items = [{
-        key: 1,
-        imageUrl: 'https://wallpaperaccess.com/full/170249.jpg',
-        text: 'A great landscape'
-    },
-    {
-        key: 2,
-        imageUrl: 'https://fondosmil.com/fondo/2256.jpg',
-        text: 'A greater landscape'
-    },
-    {
-        key: 3,
-        imageUrl: 'https://www.solofondos.com/wp-content/uploads/2016/04/3e2af664e061013a3d05aa99fa20c1d4.jpg',
-        text: 'A greatest landscape'
-    }
-    ];
-    return items;
-};
-
-export const getWelcomeText = () => {
-    const text = 'Texto de bienvenida';
-    return text;
 };

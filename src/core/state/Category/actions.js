@@ -12,9 +12,9 @@ export const submitCategoryRequested = props => ({
     ...props
 });
 
-export const fetchCategoryRequested = props => ({
+export const fetchCategoryRequested = id => ({
     type: FETCH_CATEGORY_REQUESTED,
-    ...props
+    id
 });
 
 export const fetchCategorySucceeded = props => ({
