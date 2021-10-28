@@ -6,6 +6,7 @@ import * as Contact from './state/Contact/selectors';
 import * as Activity from './state/Activity/selectors';
 import * as Organization from './state/Organization/selectors';
 import * as Category from './state/Category/selectors';
+import * as Member from './state/Member/selectors';
 
 export default {
     Session,
@@ -15,5 +16,6 @@ export default {
     News,
     Activity,
     Organization,
-    Category
+    Category,
+    Member
 };

@@ -87,7 +87,7 @@ export const menuOffice = () => {
     }, {
         title: 'Miembros',
         icon: PeopleAltRounded,
-        path: mainRoutes.member
+        path: backOfficeRoutes.member.list
     },
     {
         title: 'Contactos',

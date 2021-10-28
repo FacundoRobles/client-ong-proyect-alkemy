@@ -11,3 +11,4 @@ export const ACTIVITY = 'activities';
 export const ORGANIZATION = 'organizations';
 export const BACKOFFICE = 'backoffice';
 export const USER = 'users';
+export const MEMBER = 'members';
