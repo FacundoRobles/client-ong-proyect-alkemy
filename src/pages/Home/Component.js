@@ -27,6 +27,7 @@ const Component = ({
     testimonialTitle,
     newsButton
 }) => {
+    const settings = useSelector(fromState.Session.getSlickHomeSettings);
     const news = useSelector(fromState.News.getSlickNews);
     const testimonials = useSelector(fromState.Testimonial.getSlickTestimonials);
     const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
@@ -55,7 +56,7 @@ const Component = ({
                     <h1 className="title-md">{newsTitle}</h1>
                 </Col>
                 <Col md="12">
-                    <Slick items={news}/>
+                    <Slick items={news} settings={settings}/>
                 </Col>
                 <Col md="12" className="mt-4">
                     <Link to={mainRoutes.news} className="btn btn-info text-center">
@@ -69,7 +70,7 @@ const Component = ({
                     <h1 className="title-md">{testimonialTitle}</h1>
                 </Col>
                 <Col md="12" className="mt-4">
-                    <Slick items={testimonials}/>
+                    <Slick items={testimonials} settings={settings}/>
                 </Col>
             </Row>
         </>

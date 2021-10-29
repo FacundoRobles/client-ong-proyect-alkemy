@@ -3,16 +3,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import fromState from '@core/selectors';
-import {Activity} from '@core/actions';
+import {fetchActivitiesRequested} from '@core/state/Activity/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        fields: fromState.Activity.getFields(state),
-        form: fromState.Activity.getForm(state)
+        list: fromState.Activity.getActivitiesSlick(state),
+        settings: fromState.Session.getSlickSettings(state)
     }),
     dispatch => bindActionCreators({
-        submitActivityRequested: obj => dispatch(Activity.submitActivityRequested(obj)),
-        fetchActivitiesRequested: obj => dispatch(Activity.fetchActivitiesRequested(obj))
+        fetchActivitiesRequested
     }, dispatch)
 )(Component);

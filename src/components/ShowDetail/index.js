@@ -27,7 +27,7 @@ const ShowDetail = ({
                 <CardImg top width="100%" src={get(form, 'image')} alt={get(form, 'name')}/>
                 <CardBody>
                     <CardTitle tag="h5" className="mb-4 text-center">{get(form, 'name')}</CardTitle>
-                    <CardText dangerouslySetInnerHTML={{__html: get(form, 'content')}}/>
+                    <CardText className="description-text" dangerouslySetInnerHTML={{__html: get(form, 'content')}}/>
                     <div className="d-flex justify-content-center mt-4">
                         <Button
                             type="submit"

@@ -96,8 +96,8 @@ const Header = ({
             ...registerForm
         },
         validate: validateRegisterForm,
-        onSubmit: values => {
-            dispatch(submitUserRequested(values));
+        onSubmit: payload => {
+            dispatch(submitUserRequested({payload}));
             setModalRegister(!modalRegister);
         }
     });

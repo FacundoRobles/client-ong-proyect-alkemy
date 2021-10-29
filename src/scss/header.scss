@@ -38,7 +38,7 @@
 
 .links:hover ,
 .active {
-  transform:scale(1.1)  !important;
+  transform: scale(1.1) !important;
 }
 
 .active {
@@ -48,8 +48,8 @@
 
 .header-nav {
   height: 80px !important;
-  min-height: 80px !important;
   max-height: 80px !important;
+  min-height: 80px !important;
   z-index: 2;
 }
 @media screen and (max-width: 850px) {
