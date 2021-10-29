@@ -22,9 +22,9 @@ export const getNavigationHeader = () => {
             uri: mainRoutes.home
         },
         {
-            name: 'organizations',
+            name: 'us',
             label: 'Nosotros',
-            uri: mainRoutes.organization
+            uri: mainRoutes.us
         },
         {
             name: 'activities',
@@ -123,7 +123,6 @@ export const getLoginInit = () => ({
 
 export const getSlickHomeSettings = () => {
     const settings = {
-        dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
@@ -142,7 +141,7 @@ export const getSlickHomeSettings = () => {
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 750,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,

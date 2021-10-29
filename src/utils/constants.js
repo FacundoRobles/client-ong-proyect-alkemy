@@ -33,3 +33,4 @@ export const ERROR_NAME = 'Campo requerido';
 export const ERROR_IMAGE = 'Deberia de ser una URL';
 export const ACTIVITIES = 'Actividades';
 export const ACTIVITIES_TEXT = 'Puedes visualizar y acceder a nuestras Actividades aquí';
+export const ERROR_MAIL = 'Direccion de Email invalido';

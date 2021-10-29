@@ -3,15 +3,14 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import fromState from '@core/selectors';
-import {Category} from '@core/actions';
+import {Member} from '@core/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        categories: fromState.Category.getCategories(state)
+        members: fromState.Member.getList(state)
     }),
     dispatch => bindActionCreators({
-        fetchCategoriesRequested: id => dispatch(Category.fetchCategoryRequested(id)),
-        deleteCategoryRequested: id => dispatch(Category.deleteCategoryRequested(id))
+        fetchMembersRequested: id => dispatch(Member.fetchMembersRequested(id))
     }, dispatch)
 )(Component);
