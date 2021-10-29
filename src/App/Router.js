@@ -64,7 +64,7 @@ const Router = () => {
                     animate="visible"
                     variants={variants}
                 >
-                    <Container fluid>
+                    <Container fluid className="p-0 mb-7">
                         <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
                         </Switch>

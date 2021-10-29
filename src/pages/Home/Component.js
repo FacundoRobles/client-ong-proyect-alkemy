@@ -35,7 +35,7 @@ const Component = ({
             <Slider items={items}/>
             <Row className="text-center">
                 <Col md="12">
-                    <h1 className="title-lg">{form.welcomeText}</h1>
+                    <h1 className="title-lg mt-5 mb-5">{form.welcomeText}</h1>
                 </Col>
                 <Col md="12">
                     {roleId === 1 && (
