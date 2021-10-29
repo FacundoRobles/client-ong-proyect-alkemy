@@ -16,7 +16,7 @@ const Slick = ({items}) => {
             <Col>
                 <Slider {...settings}>
                     {map(items, item => (
-                        <div key={item.key}>
+                        <div className="p-2" key={item.key}>
                             <CardComponent items={item}/>
                         </div>
                     )

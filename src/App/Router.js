@@ -14,6 +14,7 @@ import NewsDetail from '@pages/NewsDetail';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
+import Us from '@pages/Us';
 import BackOffice from '@pages/BackOffice';
 import BackCategoriesForm from '@pages/BackCategoriesForm';
 import BackCategoriesList from '@pages/BackCategoriesList';
@@ -64,7 +65,7 @@ const Router = () => {
                     animate="visible"
                     variants={variants}
                 >
-                    <Container fluid className="p-0 mb-7">
+                    <Container fluid className="m-0 p-0">
                         <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
                         </Switch>
@@ -79,6 +80,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                            <Route exact path={mainRoutes.us} component={Us}/>
                         </Switch>
                     </Container>
                 </motion.div>
@@ -96,7 +98,7 @@ const Router = () => {
                     animate="visible"
                     variants={variants}
                 >
-                    <Container fluid>
+                    <Container fluid className="m-0 p-0">
                         <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
                         </Switch>
@@ -111,6 +113,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                            <Route exact path={mainRoutes.us} component={Us}/>
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.user.edit} component={BackUserForm}/>
                             <Route exact path={backOfficeRoutes.user.list} component={BackUsersList}/>
@@ -146,7 +149,7 @@ const Router = () => {
                 animate="visible"
                 variants={variants}
             >
-                <Container fluid>
+                <Container fluid className="m-0 p-0">
                     <Switch location={location}>
                         <Route exact path={mainRoutes.home} component={Home}/>
                     </Switch>
@@ -159,6 +162,7 @@ const Router = () => {
                         <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                         <Route exact path={mainRoutes.contact} component={Contact}/>
                         <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                        <Route exact path={mainRoutes.us} component={Us}/>
                     </Switch>
                 </Container>
             </motion.div>

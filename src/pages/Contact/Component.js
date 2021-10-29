@@ -5,19 +5,28 @@ import {
     Container,
     Row
 } from 'reactstrap';
+import {
+    ERROR_NAME,
+    ERROR_MAIL
+} from '@utils/constants';
 import BackForm from '@components/BackForm';
+import isEmpty from 'lodash/isEmpty';
 
 const Component = ({
     form,
     fields,
-    submitContactRequested
+    submitContactRequested,
+    history: {goBack},
+    title
 }) => {
     const validate = values => {
         const errors = {};
-        if (!values.name || !values.email || !values.message) {
-            errors.name = 'Todos los campos requeridos';
-            errors.email = 'Todos los campos requeridos';
-            errors.message = 'Todos los campos requeridos';
+        if (isEmpty(values.name) || isEmpty(values.message)) {
+            errors.name = ERROR_NAME;
+            errors.message = ERROR_NAME;
+        }
+        if (isEmpty(values.email) || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+            errors.email = ERROR_MAIL;
         }
         return errors;
     };
@@ -25,7 +34,11 @@ const Component = ({
     return (
         <Container>
             <Row>
-                <Col className="text-center"><h1 className="mt-3">Contactate con nosotros</h1></Col>
+                <Col className="title-md text-center">
+                    <h1 className="mt-3">
+                        {title}
+                    </h1>
+                </Col>
             </Row>
             <Row>
                 <Col>
@@ -38,6 +51,7 @@ const Component = ({
                             fetch={id => id}
                             id={{id: null}}
                             validate={validate}
+                            goBack={goBack}
                         />
                     </div>
                 </Col>
@@ -52,13 +66,16 @@ Component.propTypes = {
         email: PropTypes.string.isRequired,
         message: PropTypes.string.isRequired
     }).isRequired,
-    fields: PropTypes.arrayOf(),
-    submitContactRequested: PropTypes.func
+    fields: PropTypes.arrayOf().isRequired,
+    submitContactRequested: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+        goBack: PropTypes.func
+    }).isRequired,
+    title: PropTypes.string
 };
 
 Component.defaultProps = {
-    submitContactRequested: null,
-    fields: null
+    title: 'Contactate con nosotros'
 };
 
 export default Component;

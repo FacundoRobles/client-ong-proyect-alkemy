@@ -3,8 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
     Col,
-    Row,
-    Button
+    Row
 } from 'reactstrap';
 import {getRoutes} from '@utils';
 import Slider from '@components/Slider';
@@ -13,6 +12,7 @@ import {Link} from 'react-router-dom';
 import Slick from '@components/Slick';
 import fromState from '@selectors';
 import EditIcon from '@material-ui/icons/Edit';
+import separator from '../../images/separador.png';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
@@ -32,10 +32,12 @@ const Component = ({
     const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
     return (
         <>
-            <Slider items={items}/>
-            <Row className="text-center">
+            <Row className="text-center p-0 m-0 w-100">
                 <Col md="12">
-                    <h1 className="title-lg mt-5 mb-5">{form.welcomeText}</h1>
+                    <Slider items={items}/>
+                </Col>
+                <Col md="12" className="mt-4">
+                    <h1 className="title-lg">{form.welcomeText}</h1>
                 </Col>
                 <Col md="12">
                     {roleId === 1 && (
@@ -46,33 +48,27 @@ const Component = ({
                         />
                     )}
                 </Col>
-            </Row>
-            <Row>
-                <Col className="news-col">
+                <Col md="12" className="d-flex justify-content-center mt-4">
+                    <img src={separator} alt="separator"/>
+                </Col>
+                <Col md="12" className="news-col">
                     <h1 className="title-md">{newsTitle}</h1>
                 </Col>
-            </Row>
-            <Row><Col className="slick-col"><Slick items={news}/></Col></Row>
-            <Row>
-                <Col className="center-col">
-                    <Link to={mainRoutes.news}>
-                        <Button
-                            outline
-                            color="primary"
-                            className="btn-news"
-                        >
-                            {newsButton}
-                        </Button>
+                <Col md="12">
+                    <Slick items={news}/>
+                </Col>
+                <Col md="12" className="mt-4">
+                    <Link to={mainRoutes.news} className="btn btn-info text-center">
+                        {newsButton}
                     </Link>
                 </Col>
-            </Row>
-            <Row>
-                <Col className="center-col-test">
+                <Col md="12" className="d-flex justify-content-center mt-4">
+                    <img src={separator} alt="separator"/>
+                </Col>
+                <Col md="12" className="mt-4">
                     <h1 className="title-md">{testimonialTitle}</h1>
                 </Col>
-            </Row>
-            <Row>
-                <Col className="slick-col">
+                <Col md="12" className="mt-4">
                     <Slick items={testimonials}/>
                 </Col>
             </Row>
@@ -87,7 +83,7 @@ Component.propTypes = {
     userAgent: PropTypes.shape({
         roleId: PropTypes.number
     }).isRequired,
-    items: PropTypes.arrayOf().isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,

@@ -84,7 +84,7 @@ const BackForm = ({
                                                     className="mb-3 px-2"
                                                 >
                                                     <Input
-                                                        className="form-control"
+                                                        className="form-control mx-auto w-100"
                                                         onChange={Formik.handleChange}
                                                         onBlur={Formik.handleBlur}
                                                         value={Formik.values[get(field, 'name')]}
