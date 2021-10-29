@@ -10,14 +10,17 @@ import 'slick-carousel/slick/slick-theme.css';
 const Slick = ({items, onView, settings}) => (
     <Row>
         <Col>
-            <Slider {...settings} className="slick-slider">
-                {map(items, item => (
-                    <div key={item.key}>
-                        <CardComponent items={item} onView={onView}/>
-                    </div>
-                )
-                )}
-            </Slider>
+            {items.length > 0
+                    && (
+                        <Slider {...settings} className="slick-slider">
+                            {map(items, item => (
+                                <div key={item.key}>
+                                    <CardComponent key={item.key} items={item} onView={onView}/>
+                                </div>
+                            )
+                            )}
+                        </Slider>
+                    )}
         </Col>
     </Row>
 );

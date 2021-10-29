@@ -1,11 +1,9 @@
-.slides {
+.slick-slider {
   .slick-next::before,
   .slick-prev::before {
     color: var(--red-drive);
   }
-}
-
-.slick-slider {
+  
   .card-component {
     box-shadow: 1px 2px 5px var(--sky-drive);
     margin-bottom: 3%;
