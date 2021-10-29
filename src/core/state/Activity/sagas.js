@@ -70,7 +70,7 @@ function* submitActivitiesSagas({
             const editActivity = yield Api.put(`${ACTIVITY}/${idActivity}`, obj);
             const success = get(editActivity, 'data.success');
             if (success) {
-                const activity = get(editActivity, 'data.activities');
+                const activity = get(editActivity, 'data.data');
                 yield put(fetchActivitySucceeded({activity}));
                 yield put(cleanActivityForm());
                 yield put(setSystemMessage(SUCCESS));
