@@ -2,44 +2,38 @@ import React, {useEffect} from 'react';
 import {
     Row,
     Col,
-    Card,
-    Button,
-    CardTitle,
-    CardText,
-    CardImg,
-    CardColumns,
     Container
 } from 'reactstrap';
+import Slick from '@components/Slick';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
 import get from 'lodash/get';
 import {getRoutes} from '@utils';
+import {NEWS} from '@utils/constants';
 
 const Component = ({
-    news, fetchNewsRequested,
-    history: {push},
-    labelButton
+    fetchNewsRequested,
+    list,
+    settings,
+    history: {push}
 }) => {
+    const mainRoutes = getRoutes('mainRoutes');
+    const onView = prop => {
+        const id = get(prop, 'id');
+        push(`${mainRoutes.news}/${id}`);
+    };
     useEffect(() => {
         fetchNewsRequested({});
     }, [fetchNewsRequested]);
-    const mainRoutes = getRoutes('mainRoutes');
     return (
-        <Container>
+        <Container fluid>
             <Row>
                 <Col>
-                    <CardColumns>
-                        {map(news, item => (
-                            <Card body className="backoffice-card text-center mt-3 mb-1 ml-auto mr-auto w-100">
-                                <CardImg top width="100%" src={get(item, 'image')} alt="Card image news"/>
-                                <CardTitle tag="h4" className="mt-3">{get(item, 'title')}</CardTitle>
-                                <CardText className="mt-2 mb-1"><p style={{lineHeight: '1.3rem'}}>{get(item, 'text')}</p></CardText>
-                                <Button className="button m-auto pl-2 pr-2" onClick={() => push(`${mainRoutes.news}/${get(item, 'id')}`)}>
-                                    {labelButton}
-                                </Button>
-                            </Card>
-                        ))}
-                    </CardColumns>
+                    <h1 className="text-center mb-4">{NEWS}</h1>
+                </Col>
+            </Row>
+            <Row className="mx-0 mt-4 mx-md-5">
+                <Col>
+                    <Slick items={list} onView={onView} settings={settings}/>
                 </Col>
             </Row>
         </Container>
@@ -47,20 +41,12 @@ const Component = ({
 };
 
 Component.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     fetchNewsRequested: PropTypes.func.isRequired,
+    settings: PropTypes.shape({}).isRequired,
     history: PropTypes.shape({
-        push: PropTypes.func
-    }).isRequired,
-    news: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
-        image: PropTypes.string,
-        content: PropTypes.string
-    })),
-    labelButton: PropTypes.string
-};
-Component.defaultProps = {
-    news: null,
-    labelButton: 'Ver novedad'
+        push: PropTypes.func.isRequired
+    }).isRequired
 };
 
 export default Component;

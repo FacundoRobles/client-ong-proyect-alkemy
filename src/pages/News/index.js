@@ -7,7 +7,8 @@ import Component from './Component';
 
 export default connect(
     state => ({
-        news: fromState.News.getNews(state)
+        list: fromState.News.getNewsSlick(state),
+        settings: fromState.Session.getSlickSettings(state)
     }),
     dispatch => bindActionCreators({
         fetchNewsRequested: id => dispatch(News.fetchNewsRequested(id))
