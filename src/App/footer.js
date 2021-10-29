@@ -1,6 +1,11 @@
 /* eslint-disable lodash/collection-method-value */
 import React from 'react';
-import {Row, Col, Container} from 'reactstrap';
+import {
+    Row,
+    Col,
+    Container,
+    CardImg
+} from 'reactstrap';
 import {useSelector} from 'react-redux';
 import {getRoutes} from '@utils';
 import {Link} from 'react-router-dom';
@@ -30,77 +35,87 @@ const Footer = () => {
         return instagram;
     });
     return (
-        <footer className="top-more fixed">
+        <footer className="top-more fixed mt-5">
             <Container fluid>
-                <Row className="link-container margin-bottom">
-                    <Col xs="6" sm="4">
+                <Row>
+                    <Col xs="12">
+                        <hr/>
+                    </Col>
+                    <Col md="5">
                         <Row>
-                            <ul className="link-list">
-                                <Col>
-                                    <Link to={mainRoutes.news}>
-                                        <li>Noticias</li>
-                                    </Link>
-                                </Col>
-                                <Col>
-                                    <Link to={mainRoutes.activity}>
-                                        <li>Actividades</li>
-                                    </Link>
-                                </Col>
-                                <Col>
-                                    <Link to={mainRoutes.novelty}>
-                                        <li>Novedades</li>
-                                    </Link>
-                                </Col>
-                            </ul>
+                            <Col className="text-center">
+                                <Link
+                                    to={mainRoutes.news}
+                                >
+                                    Noticias
+                                </Link>
+                            </Col>
+                            <Col className="text-center">
+                                <Link
+                                    to={mainRoutes.activity}
+                                >
+                                    Actividades
+                                </Link>
+                            </Col>
+                            <Col className="text-center">
+                                <Link
+                                    to={mainRoutes.novelty}
+                                >
+                                    Novedades
+                                </Link>
+                            </Col>
                         </Row>
                     </Col>
-                    <Col xs="6" sm="4" className="text-center">
-                        <img src={logo} alt="logo" id="img-logo"/>
+                    <Col md="2" className="text-center logo-footer">
+                        <CardImg
+                            src={logo}
+                            alt="logo"
+                        />
                     </Col>
-                    <Col sm="4">
-                        <Row className="text-center">
-                            <ul className="link-list">
-                                <Col>
-                                    <Link to={mainRoutes.testimonial}>
-                                        <li>Testimonios</li>
-                                    </Link>
-                                </Col>
-                                <Col>
-                                    <Link to={mainRoutes.us}>
-                                        <li>Nosotros</li>
-                                    </Link>
-                                </Col>
-                                <Col>
-                                    <Link to={mainRoutes.contact}>
-                                        <li>Contacto</li>
-                                    </Link>
-                                </Col>
-                            </ul>
+                    <Col md="5">
+                        <Row>
+                            <Col className="text-center">
+                                <Link
+                                    to={mainRoutes.testimonial}
+                                >
+                                    Testimonios
+                                </Link>
+                            </Col>
+                            <Col className="text-center">
+                                <Link
+                                    to={mainRoutes.us}
+                                >
+                                    Nosotros
+                                </Link>
+                            </Col>
+                            <Col className="text-center">
+                                <Link
+                                    to={mainRoutes.contact}
+                                >
+                                    Contacto
+                                </Link>
+                            </Col>
                         </Row>
                     </Col>
-                </Row>
-                <Row className="link-container margin-bottom align-center">
-                    <Col sm="auto" class="container-link-social">
-                        <ul className="link-social">
-                            {!isEmpty(selector) ? (
-                                map(selector, (value, key) => (
-                                    <li key={{key}}>
-                                        <button onClick={() => { goPage(value); }} className="btn-network" >
-                                            <img
-                                                src={getNetwork(key)}
-                                                alt="icon network"
-                                                className="img-silueta"
-                                            />
-                                        </button>
-                                    </li>
-                                ))
-                            ) : <></>}
-                        </ul>
+                    <Col xs="12">
+                        <Container>
+                            <hr/>
+                        </Container>
                     </Col>
-                </Row>
-                <Row className="justify-content-center margin-bottom">
-                    <Col sm="auto">
-                        <span id="rights-text">2021 by Alkemy. All Rights Reserved.</span>
+                    <Col xs="12" className="social-network-items">
+                        {!isEmpty(selector) && (
+                            map(selector, (value, key) => (
+                                <CardImg
+                                    key={key}
+                                    src={getNetwork(key)}
+                                    alt="icon network"
+                                    onClick={() => goPage(value)}
+                                />
+                            ))
+                        )}
+                    </Col>
+                    <Col sm="12" className="text-center">
+                        <span>2021 by Alkemy. All Rights Reserved.</span>
                     </Col>
                 </Row>
             </Container>

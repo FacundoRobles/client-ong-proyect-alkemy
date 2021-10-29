@@ -32,11 +32,11 @@ const Slider = ({items}) => {
         setActiveIndex(newIndex);
     };
 
-    const slides = map(items, item => (
+    const slides = map(items, (item, idx) => (
         <CarouselItem
             onExiting={() => setAnimating(true)}
             onExited={() => setAnimating(false)}
-            key={item.key}
+            key={idx}
         >
             <img src={item.imageUrl} alt={item.text}/>
             <CarouselCaption captionText={item.text}/>
@@ -45,7 +45,7 @@ const Slider = ({items}) => {
 
     return (
         <Row>
-            <Col>
+            <Col className="p-0">
                 <Carousel
                     activeIndex={activeIndex}
                     next={next}
@@ -63,9 +63,9 @@ const Slider = ({items}) => {
 
 Slider.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.number.isRequired,
-        imageUrl: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
+        key: PropTypes.number,
+        imageUrl: PropTypes.string,
+        text: PropTypes.string
     })).isRequired
 };
 export default Slider;
