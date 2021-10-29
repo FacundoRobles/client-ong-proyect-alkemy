@@ -20,7 +20,7 @@ const Component = ({
         <Container>
             <Row>
                 <Col>
-                    <h1 className="text-center mb-4">Administrar Novedades</h1>
+                    <h1 className="text-center mb-4">Administrar Actividades</h1>
                     <BackForm
                         key="ActivityForm"
                         form={form}

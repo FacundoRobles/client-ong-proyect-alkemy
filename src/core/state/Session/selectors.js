@@ -63,7 +63,7 @@ export const menuOffice = () => {
     }, {
         title: 'Actividades',
         icon: AssignmentRounded,
-        path: mainRoutes.activity
+        path: backOfficeRoutes.activity.list
     }, {
         title: 'Categorias',
         icon: FormatListBulletedRounded,
