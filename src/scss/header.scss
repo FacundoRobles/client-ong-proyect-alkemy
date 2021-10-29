@@ -1,10 +1,26 @@
+.btn-responsive {
+  justify-content: end;
+  width: 25%;
+}
+
+.links-responsive {
+  width: 75%;
+}
+
 .btn-register {
   background-color: var(--red-drive);
   border-style: none !important;
+  font-size: 0.8rem;
 }
 
 .btn-login {
   background-color: var(--white);
+  font-size: 0.8rem;
+}
+
+.btn-logged {
+  font-size: 0.8rem;
+  padding: 6px 7px;
 }
 
 .btn-register:hover {
@@ -16,16 +32,55 @@
 }
 
 .links {
-  color: var(--sky-drive) !important;
+  color: var(--secondary) !important;
+  font-size: 0.85rem;
 }
 
 .links:hover ,
 .active {
-  font-size: 1.02rem !important;
-  text-shadow: 1px 1px 5px var(--sky-drive);
+  transform: scale(1.1) !important;
 }
 
 .active {
   color: var(--secondary) !important;
   font-weight: bold !important;
+}
+
+.header-nav {
+  height: 80px !important;
+  max-height: 80px !important;
+  min-height: 80px !important;
+  z-index: 2;
+}
+@media screen and (max-width: 850px) {
+  .btn-responsive {
+    justify-content: center;
+    width: 100%;
+
+    li {
+      width: 100%;
+
+      button {
+        font-size: 1rem !important;
+        margin: 0.5em !important;
+      }
+    }
+  }
+  
+  .links-responsive {
+    font-size: 1rem;
+    width: 100%;
+    
+    li {
+      a {
+        font-size: 1rem !important;
+      }
+    }
+  }
+
+  .active {
+    color: var(--secondary) !important;
+    font-weight: 600 !important;
+  }
+
 }

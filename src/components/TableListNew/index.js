@@ -30,7 +30,20 @@ const TableListNew = ({
                     <div className="d-flex flex-column flex-sm-row align-items-center justify-content-sm-around w-100">
                         {get(current, 'image') && (
                             <div className="align-self-center">
-                                <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/>
+                                <img
+                                    src={get(current, 'image')}
+                                    alt="imagen"
+                                    className="rounded-circle m-2 img-fluid"
+                                    width={50}
+                                    height={50}
+                                    style={{
+                                        minWidth: '50px',
+                                        maxWidth: '50px',
+                                        minHeight: '50px',
+                                        maxHeight: '50px',
+                                        objectFit: 'cover'
+                                    }}
+                                />
                             </div>
                         )}
                         <div className="align-self-center">

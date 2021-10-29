@@ -36,3 +36,4 @@ export const ACTIVITIES = 'Actividades';
 export const ACTIVITIES_TEXT = 'Puedes visualizar y acceder a nuestras Actividades aquí';
 export const NEWS = 'Novedades';
 export const NEWS_TEXT = 'Puedes visualizar y acceder a nuestras Novedades aquí';
+export const ERROR_MAIL = 'Direccion de Email invalido';
