@@ -27,11 +27,20 @@ const Slick = ({items, onView, settings}) => (
 
 Slick.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.number.isRequired,
-        imageUrl: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
-    })).isRequired,
+        key: PropTypes.number,
+        imageUrl: PropTypes.string,
+        text: PropTypes.string
+    })),
     onView: PropTypes.func.isRequired,
     settings: PropTypes.shape({}).isRequired
 };
+
+Slick.defaultProps = {
+    items: {
+        key: '',
+        imageUrl: '',
+        text: ''
+    }
+};
+
 export default Slick;

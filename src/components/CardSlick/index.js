@@ -12,7 +12,7 @@ import {
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
-const CardComponent = ({items, onView}) => (
+const CardSlickComponent = ({items, onView}) => (
     <Row>
         <Col className="mx-3">
             <Card className="card-component">
@@ -27,13 +27,21 @@ const CardComponent = ({items, onView}) => (
     </Row>
 );
 
-CardComponent.propTypes = {
+CardSlickComponent.propTypes = {
     items: PropTypes.shape({
-        imageUrl: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
-    }).isRequired,
+        imageUrl: PropTypes.string,
+        title: PropTypes.string,
+        text: PropTypes.string
+    }),
     onView: PropTypes.func.isRequired
 };
 
-export default CardComponent;
+CardSlickComponent.defaultProps = {
+    items: {
+        imageUrl: '',
+        title: '',
+        text: ''
+    }
+};
+
+export default CardSlickComponent;
