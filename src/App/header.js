@@ -126,7 +126,7 @@ const Header = ({
                     />
                 </NavbarBrand>
                 <NavbarToggler onClick={toggle}/>
-                <Collapse isOpen={isOpen} navbar className="text-center bg-light">
+                <Collapse isOpen={isOpen} navbar className="text-center bg-white">
                     <Nav navbar className="links-responsive">
                         {routes && routes.length > 0
                             && map(routes, (route, i) => (
