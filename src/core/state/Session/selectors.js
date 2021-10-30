@@ -12,6 +12,8 @@ import get from 'lodash/get';
 export const isAuthenticate = state => get(state, 'session.isAuthenticate');
 export const getRequestFlag = state => get(state, 'session.flagRequest');
 export const getUserAgent = state => get(state, 'session.user.userAgent');
+export const getSessionForm = state => get(state, 'session.sessionForm');
+export const getSessionFields = state => get(state, 'session.sessionFields');
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
     all,
     put,
@@ -6,7 +7,8 @@ import {
 import {
     AUTH,
     REGISTER,
-    HOME
+    HOME,
+    USERS
 } from '@Api/Urls';
 
 import get from 'lodash/get';
@@ -17,6 +19,13 @@ import {setRequestFlag, fetchLoginRequested} from '../Session/actions';
 
 function* submitUserRequestedSagas(values) {
     try {
+        const {id} = values.payload;
+        let result = null;
+        if (id) {
+            const responseUser = yield Api.put(`${USERS}/${id}`, id);
+            result = get(responseUser, 'data.success');
+            console.log(result);
+        }
         const {email, password} = values.payload;
         yield put(setRequestFlag({flag: true}));
         const responseRegister = yield Api.post(`${AUTH}/${REGISTER}`, values.payload);

@@ -12,7 +12,35 @@ const initialState = {
         userAgent: {}
     },
     isAuthenticate: false,
-    flagRequest: false
+    flagRequest: false,
+    sessionForm: {
+        firstName: '',
+        lastName: '',
+        email: ''
+    },
+    sessionFields: [
+        {
+            label: 'Nombre',
+            placeholder: 'Nombre',
+            type: 'text',
+            id: 'firstName',
+            name: 'firstName'
+        },
+        {
+            label: 'Apellido',
+            placeholder: 'Apellido',
+            type: 'text',
+            id: 'lastName',
+            name: 'lastName'
+        },
+        {
+            label: 'Email',
+            placeholder: 'Email',
+            type: 'email',
+            id: 'email',
+            name: 'email'
+        }
+    ]
 };
 
 const Session = (state = initialState, {type, ...props}) => {
@@ -40,7 +68,8 @@ const Session = (state = initialState, {type, ...props}) => {
                 user: {
                     userAgent: props
                 },
-                isAuthenticate: true
+                isAuthenticate: true,
+                sessionForm: props
             };
 
         case SET_SYSTEM_MSG:

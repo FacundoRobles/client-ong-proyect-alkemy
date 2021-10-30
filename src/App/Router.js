@@ -14,6 +14,7 @@ import NewsDetail from '@pages/NewsDetail';
 import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
+import MyProfile from '@pages/MyProfile';
 import BackOffice from '@pages/BackOffice';
 import BackCategoriesForm from '@pages/BackCategoriesForm';
 import BackNewsForm from '@pages/BackNewsForm';
@@ -96,6 +97,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                            <Route exact path={`${mainRoutes.myProfile}/:id`} component={MyProfile}/>
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.category.form} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.category.edit} component={BackCategoriesForm}/>
@@ -138,6 +140,7 @@ const Router = () => {
                         <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                         <Route exact path={mainRoutes.contact} component={Contact}/>
                         <Route exact path={mainRoutes.contribute} component={Contribute}/>
+                        <Route exact path={`${mainRoutes.myProfile}/:id`} component={MyProfile}/>
                     </Switch>
                 </Container>
             </motion.div>
