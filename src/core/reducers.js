@@ -8,6 +8,8 @@ import user from './state/User/reducers';
 import contact from './state/Contact/reducers';
 import activity from './state/Activity/reducers';
 import organization from './state/Organization/reducers';
+import category from './state/Category/reducers';
+import member from './state/Member/reducers';
 
 export default history => combineReducers({
     router: connectRouter(history),
@@ -17,5 +19,7 @@ export default history => combineReducers({
     organization,
     testimonial,
     news,
-    activity
+    activity,
+    category,
+    member
 });

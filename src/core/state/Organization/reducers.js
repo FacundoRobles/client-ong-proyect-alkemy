@@ -25,7 +25,7 @@ const initialState = {
             name: 'image'
         }
     ],
-    organization: [],
+    organization: {},
     organizations: []
 };
 // eslint-disable-next-line no-unused-vars

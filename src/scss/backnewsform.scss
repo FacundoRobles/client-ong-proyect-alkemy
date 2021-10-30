@@ -1,10 +1,18 @@
 .form-card {
-  box-shadow: 3px 5px 15px var(--sky-drive);
+  box-shadow: 1px 2px 6px var(--dark-blue);
   
+  label {
+    font-size: 1.1rem;
+  }
+
   h5,
   h2 {
     color: var(--secondary);
-    text-shadow: 1px 1px 5px var(--sky-drive);
+    // text-shadow: 1px 1px 5px var(--sky-drive);
+  }
+
+  .description-text {
+    line-height: 130%;
   }
 }
 

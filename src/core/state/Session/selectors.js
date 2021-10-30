@@ -1,11 +1,7 @@
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
-import ChatRoundedIcon from '@material-ui/icons/ChatRounded';
-import PhotoLibraryRoundedIcon from '@material-ui/icons/PhotoLibraryRounded';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import PersonIcon from '@material-ui/icons/Person';
-import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import {
+    FormatListBulletedRounded, AssignmentRounded, ChatRounded, PhotoLibraryRounded, MenuBookRounded, PeopleAltRounded, PersonRounded, HomeWorkRounded,
+    ContactMailRounded
+} from '@material-ui/icons';
 import {getRoutes} from '@utils';
 import get from 'lodash/get';
 
@@ -14,6 +10,9 @@ export const getRequestFlag = state => get(state, 'session.flagRequest');
 export const getUserAgent = state => get(state, 'session.user.userAgent');
 export const getSessionForm = state => get(state, 'session.sessionForm');
 export const getSessionFields = state => get(state, 'session.sessionFields');
+export const getFormWelcomeText = state => get(state, 'session.form');
+export const getFieldsWelcomeText = state => get(state, 'session.fields');
+export const getSliderItems = state => get(state, 'session.form.items');
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 
@@ -25,9 +24,9 @@ export const getNavigationHeader = () => {
             uri: mainRoutes.home
         },
         {
-            name: 'organizations',
+            name: 'us',
             label: 'Nosotros',
-            uri: mainRoutes.organization
+            uri: mainRoutes.us
         },
         {
             name: 'activities',
@@ -61,36 +60,41 @@ export const getNavigationHeader = () => {
 export const menuOffice = () => {
     const menu = [{
         title: 'Novedades',
-        icon: MenuBookIcon,
+        icon: MenuBookRounded,
         path: backOfficeRoutes.news.list
     }, {
         title: 'Actividades',
-        icon: AssignmentRoundedIcon,
+        icon: AssignmentRounded,
         path: mainRoutes.activity
     }, {
         title: 'Categorias',
-        icon: FormatListBulletedIcon,
-        path: mainRoutes.category
+        icon: FormatListBulletedRounded,
+        path: backOfficeRoutes.category.list
     }, {
         title: 'Testimonios',
-        icon: ChatRoundedIcon,
+        icon: ChatRounded,
         path: backOfficeRoutes.testimonial.list
     }, {
         title: 'Organizacion',
-        icon: HomeWorkIcon,
-        path: mainRoutes.organization
+        icon: HomeWorkRounded,
+        path: backOfficeRoutes.organization.list
     }, {
         title: 'Slides',
-        icon: PhotoLibraryRoundedIcon,
-        path: mainRoutes.slides
+        icon: PhotoLibraryRounded,
+        path: backOfficeRoutes.slides.edit
     }, {
         title: 'Usuarios',
-        icon: PersonIcon,
-        path: mainRoutes.user
+        icon: PersonRounded,
+        path: backOfficeRoutes.user.list
     }, {
         title: 'Miembros',
-        icon: PeopleAltIcon,
-        path: mainRoutes.member
+        icon: PeopleAltRounded,
+        path: backOfficeRoutes.member.list
+    },
+    {
+        title: 'Contactos',
+        icon: ContactMailRounded,
+        path: backOfficeRoutes.contact.list
     }];
 
     return menu;
@@ -119,16 +123,66 @@ export const getLoginInit = () => ({
     ]
 });
 
-export const getSlickSettings = () => {
+export const getSlickHomeSettings = () => {
     const settings = {
-        dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
         arrows: true,
+        className: 'slides',
         responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 750,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+    return settings;
+};
+
+export const getSlickSettings = () => {
+    const settings = {
+        dots: true,
+        accesibility: true,
+        infinite: false,
+        speed: 1000,
+        slidesToShow: 6,
+        slidesToScroll: 6,
+        initialSlide: 0,
+        arrows: true,
+        className: 'slides',
+        responsive: [
+            {
+                breakpoint: 1400,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                    infinite: true,
+                    dots: true
+                }
+            },
             {
                 breakpoint: 1024,
                 settings: {
@@ -156,29 +210,4 @@ export const getSlickSettings = () => {
         ]
     };
     return settings;
-};
-
-export const getSliderItems = () => {
-    const items = [{
-        key: 1,
-        imageUrl: 'https://wallpaperaccess.com/full/170249.jpg',
-        text: 'A great landscape'
-    },
-    {
-        key: 2,
-        imageUrl: 'https://fondosmil.com/fondo/2256.jpg',
-        text: 'A greater landscape'
-    },
-    {
-        key: 3,
-        imageUrl: 'https://www.solofondos.com/wp-content/uploads/2016/04/3e2af664e061013a3d05aa99fa20c1d4.jpg',
-        text: 'A greatest landscape'
-    }
-    ];
-    return items;
-};
-
-export const getWelcomeText = () => {
-    const text = 'Texto de bienvenida';
-    return text;
 };

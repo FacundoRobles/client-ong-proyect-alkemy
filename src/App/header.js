@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router';
 import {useSelector, connect, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {NavLink as RRNavLink} from 'react-router-dom';
 import map from 'lodash/map';
+import isEmpty from 'lodash/isEmpty';
 import {
     Collapse,
     Navbar,
@@ -11,10 +13,8 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Container,
-    Row,
-    Col,
-    Button
+    Button,
+    CardImg
 } from 'reactstrap';
 import {getRoutes} from '@utils';
 import {useFormik} from 'formik';
@@ -31,8 +31,17 @@ import RegisterForm from '../components/RegisterForm';
 const mainRoutes = getRoutes('mainRoutes');
 
 const Header = ({
-    registerForm, registerFields
+    registerForm,
+    registerFields,
+    isAuthenticate,
+    userAgent,
+    buttonLogin,
+    buttonRegister,
+    buttonAdminBackoffice,
+    buttonAdminLogout,
+    buttonStandardLogout
 }) => {
+    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
     const [modalLogin, setModalLogin] = useState(false);
     const [modalRegister, setModalRegister] = useState(false);
     const dispatch = useDispatch();
@@ -42,7 +51,7 @@ const Header = ({
     const toggle = () => setIsOpen(!isOpen);
     const navigationRoutes = useSelector(() => getNavigationHeader());
     const loginInit = useSelector(() => getLoginInit());
-    const token = localStorage.getItem('token_agent');
+    const history = useHistory();
     const logout = () => {
         dispatch(fetchSessionLogout());
     };
@@ -87,8 +96,8 @@ const Header = ({
             ...registerForm
         },
         validate: validateRegisterForm,
-        onSubmit: values => {
-            dispatch(submitUserRequested(values));
+        onSubmit: payload => {
+            dispatch(submitUserRequested({payload}));
             setModalRegister(!modalRegister);
         }
     });
@@ -102,121 +111,113 @@ const Header = ({
         // eslint-disable-next-line
     }, [location.hash]);
     return (
-        <header className="bg mb-2">
-            <Container fluid className="p-0 m-0">
-                <Row className="p-0 m-0 ">
-                    <Col className="p-0 m-0">
-                        <Navbar light expand="md" className="my-1 px-3 pl-md-0 mr-md-3 px-lg-2 p-0">
-                            <Col sm="2" className="p-0 m-0 w-50 justify-content-md-center d-md-flex">
-                                <NavbarBrand to={mainRoutes.home} tag={RRNavLink} className="m-0">
-                                    <img
-                                        width="120"
-                                        height="50"
-                                        src={logo}
-                                        alt="Somos Mas Logo"
-                                    />
-                                </NavbarBrand>
-                            </Col>
-                            <NavbarToggler onClick={toggle}/>
-                            <Collapse className="d-md-flex justify-content-lg-between" isOpen={isOpen} navbar>
-                                <Col
-                                    sm="8"
-                                    md="auto"
-                                    className="justify-content-start p-0 "
+        <header>
+            <Navbar light expand="md" container="fluid" className="header-nav">
+                <NavbarBrand className="me-auto" to={mainRoutes.home} tag={RRNavLink}>
+                    <CardImg
+                        width="100px"
+                        height="40px"
+                        src={logo}
+                        alt="Somos Mas Logo"
+                        style={{
+                            minWidth: '100px',
+                            maxWidth: '100px'
+                        }}
+                    />
+                </NavbarBrand>
+                <NavbarToggler onClick={toggle}/>
+                <Collapse isOpen={isOpen} navbar className="text-center bg-white">
+                    <Nav navbar className="links-responsive">
+                        {routes && routes.length > 0
+                            && map(routes, (route, i) => (
+                                <NavItem key={i}>
+                                    <NavLink
+                                        className={
+                                            activeTab
+                                                    === route.name
+                                                ? 'active links'
+                                                : 'links'
+                                        }
+                                        onClick={() => setActiveTab(route.name)}
+                                        to={route.uri}
+                                        tag={RRNavLink}
+                                    >
+                                        {route.label}
+                                    </NavLink>
+                                </NavItem>
+                            ))}
+                    </Nav>
+                    {!isAuthenticate && (
+                        <Nav className="btn-responsive">
+                            <NavItem>
+                                <Button
+                                    outline
+                                    color="primary"
+                                    onClick={() => setModalLogin(!modalLogin)}
+                                    className="btn-login m-1"
                                 >
-                                    <Nav className="" navbar>
-                                        {routes && routes.length > 0
-                                            && map(routes, (route, i) => (
-                                                <NavItem key={i}>
-                                                    <NavLink
-                                                        className={
-                                                            activeTab
-                                                                  === route.name
-                                                                ? 'active links p-1 ml-md-1 ml-lg-4 ml-xl-5 '
-                                                                : 'links p-1 ml-md-1 ml-lg-4 ml-xl-5'
-                                                        }
-                                                        onClick={() => setActiveTab(route.name)}
-                                                        to={route.uri}
-                                                        tag={RRNavLink}
-                                                    >
-                                                        {route.label}
-                                                    </NavLink>
-                                                </NavItem>
-                                            ))}
-                                    </Nav>
-                                </Col>
-                                <Col md="auto" xl="3" className="px-0">
-                                    <Nav className="d-block d-md-flex align-items-center justify-content-md-end p-0">
-                                        {!token
-                                            ? (
-                                                <>
-                                                    <NavItem>
-                                                        <Button
-                                                            outline
-                                                            color="primary"
-                                                            onClick={() => setModalLogin(!modalLogin)}
-                                                            className="btn-login my-1 my-md-0 px-sm-4 px-md-2 px-lg-4 ml-0 ml-md-1 mr-2 mx-lg-4"
-                                                        >
-                                                            Log In
-                                                        </Button>
-                                                        <ModalLogin
-                                                            isOpen={modalLogin}
-                                                            toggle={() => setModalLogin(!modalLogin)}
-                                                            proceed={FormikLogin.handleSubmit}
-                                                            title="Iniciar sesion"
-                                                            buttonConfirm="Entrar"
-                                                            buttonCancel="Cancelar"
-                                                        >
-                                                            <FormLogin key="LoginForm" fields={loginInit.fields} Formik={FormikLogin}/>
-                                                        </ModalLogin>
-                                                    </NavItem>
-                                                    <NavItem>
-                                                        <Button
-                                                            color="danger"
-                                                            onClick={() => setModalRegister(!modalRegister)}
-                                                            className="btn-register my-2 px-sm-3 px-md-1 px-lg-3 my-md-0 mr-3"
-                                                        >
-                                                            Registrate
-                                                        </Button>
-                                                        <ModalLogin
-                                                            isOpen={modalRegister}
-                                                            toggle={() => setModalRegister(!modalRegister)}
-                                                            proceed={FormikRegister.handleSubmit}
-                                                            title="Registrate"
-                                                            buttonConfirm="Registrar"
-                                                            buttonCancel="Cancelar"
-                                                        >
-                                                            <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
-                                                        </ModalLogin>
-                                                    </NavItem>
-                                                </>
-                                            )
-                                            : (
-                                                <NavItem>
-                                                    <Button className="ml-md-3" color="info" onClick={logout}>
-                                                        Logout
-                                                    </Button>
-                                                </NavItem>
-                                            )}
-                                    </Nav>
-                                </Col>
-                            </Collapse>
-                        </Navbar>
-                    </Col>
-                </Row>
-            </Container>
+                                    {buttonLogin}
+                                </Button>
+                                <ModalLogin
+                                    isOpen={modalLogin}
+                                    toggle={() => setModalLogin(!modalLogin)}
+                                    proceed={FormikLogin.handleSubmit}
+                                    title="Iniciar sesion"
+                                    buttonConfirm="Entrar"
+                                    buttonCancel="Cancelar"
+                                >
+                                    <FormLogin key="LoginForm" fields={loginInit.fields} Formik={FormikLogin}/>
+                                </ModalLogin>
+                            </NavItem>
+                            <NavItem>
+                                <Button
+                                    color="danger"
+                                    onClick={() => setModalRegister(!modalRegister)}
+                                    className="btn-register m-1"
+                                >
+                                    {buttonRegister}
+                                </Button>
+                                <ModalLogin
+                                    isOpen={modalRegister}
+                                    toggle={() => setModalRegister(!modalRegister)}
+                                    proceed={FormikRegister.handleSubmit}
+                                    title="Registrate"
+                                    buttonConfirm="Registrar"
+                                    buttonCancel="Cancelar"
+                                >
+                                    <RegisterForm key="RegisterForm" fields={registerFields} Formik={FormikRegister}/>
+                                </ModalLogin>
+                            </NavItem>
+                        </Nav>
+                    )}
+                    {roleId === 1 && (
+                        <Nav className="btn-responsive">
+                            <NavItem>
+                                <Button className="btn-logged m-1" color="info" onClick={() => history.push(mainRoutes.backOffice)}>
+                                    {buttonAdminBackoffice}
+                                </Button>
+                            </NavItem>
+                            <NavItem>
+                                <Button className="btn-logged m-1" color="info" onClick={logout}>
+                                    {buttonAdminLogout}
+                                </Button>
+                            </NavItem>
+                        </Nav>
+                    )}
+                    {isAuthenticate && roleId !== 1 && (
+                        <Nav className="btn-responsive">
+                            <NavItem>
+                                <Button className="btn-logged" color="info" onClick={logout}>
+                                    {buttonStandardLogout}
+                                </Button>
+                            </NavItem>
+                        </Nav>
+                    )}
+                </Collapse>
+            </Navbar>
         </header>
     );
 };
-
-const mapStateToProps = state => ({
-    registerForm: fromState.User.getRegisterForm(state),
-    registerFields: fromState.User.getRegisterFields(state)
-});
-
-export default connect(
-    mapStateToProps
-)(Header);
 
 Header.propTypes = {
     registerForm: PropTypes.shape({
@@ -233,5 +234,33 @@ Header.propTypes = {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired
         }).isRequired
-    ).isRequired
+    ).isRequired,
+    userAgent: PropTypes.shape({
+        roleId: PropTypes.number
+    }).isRequired,
+    isAuthenticate: PropTypes.bool.isRequired,
+    buttonAdminBackoffice: PropTypes.string,
+    buttonAdminLogout: PropTypes.string,
+    buttonStandardLogout: PropTypes.string,
+    buttonLogin: PropTypes.string,
+    buttonRegister: PropTypes.string
 };
+
+Header.defaultProps = {
+    buttonAdminBackoffice: 'Administracion',
+    buttonAdminLogout: 'Salir',
+    buttonStandardLogout: 'Salir',
+    buttonLogin: 'Ingresar',
+    buttonRegister: 'Registrate'
+};
+
+const mapStateToProps = state => ({
+    registerForm: fromState.User.getRegisterForm(state),
+    registerFields: fromState.User.getRegisterFields(state),
+    isAuthenticate: fromState.Session.isAuthenticate(state),
+    userAgent: fromState.Session.getUserAgent(state)
+});
+
+export default connect(
+    mapStateToProps
+)(Header);

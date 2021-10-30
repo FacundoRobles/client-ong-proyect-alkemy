@@ -1,9 +1,10 @@
 import React from 'react';
 import {PropTypes} from 'prop-types';
+import {Container, Col, Row} from 'reactstrap';
 import BackForm from '../../components/BackForm';
 
 const Component = ({
-    form, fields, submitCategoryRequested, fetchCategoryRequested, match
+    form, fields, submitCategoryRequested, fetchCategoryRequested, match, history: {goBack}
 }) => {
     const validate = values => {
         const errors = {};
@@ -15,18 +16,23 @@ const Component = ({
     };
 
     return (
-        <>
-            <h1 className="text-center mb-4">Administrar Categorias</h1>
-            <BackForm
-                key="CategoryForm"
-                form={form}
-                fields={fields}
-                submit={submitCategoryRequested}
-                fetch={fetchCategoryRequested}
-                id={match.params.id}
-                validate={validate}
-            />
-        </>
+        <Container>
+            <Row>
+                <Col>
+                    <h1 className="text-center mb-4">Administrar Categorias</h1>
+                    <BackForm
+                        key="CategoryForm"
+                        form={form}
+                        fields={fields}
+                        submit={submitCategoryRequested}
+                        fetch={fetchCategoryRequested}
+                        id={match.params.id}
+                        validate={validate}
+                        goBack={goBack}
+                    />
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
@@ -53,7 +59,10 @@ Component.propTypes = {
         params: PropTypes.shape({
             id: PropTypes.string
         })
-    })
+    }),
+    history: PropTypes.shape({
+        goBack: PropTypes.func
+    }).isRequired
 };
 
 Component.defaultProps = {

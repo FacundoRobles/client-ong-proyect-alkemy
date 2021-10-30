@@ -6,36 +6,51 @@ import {
 import PropTypes from 'prop-types';
 import map from 'lodash/map';
 import replace from 'lodash/replace';
+import get from 'lodash/get';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import swalConfirmAction from '@utils/swalConfirmAction';
+import {swalConfirmAction} from '@utils';
 
 const TableListNew = ({
     props, push, erase, route
 }) => (
-    <>
-        <Row className="p-0 m-0">
-            {props && (
-                map(props, (current, index) => (
-                    <Col
-                        xs="12"
-                        key={index}
-                        className={`
-                        d-flex
-                        flex-column
-                        flex-sm-row
-                        align-items-center
-                        justify-content-sm-start
-                        m-2
-                        p-2
-                        border border-ligth
-                        rounded
-                        `}
-                    >
-                        <img src={current.image} alt="imagen" className="rounded-circle m-2" width={50} height={50}/>
-                        <p className="align-self-center m-0 p-0 w-50">{current.name}</p>
-                        <div className="content-testimonial align-self-center m-0 p-0 w-50">
-                            {current.content && (
+    <Row className="table-list p-2 mb-4">
+        {props && (
+            map(props, (current, index) => (
+                <Col
+                    xs="12"
+                    key={index}
+                    className={`
+                    d-flex
+                    p-1
+                    border border-ligth
+                    rounded
+                    `}
+                >
+                    <div className="d-flex flex-column flex-sm-row align-items-center justify-content-sm-around w-100">
+                        {get(current, 'image') && (
+                            <div className="align-self-center">
+                                <img
+                                    src={get(current, 'image')}
+                                    alt="imagen"
+                                    className="rounded-circle m-2 img-fluid"
+                                    width={50}
+                                    height={50}
+                                    style={{
+                                        minWidth: '50px',
+                                        maxWidth: '50px',
+                                        minHeight: '50px',
+                                        maxHeight: '50px',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                            </div>
+                        )}
+                        <div className="align-self-center">
+                            <p className="align-self-center m-0 m-2">{current.name}</p>
+                        </div>
+                        <div className="align-self-center">
+                            {get(current, 'content') && (
                                 <p // eslint-disable-next-line
                                     dangerouslySetInnerHTML={
                                         {__html: current.content.substr(0, 45)}
@@ -44,6 +59,19 @@ const TableListNew = ({
                                     data-bs-html="true"
                                     data-bs-placement="top"
                                     title={replace(current.content, /<[^>]*>/g, '')}
+                                    className="align-self-center m-0 m-2"
+                                />
+                            )}
+                            {get(current, 'description') && (
+                                <p // eslint-disable-next-line
+                                    dangerouslySetInnerHTML={
+                                        {__html: current.description.substr(0, 45)}
+                                    }
+                                    data-bs-toggle="tooltip"
+                                    data-bs-html="true"
+                                    data-bs-placement="top"
+                                    title={replace(current.description, /<[^>]*>/g, '')}
+                                    className="align-self-center m-0 m-2"
                                 />
                             )}
                         </div>
@@ -68,11 +96,11 @@ const TableListNew = ({
                                 role="button"
                             />
                         </div>
-                    </Col>
-                ))
-            )}
-        </Row>
-    </>
+                    </div>
+                </Col>
+            ))
+        )}
+    </Row>
 );
 
 TableListNew.propTypes = {

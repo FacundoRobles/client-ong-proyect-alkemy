@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {
     Col,
     Button,
+    Container,
     Row
 } from 'reactstrap';
 import get from 'lodash/get';
-import {getRoutes} from '@utils';
+import {getRoutes, swalConfirmAction} from '@utils';
 import TableList from '@components/TableList';
 import {GOBACK, ADD} from '@utils/constants';
-import swalConfirmAction from '@utils/swalConfirmAction';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
@@ -43,7 +43,7 @@ const Component = ({
     };
 
     return (
-        <>
+        <Container>
             <Row className="list-row">
                 <Col sm="12" className="mr-2">
                     <Row className="d-flex justify-content-between align-items-center">
@@ -64,7 +64,7 @@ const Component = ({
                     />
                 </Col>
             </Row>
-        </>
+        </Container>
     );
 };
 

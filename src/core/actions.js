@@ -6,6 +6,8 @@ import * as Organization from './state/Organization/actions';
 import * as Testimonial from './state/Testimonial/actions';
 import * as News from './state/News/actions';
 import * as Activity from './state/Activity/actions';
+import * as Category from './state/Category/actions';
+import * as Member from './state/Member/actions';
 
 export {
     Session,
@@ -14,5 +16,7 @@ export {
     Organization,
     Testimonial,
     News,
-    Activity
+    Activity,
+    Category,
+    Member
 };

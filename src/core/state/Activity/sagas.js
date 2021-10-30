@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
     all,
     put,
@@ -46,8 +45,8 @@ function* requestActivitiesSagas({idActivity}) {
         const getActivities = yield Api.get(ACTIVITY);
         const success = get(getActivities, 'data.success');
         if (success) {
-            const activity = get(getActivities, 'data.activities');
-            return yield put(fetchActivitiesSucceeded({activity}));
+            const documents = get(getActivities, 'data.data');
+            return yield put(fetchActivitiesSucceeded({documents}));
         }
     } catch (err) {
         yield put(setSystemMessage(ERROR));
@@ -71,7 +70,7 @@ function* submitActivitiesSagas({
             const editActivity = yield Api.put(`${ACTIVITY}/${idActivity}`, obj);
             const success = get(editActivity, 'data.success');
             if (success) {
-                const activity = get(editActivity, 'data.activities');
+                const activity = get(editActivity, 'data.data');
                 yield put(fetchActivitySucceeded({activity}));
                 yield put(cleanActivityForm());
                 yield put(setSystemMessage(SUCCESS));

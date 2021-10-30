@@ -13,19 +13,19 @@ const initialState = {
     fields: [
         {
             label: 'Nombre',
-            placeholder: 'Nombre',
+            placeholder: 'John Doe',
             type: 'text',
             name: 'name'
         },
         {
             label: 'Email',
-            placeholder: 'Email',
+            placeholder: 'tunombre@mail.com',
             type: 'text',
             name: 'email'
         },
         {
             label: 'Message',
-            placeholder: 'Message',
+            placeholder: 'Me gustaria ponerme en contacto contigo',
             type: 'textarea',
             name: 'message'
         }
@@ -61,7 +61,8 @@ const contactForm = (state = {...initialState}, {type, ...props}) => {
             return {
                 ...state,
                 list: {
-                    documents: contact
+                    documents: contact.contacts,
+                    total: contact.length
                 }
             };
         default:

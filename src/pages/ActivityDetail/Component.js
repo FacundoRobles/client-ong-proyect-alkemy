@@ -38,29 +38,27 @@ const Component = ({
     };
 
     return (
-        <>
-            <Container>
-                <Row>
-                    <Col>
-                        {get(form, 'name') && idActivity
-                            ? (
-                                <ShowDetail
-                                    key="ActivityDetail"
-                                    form={form}
-                                    goList={goList}
-                                />
-                            )
-                            : (
-                                <DetailNotFound
-                                    key="ActivityDetailNotFound"
-                                    data={detailNotFoundData}
-                                    goList={goList}
-                                />
-                            )}
-                    </Col>
-                </Row>
-            </Container>
-        </>
+        <Container>
+            <Row>
+                <Col>
+                    {get(form, 'name') && idActivity
+                        ? (
+                            <ShowDetail
+                                key="ActivityDetail"
+                                form={form}
+                                goList={goList}
+                            />
+                        )
+                        : (
+                            <DetailNotFound
+                                key="ActivityDetailNotFound"
+                                data={detailNotFoundData}
+                                goList={goList}
+                            />
+                        )}
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

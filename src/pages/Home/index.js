@@ -2,12 +2,18 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fromState from '@core/selectors';
+import {Session, Organization} from '@core/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        welcomeText: fromState.Session.getWelcomeText(state)
+        form: fromState.Session.getFormWelcomeText(state),
+        fields: fromState.Session.getFieldsWelcomeText(state),
+        userAgent: fromState.Session.getUserAgent(state),
+        items: fromState.Session.getSliderItems(state),
+        organization: fromState.Organization.fetchOrganization(state)
     }),
     dispatch => bindActionCreators({
+        submitSlideRequested: obj => dispatch(Session.submitSlideRequested(obj))
     }, dispatch)
 )(Component);

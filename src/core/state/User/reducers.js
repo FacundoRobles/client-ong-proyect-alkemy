@@ -1,3 +1,9 @@
+import {
+    FETCH_USER_SUCCEEDED,
+    FETCH_USERS_SUCCEEDED,
+    CLEAN_REGISTER_FORM
+} from './types';
+
 const initialState = {
     registerForm: {
         firstName: '',
@@ -41,8 +47,34 @@ const initialState = {
     }
 };
 
-const registerForm = (state = {...initialState}, {type}) => {
+const registerForm = (state = {...initialState}, {type, ...props}) => {
     switch (type) {
+        case FETCH_USER_SUCCEEDED: {
+            return {
+                ...initialState,
+                registerForm: {
+                    ...state.registerForm,
+                    ...props.user
+                }
+            };
+        }
+        case FETCH_USERS_SUCCEEDED: {
+            return {
+                ...state,
+                list: {
+                    documents: props.documents,
+                    total: props.documents.length
+                }
+            };
+        }
+        case CLEAN_REGISTER_FORM: {
+            return {
+                ...state,
+                registerForm: {
+                    ...initialState.registerForm
+                }
+            };
+        }
         default:
             return state;
     }

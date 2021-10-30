@@ -12,15 +12,12 @@ import {
 } from '@utils/constants';
 import isEmpty from 'lodash/isEmpty';
 import BackForm from '@components/BackForm';
-import {getRoutes} from '@utils';
-
-const backOfficeRoutes = getRoutes('backOffice');
 
 const Component = ({
     form,
     fields,
     match: {params: {id}},
-    history: {push},
+    history: {push, goBack},
     submitTestimonialRequested,
     fetchTestimonialRequested,
     title,
@@ -36,7 +33,7 @@ const Component = ({
         }
         return errors;
     };
-    const goBack = () => push(backOfficeRoutes.testimonial.list);
+
     return (
         <div className="text-center">
             <Container fluid>
@@ -63,28 +60,23 @@ const Component = ({
 
 Component.propTypes = {
     fetchTestimonialRequested: PropTypes.func.isRequired,
-    fields: PropTypes.arrayOf(),
-    form: PropTypes.shape({
-        name: PropTypes.string,
-        image: PropTypes.string,
-        content: PropTypes.string
-    }),
+    fields: PropTypes.arrayOf().isRequired,
+    form: PropTypes.shape({}).isRequired,
     submitTestimonialRequested: PropTypes.func.isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({
-            id: PropTypes.string
+            id: PropTypes.number
         })
     }).isRequired,
     history: PropTypes.shape({
-        push: PropTypes.func
+        push: PropTypes.func,
+        goBack: PropTypes.func
     }).isRequired,
     title: PropTypes.string,
     subTitle: PropTypes.string
 };
 
 Component.defaultProps = {
-    form: null,
-    fields: null,
     title: 'Administrar testimonios',
     subTitle: 'Agrega un nuevo testimonio'
 };
