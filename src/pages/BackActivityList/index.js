@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import fromState from '@core/selectors';
-import {fetchNewsRequested} from '@core/state/News/actions';
+import {Activity} from '@core/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        list: fromState.News.getNewsSlick(state),
-        settings: fromState.Session.getSlickSettings(state)
+        activity: fromState.Activity.getActivities(state)
     }),
     dispatch => bindActionCreators({
-        fetchNewsRequested
+        fetchActivitiesRequested: id => dispatch(Activity.fetchActivitiesRequested(id)),
+        deleteActivityRequested: id => dispatch(Activity.deleteActivityRequested(id))
     }, dispatch)
 )(Component);

@@ -42,7 +42,7 @@ const CardComponent = ({
                                     fontSize: '0.8rem',
                                     textShadow: '2px 2px 2px #000'
                                 }}
-                                className="m-0 text-white font-weight-bold font-italic"
+                                className="m-0 text-white font-weight-bold font-italic text-truncate"
                             >
                                 {get(items, 'text') || get(items, 'name')}
                             </CardText>

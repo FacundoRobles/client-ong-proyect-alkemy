@@ -29,11 +29,19 @@ const CardSlickComponent = ({items, onView}) => (
 
 CardSlickComponent.propTypes = {
     items: PropTypes.shape({
-        imageUrl: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
-    }).isRequired,
+        imageUrl: PropTypes.string,
+        title: PropTypes.string,
+        text: PropTypes.string
+    }),
     onView: PropTypes.func.isRequired
+};
+
+CardSlickComponent.defaultProps = {
+    items: {
+        imageUrl: '',
+        title: '',
+        text: ''
+    }
 };
 
 export default CardSlickComponent;

@@ -16,6 +16,8 @@ import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import Us from '@pages/Us';
 import BackOffice from '@pages/BackOffice';
+import BackActivityForm from '@pages/BackActivityForm';
+import BackActivityList from '@pages/BackActivityList';
 import BackCategoriesForm from '@pages/BackCategoriesForm';
 import BackCategoriesList from '@pages/BackCategoriesList';
 import BackNewsForm from '@pages/BackNewsForm';
@@ -117,6 +119,9 @@ const Router = () => {
                             <Route exact path={mainRoutes.backOffice} component={BackOffice}/>
                             <Route exact path={backOfficeRoutes.user.edit} component={BackUserForm}/>
                             <Route exact path={backOfficeRoutes.user.list} component={BackUsersList}/>
+                            <Route exact path={backOfficeRoutes.activity.list} component={BackActivityList}/>
+                            <Route exact path={backOfficeRoutes.activity.form} component={BackActivityForm}/>
+                            <Route exact path={backOfficeRoutes.activity.show} component={BackActivityForm}/>
                             <Route exact path={backOfficeRoutes.category.list} component={BackCategoriesList}/>
                             <Route exact path={backOfficeRoutes.category.form} component={BackCategoriesForm}/>
                             <Route exact path={backOfficeRoutes.category.show} component={BackCategoriesForm}/>
@@ -152,13 +157,15 @@ const Router = () => {
                 <Container fluid className="m-0 p-0">
                     <Switch location={location}>
                         <Route exact path={mainRoutes.home} component={Home}/>
+                        <Route exact path={mainRoutes.activity} component={Activity}/>
+                        <Route exact path={mainRoutes.news} component={News}/>
                     </Switch>
                 </Container>
                 <Container className="background">
                     <Switch location={location}>
+                        <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
+                        <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                         <Route exact path={mainRoutes.organization} component={Organization}/>
-                        <Route exact path={mainRoutes.activity} component={Activity}/>
-                        <Route exact path={mainRoutes.news} component={News}/>
                         <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                         <Route exact path={mainRoutes.contact} component={Contact}/>
                         <Route exact path={mainRoutes.contribute} component={Contribute}/>
