@@ -7,7 +7,7 @@ import Component from './Component';
 export default connect(
     state => ({
         form: fromState.Activity.getForm(state),
-        isAuthenticate: fromState.Session.isAuthenticate(state)
+        userAgent: fromState.Session.getUserAgent(state)
     }),
     dispatch => bindActionCreators({
         fetchActivitiesRequested

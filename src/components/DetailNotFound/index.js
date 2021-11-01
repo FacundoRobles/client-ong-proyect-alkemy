@@ -11,17 +11,17 @@ import {
     CardImg
 } from 'reactstrap';
 import get from 'lodash/get';
-import {GO_NEWS_LIST} from '@utils/constants';
 
 const DetailNotFound = ({
     data,
-    goList
+    goList,
+    goListBtn
 }) => (
     <Row>
         <Col
             md={{size: 8, offset: 2}}
             lg={{size: 6, offset: 3}}
-            className="my-5 p-0"
+            className="mt-0 mt-md-2 mb-5 p-0"
         >
             <Card className="form-card">
                 <CardImg top width="100%" src={get(data, 'image')} alt={get(data, 'title')}/>
@@ -35,7 +35,7 @@ const DetailNotFound = ({
                             className="btn-submit"
                             onClick={goList}
                         >
-                            {GO_NEWS_LIST}
+                            {goListBtn}
                         </Button>
                     </div>
                 </CardBody>
@@ -52,5 +52,6 @@ DetailNotFound.propTypes = {
         image: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired
     }).isRequired,
-    goList: PropTypes.func.isRequired
+    goList: PropTypes.func.isRequired,
+    goListBtn: PropTypes.string.isRequired
 };

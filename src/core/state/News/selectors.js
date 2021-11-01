@@ -1,4 +1,6 @@
+/* eslint-disable no-return-assign */
 import get from 'lodash/get';
+import map from 'lodash/map';
 
 const path = 'news';
 
@@ -6,6 +8,18 @@ export const getNewsForm = state => get(state, `${path}.newsForm`);
 export const getNewsFields = state => get(state, `${path}.newsFields`);
 export const getNews = state => get(state, `${path}.list.documents`);
 export const getList = state => get(state, `${path}.list`);
+
+export const getNewsSlick = state => {
+    const list = getNews(state);
+    // eslint-disable-next-line no-param-reassign
+    const newList = map(list, item => item = {
+        imageUrl: item.image,
+        title: item.name,
+        key: item.id,
+        ...item
+    });
+    return newList;
+};
 
 export const getTableProps = () => {
     const headers = [
