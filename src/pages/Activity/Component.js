@@ -27,11 +27,11 @@ const Component = ({
         <Container fluid>
             <Row>
                 <Col>
-                    <h1 className="text-center mb-4">{ACTIVITIES}</h1>
-                    <h3 className="text-center">{ACTIVITIES_TEXT}</h3>
+                    <h1 className="text-center mt-5 mb-4">{ACTIVITIES}</h1>
+                    <h3 className="text-center mb-5">{ACTIVITIES_TEXT}</h3>
                 </Col>
             </Row>
-            <Row className="mx-0 mt-4 mx-md-5">
+            <Row className="mx-0 mt-4 mx-md-5 mb-5">
                 <Col>
                     <Slick items={list} onView={onView} settings={settings}/>
                 </Col>

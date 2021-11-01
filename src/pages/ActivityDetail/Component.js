@@ -7,16 +7,18 @@ import DetailNotFound from '@components/DetailNotFound';
 import {
     ACTIVITY404CONTENT,
     NOT_FOUND_TITLE,
-    NOT_FOUND_IMG
+    NOT_FOUND_IMG,
+    GO_ACTIVITIES_LIST
 } from '@utils/constants';
 import get from 'lodash-es/get';
+import isEmpty from 'lodash-es/isEmpty';
 
 const mainRoutes = getRoutes('mainRoutes');
 const backOfficeRoutes = getRoutes('backOffice');
 const Component = ({
     form,
     fetchActivitiesRequested,
-    isAuthenticate,
+    userAgent,
     match: {params: {id: idActivity}},
     history: {push}
 }) => {
@@ -24,8 +26,10 @@ const Component = ({
         fetchActivitiesRequested({idActivity});
     }, [idActivity, fetchActivitiesRequested]);
 
+    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
+
     const goList = () => {
-        if (isAuthenticate) {
+        if (roleId === 1) {
             return push(backOfficeRoutes.activity.list);
         }
         return push(mainRoutes.activity);
@@ -39,7 +43,7 @@ const Component = ({
 
     return (
         <Container>
-            <Row>
+            <Row className="my-5">
                 <Col>
                     {get(form, 'name') && idActivity
                         ? (
@@ -47,6 +51,7 @@ const Component = ({
                                 key="ActivityDetail"
                                 form={form}
                                 goList={goList}
+                                goListBtn={GO_ACTIVITIES_LIST}
                             />
                         )
                         : (
@@ -54,6 +59,7 @@ const Component = ({
                                 key="ActivityDetailNotFound"
                                 data={detailNotFoundData}
                                 goList={goList}
+                                goListBtn={GO_ACTIVITIES_LIST}
                             />
                         )}
                 </Col>
@@ -67,7 +73,7 @@ export default Component;
 Component.propTypes = {
     form: PropTypes.shape({}).isRequired,
     fetchActivitiesRequested: PropTypes.func.isRequired,
-    isAuthenticate: PropTypes.bool.isRequired,
+    userAgent: PropTypes.shape({roleId: PropTypes.number}),
     match: PropTypes.shape({
         params: PropTypes.shape({
             id: PropTypes.string
@@ -79,5 +85,6 @@ Component.propTypes = {
 };
 
 Component.defaultProps = {
-    match: {}
+    match: {},
+    userAgent: {}
 };

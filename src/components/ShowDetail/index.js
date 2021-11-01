@@ -11,13 +11,13 @@ import {
     CardImg
 } from 'reactstrap';
 import get from 'lodash/get';
-import {GO_NEWS_LIST} from '@utils/constants';
 
 const ShowDetail = ({
     form,
-    goList
+    goList,
+    goListBtn
 }) => (
-    <Row className="my-0">
+    <Row className="mt-0 mb-5">
         <Col
             md={{size: 8, offset: 2}}
             lg={{size: 6, offset: 3}}
@@ -35,7 +35,7 @@ const ShowDetail = ({
                             className="btn-submit"
                             onClick={goList}
                         >
-                            {GO_NEWS_LIST}
+                            {goListBtn}
                         </Button>
                     </div>
                 </CardBody>
@@ -48,5 +48,6 @@ export default ShowDetail;
 
 ShowDetail.propTypes = {
     form: PropTypes.shape({}).isRequired,
-    goList: PropTypes.func.isRequired
+    goList: PropTypes.func.isRequired,
+    goListBtn: PropTypes.string.isRequired
 };
