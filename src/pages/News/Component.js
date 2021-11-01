@@ -18,11 +18,9 @@ const Component = ({
         const id = get(prop, 'id');
         push(`${mainRoutes.news}/${id}`);
     };
-
     useEffect(() => {
         fetchNewsRequested();
     }, [fetchNewsRequested]);
-
     return (
         <Container fluid>
             <Row>
