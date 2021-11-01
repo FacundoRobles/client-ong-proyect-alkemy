@@ -7,5 +7,37 @@
   .card-component {
     box-shadow: 0 0 6px var(--warm-grey);
     margin-bottom: 3%;
+
+    h5 {
+      font-size: 1.8rem;
+    }
+
+    p {
+      font-size: 1.3rem !important;
+      font-weight: 300 !important;
+    }
+    
+    .btn-container {
+      display: flex !important;
+      justify-content: center !important;
+    }
+
+    button {
+      border: 1px solid var(--sky-drive) !important;
+      color: var(--sky-drive);
+      font-family: 'BenchNine';
+      font-size: 1.2rem !important;
+      margin-top: 0.6rem !important;
+      padding: 1.5% 4% !important;
+    }
+
+    button:hover {
+      background-color: var(--sky-drive) !important;
+      color: var(--white);
+    }
+
+    .description-text {
+      line-height: 1.4rem !important;
+    }
   }
 }

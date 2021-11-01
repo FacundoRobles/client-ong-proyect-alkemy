@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import get from 'lodash/get';
 import map from 'lodash/map';
 
@@ -10,14 +9,15 @@ export const getFields = state => get(state, `${path}.fields`);
 
 export const getActivitiesSlick = state => {
     const list = getActivities(state);
-    // eslint-disable-next-line no-param-reassign
-    const newList = map(list, item => item = {
-        imageUrl: item.image,
-        title: item.name,
-        key: item.id,
-        text: item.content,
-        ...item
-
+    const newList = map(list, item => {
+        const newItem = {
+            imageUrl: item.image,
+            title: item.name,
+            key: item.id,
+            text: item.content,
+            ...item
+        }
+        return newItem;
     });
-    return newList;
+    return newList
 };

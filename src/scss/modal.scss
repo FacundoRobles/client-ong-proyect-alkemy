@@ -9,3 +9,21 @@
     } 
   }
 }
+
+.btn-proceed {
+  background-color: var(--sky-drive) !important;
+}
+
+.btn-proceed:hover {
+  background-color: var(--secondary) !important;
+}
+
+.btn-cancel {
+  background-color: var(--red-drive);
+  box-shadow: none !important;
+}
+
+.btn-cancel,
+.btn-proceed {
+  border-style: none !important;
+}

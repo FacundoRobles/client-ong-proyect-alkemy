@@ -59,7 +59,7 @@ const Footer = () => {
                             </Col>
                             <Col className="text-center">
                                 <Link
-                                    to={mainRoutes.novelty}
+                                    to={mainRoutes.news}
                                 >
                                     Novedades
                                 </Link>
@@ -114,7 +114,7 @@ const Footer = () => {
                             ))
                         )}
                     </Col>
-                    <Col sm="12" className="text-center">
+                    <Col sm="12" className="text-center text-span">
                         <span>2021 by Alkemy. All Rights Reserved.</span>
                     </Col>
                 </Row>

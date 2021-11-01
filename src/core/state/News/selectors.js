@@ -11,16 +11,15 @@ export const getList = state => get(state, `${path}.list`);
 export const getNewsSlick = state => {
     const list = getNews(state);
     const newList = map(list, item => {
-        let newItem = item;
-        newItem = {
+        const newItem = {
             imageUrl: item.image,
             title: item.name,
             key: item.id,
             ...item
-        };
+        }
         return newItem;
     });
-    return newList;
+    return newList
 };
 
 export const getTableProps = () => {

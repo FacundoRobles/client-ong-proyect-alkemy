@@ -24,7 +24,7 @@ const initialState = {
             name: 'email'
         },
         {
-            label: 'Message',
+            label: 'Mensaje',
             placeholder: 'Me gustaria ponerme en contacto contigo',
             type: 'textarea',
             name: 'message'

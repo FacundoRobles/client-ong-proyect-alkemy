@@ -1,15 +1,15 @@
-/* eslint-disable no-unused-vars */
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fromState from '@core/selectors';
-import {Testimonial} from '@core/actions';
+import {fetchTestimonialRequested} from '@core/state/Testimonial/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        testimonial: fromState.Testimonial.getTestimonials(state)
+        list: fromState.Testimonial.getTestimonialsSlick(state),
+        settings: fromState.Session.getSlickSettings(state)
     }),
     dispatch => bindActionCreators({
-        fetchTestimonialRequested: id => dispatch(Testimonial.fetchTestimonialRequested(id))
+        fetchTestimonialRequested
     }, dispatch)
 )(Component);

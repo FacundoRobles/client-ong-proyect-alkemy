@@ -72,6 +72,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.home} component={Home}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
+                            <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                         </Switch>
                     </Container>
                     <Container className="background">
@@ -79,7 +80,6 @@ const Router = () => {
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                             <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
-                            <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
                             <Route exact path={mainRoutes.us} component={Us}/>
@@ -105,6 +105,7 @@ const Router = () => {
                             <Route exact path={mainRoutes.home} component={Home}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
+                            <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                         </Switch>
                     </Container>
                     <Container className="background">
@@ -112,7 +113,6 @@ const Router = () => {
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                             <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
-                            <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
                             <Route exact path={mainRoutes.us} component={Us}/>
@@ -159,6 +159,7 @@ const Router = () => {
                         <Route exact path={mainRoutes.home} component={Home}/>
                         <Route exact path={mainRoutes.activity} component={Activity}/>
                         <Route exact path={mainRoutes.news} component={News}/>
+                        <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                     </Switch>
                 </Container>
                 <Container className="background">
@@ -166,7 +167,6 @@ const Router = () => {
                         <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                         <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                         <Route exact path={mainRoutes.organization} component={Organization}/>
-                        <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
                         <Route exact path={mainRoutes.contact} component={Contact}/>
                         <Route exact path={mainRoutes.contribute} component={Contribute}/>
                         <Route exact path={mainRoutes.us} component={Us}/>

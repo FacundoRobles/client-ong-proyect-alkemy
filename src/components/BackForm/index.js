@@ -69,9 +69,9 @@ const BackForm = ({
                                 >
                                     <Col
                                         className="mb-3 px-2"
-                                        tag="h5"
                                     >
                                         <Label
+                                            tag="h4"
                                             for={get(field, 'id')}
                                         >
                                             {get(field, 'label')}
