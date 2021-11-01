@@ -53,13 +53,13 @@ const Component = ({
                     <img src={separator} alt="separator"/>
                 </Col>
                 <Col md="12" className="news-col">
-                    <h1 className="title-md">{newsTitle}</h1>
+                    <h2 className="title-md">{newsTitle}</h2>
                 </Col>
                 <Col md="12">
                     <Slick items={news} settings={settings}/>
                 </Col>
                 <Col md="12" className="mt-4">
-                    <Link to={mainRoutes.news} className="btn btn-info text-center">
+                    <Link to={mainRoutes.news} className="btn btn-info text-center btn-news-list">
                         {newsButton}
                     </Link>
                 </Col>
@@ -67,7 +67,7 @@ const Component = ({
                     <img src={separator} alt="separator"/>
                 </Col>
                 <Col md="12" className="mt-4">
-                    <h1 className="title-md">{testimonialTitle}</h1>
+                    <h2 className="title-md">{testimonialTitle}</h2>
                 </Col>
                 <Col md="12" className="mt-4">
                     <Slick items={testimonials} settings={settings}/>

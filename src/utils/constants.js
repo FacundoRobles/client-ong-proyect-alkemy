@@ -1,18 +1,18 @@
 export const SUCCESS = {
     icon: 'success',
-    title: 'Genial',
+    title: '<h1 style="color:#9ac9fb !important;"> Genial! </h1>',
     text: 'La acción se concretó correctamente!'
 };
 
 export const ERROR = {
     icon: 'error',
-    title: 'Oops...',
+    title: '<h1 style="color:#db5752 !important;"> Oops... </h1>',
     text: 'Algo salió mal!'
 };
 
 export const CANCELALERT = {
     icon: 'info',
-    title: 'Buena decision',
+    title: '<h1"> Buena Decisión </h1>',
     text: 'la accion no se realizara'
 };
 
@@ -34,6 +34,8 @@ export const ERROR_NAME = 'Campo requerido';
 export const ERROR_IMAGE = 'Deberia de ser una URL';
 export const ACTIVITIES = 'Actividades';
 export const ACTIVITIES_TEXT = 'Puedes visualizar y acceder a nuestras Actividades aquí';
+export const TESTIMONIAL = 'Testimonios';
+export const TESTIMONIAL_TEXT = 'Estos son los testimonios de algunas personas';
 export const NEWS = 'Novedades';
 export const NEWS_TEXT = 'Puedes visualizar y acceder a nuestras Novedades aquí';
 export const ERROR_MAIL = 'Direccion de Email invalido';

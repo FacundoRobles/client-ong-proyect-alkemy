@@ -1,11 +1,6 @@
-.title-lg {
-  font-family: 'Englebert', sans-serif !important;
-  font-size: 3.5rem;
-}
-
 .title-md {
-  font-family: 'Englebert', sans-serif !important;
   font-size: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .news-col {
@@ -13,12 +8,17 @@
   text-align: center;
 }
 
-.btn-news {
-  background-color: var(--white);
+.btn-news-list {
+  background-color: var(--sky-drive);
+  border: 1px solid var(--sky-drive) !important;
+  color: var(--white) !important;
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
 }
 
-.btn-news:hover {
-  background-color: var(--sky-drive);
+.btn-news-list:hover {
+  background-color: var(--white) !important;
+  color: var(--sky-drive) !important;
 }
 
 .carousel {

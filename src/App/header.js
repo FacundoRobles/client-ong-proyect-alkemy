@@ -193,12 +193,12 @@ const Header = ({
                     {roleId === 1 && (
                         <Nav className="btn-responsive">
                             <NavItem>
-                                <Button className="btn-logged m-1" color="info" onClick={() => history.push(mainRoutes.backOffice)}>
+                                <Button className="btn-backoffice m-1" color="info" onClick={() => history.push(mainRoutes.backOffice)}>
                                     {buttonAdminBackoffice}
                                 </Button>
                             </NavItem>
                             <NavItem>
-                                <Button className="btn-logged m-1" color="info" onClick={logout}>
+                                <Button className="btn-logout m-1" color="info" onClick={logout}>
                                     {buttonAdminLogout}
                                 </Button>
                             </NavItem>
@@ -207,7 +207,7 @@ const Header = ({
                     {isAuthenticate && roleId !== 1 && (
                         <Nav className="btn-responsive">
                             <NavItem>
-                                <Button className="btn-logged" color="info" onClick={logout}>
+                                <Button className="btn-logout" color="info" onClick={logout}>
                                     {buttonStandardLogout}
                                 </Button>
                             </NavItem>

@@ -1,26 +1,23 @@
 .card-us {
   h2 {
-    font-family: 'Englebert', sans-serif !important;
+    font-size: 2.5rem !important;
+    margin-bottom: 1em !important;
     text-align: center;
   }
 
   ul {
-    margin-top: 2em !important;
+    margin: 0 2em !important;
 
     li {
+      font-size: 1.6rem;
       font-style: italic;
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 
   p {
-    line-height: 1.5;
+    font-size: 1.4rem !important;
+    line-height: 1.4;
     margin-top: 1em;
-  }
-}
-
-.items-section {
-  h1 {
-    font-family: 'Englebert', sans-serif !important;
   }
 }

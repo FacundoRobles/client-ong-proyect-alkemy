@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import get from 'lodash/get';
+import map from 'lodash/map';
 
 const path = 'testimonial';
 
@@ -7,6 +7,21 @@ export const testimonials = state => get(state, 'testimonial.list.testimonials')
 export const getTestimonials = state => get(state, `${path}.list.documents.testimonial`);
 export const getForm = state => get(state, `${path}.form`);
 export const getFields = state => get(state, `${path}.fields`);
+
+export const getTestimonialsSlick = state => {
+    const list = getTestimonials(state);
+    const newList = map(list, item => {
+        const newItem = {
+            imageUrl: item.image,
+            title: item.name,
+            key: item.id,
+            html: item.content,
+            ...item
+        }
+        return newItem;
+    });
+    return newList
+};
 
 export const getSlickTestimonials = () => {
     const testimonials = [

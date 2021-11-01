@@ -18,9 +18,16 @@ const CardSlickComponent = ({items, onView}) => (
             <Card className="card-component">
                 <CardImg top width="100%" src={get(items, 'imageUrl')} alt={get(items, 'title')}/>
                 <CardBody>
-                    <CardTitle tag="h5">{get(items, 'title')}</CardTitle>
-                    <CardText><p style={{lineHeight: '1.3rem'}}>{get(items, 'text')}</p></CardText>
-                    <Button outline className="btn-login" color="primary" onClick={() => onView(items)}>Leer más</Button>
+                    <CardTitle tag="h5" className="text-center w-100">{get(items, 'title')}</CardTitle>
+                    {get(items, 'html')
+                        ? <CardText className="description-text" dangerouslySetInnerHTML={{__html: get(items, 'content')}}/>
+                        : <CardText><p style={{lineHeight: '1.5rem'}}>{get(items, 'text')}</p></CardText>}
+                    {onView
+                            && (
+                                <div className="btn-container">
+                                    <Button outline color="primary" onClick={() => onView(items)}>Leer más</Button>
+                                </div>
+                            )}
                 </CardBody>
             </Card>
         </Col>

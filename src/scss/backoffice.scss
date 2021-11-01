@@ -1,11 +1,7 @@
 .backoffice-card {
   
   box-shadow: 0 0 6px var(--warm-grey);
-
-  h6 {
-    color: var(--secondary);
-  }
-
+  
   p {
     svg {
       background-color: var(--background);
@@ -15,18 +11,21 @@
 }
 
 .backoffice-card-button {
-  background-color: var(--button-background);
+  background-color: var(--sky-drive) !important;
   border-style: none;
   font-size: 0.8rem;
   outline: none;
-  padding-bottom: 0.3em !important;
-  padding-top: 0.2em !important;
+  padding: 0.1em 0.9em !important;
 
   a {
-    color: var(--white);
+    color: var(--white) !important;
     text-decoration: none !important;
 
-  }
+  }  
+}
+
+.backoffice-card-button:hover {
+  background-color: var(--secondary) !important;
 }
 
 .icon-testimonial {
