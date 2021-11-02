@@ -61,8 +61,8 @@ const CardComponent = ({
                         <CardBody>
                             <CardTitle tag="h5">{get(items, 'title')}</CardTitle>
                             <CardText
-                                className="text-truncate"
                                 style={{lineHeight: '1.3rem'}}
+                                className="text-truncate"
                             >
                                 {get(items, 'text') || get(items, 'name')}
                             </CardText>

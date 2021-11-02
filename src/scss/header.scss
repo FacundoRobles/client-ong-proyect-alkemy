@@ -72,17 +72,18 @@
   min-height: 80px !important;
   z-index: 2;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 800px) {
   .btn-responsive {
     display: flex;
-    justify-content: end;
-    width: 25%;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
 
     li {
-      width: 50%;
 
       button {
         font-size: 1.2rem !important;
+        margin: 0.5em auto !important;
       }
     }
   }

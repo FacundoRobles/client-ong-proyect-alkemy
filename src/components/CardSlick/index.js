@@ -14,14 +14,28 @@ import get from 'lodash/get';
 
 const CardSlickComponent = ({items, onView}) => (
     <Row>
-        <Col className="mx-3">
+        <Col>
             <Card className="card-component">
-                <CardImg top width="100%" src={get(items, 'imageUrl')} alt={get(items, 'title')}/>
+                <CardImg
+                    top
+                    width="100%"
+                    src={get(items, 'imageUrl') || get(items, 'image')}
+                    alt={get(items, 'title') || 'image'}
+                />
                 <CardBody>
                     <CardTitle tag="h5" className="text-center w-100">{get(items, 'title')}</CardTitle>
                     {get(items, 'html')
-                        ? <CardText className="description-text" dangerouslySetInnerHTML={{__html: get(items, 'content')}}/>
-                        : <CardText><p style={{lineHeight: '1.5rem'}}>{get(items, 'text')}</p></CardText>}
+                        ? (
+                            <CardText 
+                                className="description-text"
+                                dangerouslySetInnerHTML={{__html: get(items, 'content')}}
+                            />
+                        ) : (
+                            <CardText style={{lineHeight: '1.5rem'}}>
+                                {get(items, 'text') || get(items, 'name')}
+                            </CardText>
+                        )
+                    }
                     {onView
                             && (
                                 <div className="btn-container">
