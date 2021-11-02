@@ -18,9 +18,16 @@ const CardSlickComponent = ({items, onView}) => (
             <Card className="card-component">
                 <CardImg top width="100%" src={get(items, 'imageUrl')} alt={get(items, 'title')}/>
                 <CardBody>
-                    <CardTitle tag="h5">{get(items, 'title')}</CardTitle>
-                    <CardText><p style={{lineHeight: '1.3rem'}}>{get(items, 'text')}</p></CardText>
-                    <Button outline className="btn-login" color="primary" onClick={() => onView(items)}>Leer más</Button>
+                    <CardTitle tag="h5" className="text-center w-100">{get(items, 'title')}</CardTitle>
+                    {get(items, 'html')
+                        ? <CardText className="description-text" dangerouslySetInnerHTML={{__html: get(items, 'content')}}/>
+                        : <CardText><p style={{lineHeight: '1.5rem'}}>{get(items, 'text')}</p></CardText>}
+                    {onView
+                            && (
+                                <div className="btn-container">
+                                    <Button outline color="primary" onClick={() => onView(items)}>Leer más</Button>
+                                </div>
+                            )}
                 </CardBody>
             </Card>
         </Col>
@@ -29,11 +36,19 @@ const CardSlickComponent = ({items, onView}) => (
 
 CardSlickComponent.propTypes = {
     items: PropTypes.shape({
-        imageUrl: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
-    }).isRequired,
+        imageUrl: PropTypes.string,
+        title: PropTypes.string,
+        text: PropTypes.string
+    }),
     onView: PropTypes.func.isRequired
+};
+
+CardSlickComponent.defaultProps = {
+    items: {
+        imageUrl: '',
+        title: '',
+        text: ''
+    }
 };
 
 export default CardSlickComponent;

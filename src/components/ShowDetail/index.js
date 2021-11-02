@@ -11,31 +11,31 @@ import {
     CardImg
 } from 'reactstrap';
 import get from 'lodash/get';
-import {GO_NEWS_LIST} from '@utils/constants';
 
 const ShowDetail = ({
     form,
-    goList
+    goList,
+    goListBtn
 }) => (
-    <Row className="my-0">
+    <Row className="mt-0 mb-5">
         <Col
             md={{size: 8, offset: 2}}
             lg={{size: 6, offset: 3}}
             className="p-0"
         >
-            <Card className="form-card">
+            <Card className="detail-card">
                 <CardImg top width="100%" src={get(form, 'image')} alt={get(form, 'name')}/>
                 <CardBody>
-                    <CardTitle tag="h5" className="mb-4 text-center">{get(form, 'name')}</CardTitle>
+                    <CardTitle tag="h2" className="mb-4 text-center">{get(form, 'name')}</CardTitle>
                     <CardText className="description-text" dangerouslySetInnerHTML={{__html: get(form, 'content')}}/>
                     <div className="d-flex justify-content-center mt-4">
                         <Button
                             type="submit"
                             color="primary"
-                            className="btn-submit"
+                            className="btn-list text-center"
                             onClick={goList}
                         >
-                            {GO_NEWS_LIST}
+                            {goListBtn}
                         </Button>
                     </div>
                 </CardBody>
@@ -48,5 +48,6 @@ export default ShowDetail;
 
 ShowDetail.propTypes = {
     form: PropTypes.shape({}).isRequired,
-    goList: PropTypes.func.isRequired
+    goList: PropTypes.func.isRequired,
+    goListBtn: PropTypes.string.isRequired
 };

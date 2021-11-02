@@ -1,6 +1,38 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li,
+p {
+  font-family: 'BenchNine' !important;
+  font-weight: 700 !important;
+}
+
+h1 {
+  color: var(--red-drive) !important;
+  font-size: 3.5rem !important;
+}
+
+h1,
+h2 {
+  margin: 1.5% 0;
+}
+
+h3 {
+  font-size: 2.5rem !important;
+}
+
+
+p {
+  font-weight: 400 !important;
+}
+
 body {
   background-color: var(--background);
-  font-display: fallback;
+  font-display: swap;
   line-height: 1;
   overflow-x: hidden;
 }

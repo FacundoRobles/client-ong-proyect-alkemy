@@ -44,7 +44,7 @@ const Component = ({
                 <Col>
                     <div className="form">
                         <BackForm
-                            key="NewsForm"
+                            key="ContactForm"
                             form={form}
                             fields={fields}
                             submit={submitContactRequested}

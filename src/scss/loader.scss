@@ -17,6 +17,11 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+
+  h4 {
+    font-size: 1.6rem !important;
+    margin-left: 2px;
+  }
 }
 
 .loader-text {

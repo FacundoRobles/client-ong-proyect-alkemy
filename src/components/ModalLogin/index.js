@@ -30,7 +30,7 @@ const ModalLogin = ({
                             <img src={logo} alt="logo" width="100px"/>
                         </Col>
                         <Col md="6" className="align-self-center text-center">
-                            <h6 className="mb-0">{title}</h6>
+                            <h4 className="mb-0">{title}</h4>
                         </Col>
                     </Row>
                 </ModalHeader>
@@ -38,8 +38,8 @@ const ModalLogin = ({
                     {children}
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={proceed}>{buttonConfirm}</Button>
-                    <Button color="secondary" onClick={toggle}>{buttonCancel}</Button>
+                    <Button color="primary" className="btn-proceed" onClick={proceed}>{buttonConfirm}</Button>
+                    <Button color="secondary" className="btn-cancel" onClick={toggle}>{buttonCancel}</Button>
                 </ModalFooter>
             </Modal>
         </Col>
