@@ -30,9 +30,7 @@ const Component = ({
                     <h1 className="text-center mt-5 mb-4">{ACTIVITIES}</h1>
                     <h3 className="text-center mb-5">{ACTIVITIES_TEXT}</h3>
                 </Col>
-            </Row>
-            <Row className="mx-0 mt-4 mx-md-5 mb-5">
-                <Col>
+                <Col xs="12">
                     <Slick items={list} onView={onView} settings={settings}/>
                 </Col>
             </Row>

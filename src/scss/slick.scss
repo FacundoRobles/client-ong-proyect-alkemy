@@ -6,7 +6,17 @@
   
   .card-component {
     box-shadow: 0 0 6px var(--warm-grey);
-    margin-bottom: 3%;
+    width: 230px;
+    min-width: 230px;
+    max-width: 230px;
+    margin: 0.5em auto;
+
+    img {
+      height: 200px;
+      min-height: 200px;
+      max-height: 200px;
+      object-fit: cover;
+    }
 
     h5 {
       font-size: 1.8rem;
