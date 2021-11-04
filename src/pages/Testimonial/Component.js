@@ -7,9 +7,8 @@ import Slick from '@components/Slick';
 const Component = ({
     fetchTestimonialRequested,
     list,
-    settings,
+    settings
 }) => {
-
     useEffect(() => {
         fetchTestimonialRequested();
     }, [fetchTestimonialRequested]);

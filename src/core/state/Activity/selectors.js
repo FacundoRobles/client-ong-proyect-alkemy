@@ -16,8 +16,8 @@ export const getActivitiesSlick = state => {
             key: item.id,
             text: item.content,
             ...item
-        }
+        };
         return newItem;
     });
-    return newList
+    return newList;
 };
