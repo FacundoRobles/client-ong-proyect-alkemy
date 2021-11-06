@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -20,16 +20,24 @@ const backOfficeRoutes = getRoutes('backOffice');
 const Component = ({
     form,
     userAgent,
-    items,
     history: {push},
     organization,
     newsTitle,
     testimonialTitle,
-    newsButton
+    newsButton,
+    items,
+    news,
+    testimonials,
+    fetchNewsRequested,
+    fetchTestimonialRequested
 }) => {
+    useEffect(() => {
+        fetchNewsRequested({})
+    }, [fetchNewsRequested]);
+    useEffect(() => {
+        fetchTestimonialRequested({})
+    }, [fetchTestimonialRequested]);
     const settings = useSelector(fromState.Session.getSlickHomeSettings);
-    const news = useSelector(fromState.News.getSlickNews);
-    const testimonials = useSelector(fromState.Testimonial.getSlickTestimonials);
     const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
     return (
         <>
@@ -84,7 +92,9 @@ Component.propTypes = {
     userAgent: PropTypes.shape({
         roleId: PropTypes.number
     }).isRequired,
+    testimonials: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    news: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,
@@ -93,7 +103,9 @@ Component.propTypes = {
     }).isRequired,
     newsTitle: PropTypes.string,
     testimonialTitle: PropTypes.string,
-    newsButton: PropTypes.string
+    newsButton: PropTypes.string,
+    fetchNewsRequested: PropTypes.func.isRequired,
+    fetchTestimonialRequested: PropTypes.func.isRequired
 };
 
 Component.defaultProps = {

@@ -35,7 +35,7 @@ const Footer = () => {
         return instagram;
     });
     return (
-        <footer className="top-more fixed mt-5">
+        <footer className="footer">
             <Container fluid>
                 <Row>
                     <Col xs="12">
@@ -98,9 +98,7 @@ const Footer = () => {
                         </Row>
                     </Col>
                     <Col xs="12">
-                        <Container>
-                            <hr/>
-                        </Container>
+                        <hr/>
                     </Col>
                     <Col xs="12" className="social-network-items">
                         {!isEmpty(selector) && (
