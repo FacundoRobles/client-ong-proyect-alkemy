@@ -57,6 +57,8 @@ function* getOrganizations({id}) {
 }
 
 function* submitOrganizationSagas({payload, id, push}) {
+    console.log(payload)
+    console.log(id)
     const {name, image} = payload;
     try {
         yield put(setRequestFlag({flag: true}));

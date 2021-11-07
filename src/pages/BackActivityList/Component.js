@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
     Button,
     Col,
+    Container,
     Row
 } from 'reactstrap';
 import TableListNew from '@components/TableListNew';
@@ -25,10 +26,10 @@ const Component = ({
     }, [fetchActivitiesRequested]);
 
     return (
-        <div className="text-center">
-            <h1>{title}</h1>
-            <Row className="p-0 m-0">
+        <Container>
+            <Row className="p-0 m-0 text-center">
                 <Col sm="12" md="12" className="m-auto">
+                    <h1>{title}</h1>
                     <TableListNew
                         props={activity}
                         erase={deleteActivityRequested}
@@ -37,12 +38,12 @@ const Component = ({
                     />
                 </Col>
                 <Col>
-                    <Button onClick={() => push(backOfficeRoutes.category.form)}>
+                    <Button onClick={() => push(backOfficeRoutes.activity.form)}>
                         {buttonText}
                     </Button>
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 

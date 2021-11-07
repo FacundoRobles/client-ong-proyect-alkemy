@@ -15,7 +15,7 @@ import get from 'lodash/get';
 const CardSlickComponent = ({items, onView}) => (
     <Row>
         <Col>
-            <Card className="card-component">
+            <Card className="card-component text-center">
                 <CardImg
                     top
                     width="100%"
@@ -27,11 +27,11 @@ const CardSlickComponent = ({items, onView}) => (
                     {get(items, 'html')
                         ? (
                             <CardText 
-                                className="description-text"
+                                className="description-text text-truncate"
                                 dangerouslySetInnerHTML={{__html: get(items, 'content')}}
                             />
                         ) : (
-                            <CardText style={{lineHeight: '1.5rem'}}>
+                            <CardText className="text-truncate" style={{lineHeight: '1.5rem'}}>
                                 {get(items, 'text') || get(items, 'name')}
                             </CardText>
                         )

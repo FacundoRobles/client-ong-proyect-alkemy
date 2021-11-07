@@ -7,20 +7,19 @@ const LoaderComponent = () => {
     const requestFlag = useSelector(fromState.Session.getRequestFlag);
     if (requestFlag) {
         return (
-            <>
+            <div className="overlay">
                 <div className="loader">
                     <Loader
                         type="Puff"
                         color="#00BFFF"
-                        height={60}
-                        width={60}
-                        timeout={2000}
+                        height={70}
+                        width={70}
+                        timeout={5000}
                         text="Loading"
                     />
                     <h4 className="loader-text text-center">Cargando...</h4>
                 </div>
-                <div className="overlay"/>
-            </>
+            </div>
         );
     }
     return false;

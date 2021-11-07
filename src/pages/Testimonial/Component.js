@@ -1,15 +1,23 @@
 import React, {useEffect} from 'react';
 import {PropTypes} from 'prop-types';
 import {Container, Col, Row} from 'reactstrap';
+import {getRoutes} from '@utils';
 import {TESTIMONIAL_TEXT, TESTIMONIAL} from '@utils/constants';
 import Slick from '@components/Slick';
+import get from 'lodash/get';
+
+const mainRoutes = getRoutes('mainRoutes');
 
 const Component = ({
     fetchTestimonialRequested,
     list,
     settings,
+    history: {push}
 }) => {
-
+    const onView = prop => {
+        const id = get(prop, 'id');
+        push(`${mainRoutes.testimonial}/${id}`);
+    };
     useEffect(() => {
         fetchTestimonialRequested();
     }, [fetchTestimonialRequested]);
@@ -24,7 +32,7 @@ const Component = ({
             </Row>
             <Row className="mx-0 mt-4 mx-md-5 mb-5">
                 <Col>
-                    <Slick items={list} settings={settings}/>
+                    <Slick items={list} onView={onView} settings={settings}/>
                 </Col>
             </Row>
         </Container>

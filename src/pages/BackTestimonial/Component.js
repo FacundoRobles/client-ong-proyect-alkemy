@@ -35,12 +35,10 @@ const Component = ({
     };
 
     return (
-        <div className="text-center">
-            <Container fluid>
-                <h1>{title}</h1>
-            </Container>
-            <Row className="p-0 m-0">
+        <Container>
+            <Row className="p-0 m-0 text-center">
                 <Col sm="12" md="12">
+                    <h1>{title}</h1>
                     <h5 className="m-2">{subTitle}</h5>
                     <BackForm
                         fields={fields}
@@ -54,7 +52,7 @@ const Component = ({
                     />
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 

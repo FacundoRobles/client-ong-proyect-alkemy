@@ -25,8 +25,8 @@ const BackOffice = () => {
                     <Card body className="backoffice-card text-center mt-1 mb-1 ml-auto mr-auto w-75">
                         <CardTitle tag="h4">{get(item, 'title')}</CardTitle>
                         <CardText><item.icon fontSize="large"/></CardText>
-                        <Button className="backoffice-card-button m-auto pl-2 pr-2">
-                            <Link to={get(item, 'path')}>Ir</Link>
+                        <Button className="backoffice-card-button m-auto">
+                            <Link to={get(item, 'path')} className="px-3">Ir</Link>
                         </Button>
                     </Card>
                 </Col>

@@ -27,7 +27,7 @@ const initialState = {
             label: 'Content',
             placeholder: 'Content',
             type: 'CKEditor',
-            name: 'message'
+            name: 'content'
         }
     ],
     list: {

@@ -9,9 +9,9 @@ import {
     SUBMIT_TESTIMONIAL_REQUESTED
 } from './types';
 
-export const deleteTestimonialRequested = props => ({
+export const deleteTestimonialRequested = id => ({
     type: DELETE_TESTIMONIAL_REQUESTED,
-    ...props
+    id
 });
 
 export const fetchTestimonialRequested = props => ({
