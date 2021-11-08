@@ -50,8 +50,11 @@ export default class Api {
             return await axios.put(
                 `${API}/${URL}`, body, {
                     headers: token ? {
+                        'Content-Type': 'application/json',
                         Authorization: token
-                    } : {}
+                    } : {
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
         } catch (err) {
@@ -65,8 +68,11 @@ export default class Api {
             return await axios.delete(
                 `${API}/${URL}`, body, {
                     headers: token ? {
+                        'Content-Type': 'application/json',
                         Authorization: token
-                    } : {}
+                    } : {
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
         } catch (err) {

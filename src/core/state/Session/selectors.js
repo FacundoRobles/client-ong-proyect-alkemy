@@ -1,5 +1,5 @@
 import {
-    FormatListBulletedRounded, AssignmentRounded, ChatRounded, PhotoLibraryRounded, MenuBookRounded, PeopleAltRounded, PersonRounded, HomeWorkRounded,
+    FormatListBulletedRounded, AssignmentRounded, ChatRounded, MenuBookRounded, PeopleAltRounded, PersonRounded, HomeWorkRounded,
     ContactMailRounded
 } from '@material-ui/icons';
 import {getRoutes} from '@utils';
@@ -78,10 +78,6 @@ export const menuOffice = () => {
         title: 'Organizacion',
         icon: HomeWorkRounded,
         path: backOfficeRoutes.organization.list
-    }, {
-        title: 'Slides',
-        icon: PhotoLibraryRounded,
-        path: backOfficeRoutes.slides.edit
     }, {
         title: 'Usuarios',
         icon: PersonRounded,

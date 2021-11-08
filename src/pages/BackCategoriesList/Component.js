@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
     Button,
     Col,
+    Container,
     Row
 } from 'reactstrap';
 import TableListNew from '@components/TableListNew';
@@ -25,10 +26,10 @@ const Component = ({
     }, [fetchCategoriesRequested]);
 
     return (
-        <div className="text-center">
-            <h1>{title}</h1>
-            <Row className="p-0 m-0">
+        <Container>
+            <Row className="p-0 m-0 text-center">
                 <Col sm="12" md="12" className="m-auto">
+                    <h1>{title}</h1>
                     <TableListNew
                         props={categories}
                         erase={deleteCategoryRequested}
@@ -42,7 +43,7 @@ const Component = ({
                     </Button>
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 
@@ -52,7 +53,7 @@ Component.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,
-    categories: PropTypes.arrayOf().isRequired,
+    categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     title: PropTypes.string,
     buttonText: PropTypes.string
 };

@@ -19,28 +19,28 @@ const Component = ({link}) => (
         <Col xs="12" sm="6">
             <Button className="px-4" color="primary" onClick={() => window.location.assign(link)}>Contribuir</Button>
         </Col>
-        <Col xs="3" sm="2">
+        <Col xs="3" sm="2" md="1">
             <CardImg
                 src={carita1}
                 width="100%"
                 alt="niño"
             />
         </Col>
-        <Col xs="3" sm="2">
+        <Col xs="3" sm="2" md="1">
             <CardImg
                 src={carita3}
                 width="100%"
                 alt="niño"
             />
         </Col>
-        <Col xs="3" sm="2">
+        <Col xs="3" sm="2" md="1">
             <CardImg
                 src={carita2}
                 width="100%"
                 alt="niño"
             />
         </Col>
-        <Col xs="3" sm="2">
+        <Col xs="3" sm="2" md="1">
             <CardImg
                 src={carita4}
                 width="100%"

@@ -25,12 +25,10 @@ const Component = ({
         fetchTestimonialRequested({});
     }, [fetchTestimonialRequested]);
     return (
-        <div className="text-center">
-            <Container fluid>
-                <h1>{title}</h1>
-            </Container>
-            <Row className="p-0 m-0">
+        <Container>
+            <Row className="text-center p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
+                    <h1>{title}</h1>
                     <TableListNew
                         props={testimonial}
                         erase={deleteTestimonialRequested}
@@ -44,7 +42,7 @@ const Component = ({
                     </Button>
                 </Col>
             </Row>
-        </div>
+        </Container>
     );
 };
 
@@ -54,14 +52,15 @@ Component.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,
-    testimonial: PropTypes.arrayOf().isRequired,
+    testimonial: PropTypes.arrayOf(PropTypes.shape({})),
     title: PropTypes.string,
     buttonText: PropTypes.string
 };
 
 Component.defaultProps = {
     title: 'Listado de testimonios',
-    buttonText: 'crear uno nuevo'
+    buttonText: 'crear uno nuevo',
+    testimonial: []
 };
 
 export default Component;

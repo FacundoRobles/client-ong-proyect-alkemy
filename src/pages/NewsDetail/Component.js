@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {PropTypes} from 'prop-types';
-import {getRoutes} from '@utils';
 import {Container, Col, Row} from 'reactstrap';
 import ShowDetail from '@components/ShowDetail';
 import DetailNotFound from '@components/DetailNotFound';
@@ -10,30 +9,17 @@ import {
     NOT_FOUND_IMG,
     GO_NEWS_LIST
 } from '@utils/constants';
-import get from 'lodash-es/get';
-import isEmpty from 'lodash-es/isEmpty';
+import get from 'lodash/get';
 
-const mainRoutes = getRoutes('mainRoutes');
-const backOfficeRoutes = getRoutes('backOffice');
 const Component = ({
     form,
     fetchNewsRequested,
-    userAgent,
     match: {params: {id}},
-    history: {push}
+    history: {goBack}
 }) => {
     useEffect(() => {
         fetchNewsRequested({id});
     }, [id, fetchNewsRequested]);
-
-    const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
-
-    const goList = () => {
-        if (roleId === 1) {
-            return push(backOfficeRoutes.news.list);
-        }
-        return push(mainRoutes.news);
-    };
 
     const detailNotFoundData = {
         title: NOT_FOUND_TITLE,
@@ -50,7 +36,7 @@ const Component = ({
                             <ShowDetail
                                 key="NewsDetail"
                                 form={form}
-                                goList={goList}
+                                goList={goBack}
                                 goListBtn={GO_NEWS_LIST}
                             />
                         )
@@ -58,7 +44,7 @@ const Component = ({
                             <DetailNotFound
                                 key="NewsDetailNotFound"
                                 data={detailNotFoundData}
-                                goList={goList}
+                                goList={goBack}
                                 goListBtn={GO_NEWS_LIST}
                             />
                         )}
@@ -80,7 +66,7 @@ Component.propTypes = {
         })
     }),
     history: PropTypes.shape({
-        push: PropTypes.func.isRequired
+        goBack: PropTypes.func.isRequired
     }).isRequired
 };
 

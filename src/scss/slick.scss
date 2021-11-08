@@ -10,7 +10,7 @@
     max-width: 230px;
     min-width: 230px;
     width: 230px;
-
+    
     img {
       height: 200px;
       max-height: 200px;
@@ -48,6 +48,7 @@
 
     .description-text {
       line-height: 1.4rem !important;
+      text-align: center !important;
     }
   }
 }

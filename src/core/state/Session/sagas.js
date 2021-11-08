@@ -6,7 +6,7 @@ import {
 } from 'redux-saga/effects';
 
 import get from 'lodash/get';
-
+import {push} from '@core/middlewares/history';
 import {
     SUCCESS,
     ERROR
@@ -19,7 +19,6 @@ import {
     ORGANIZATION
 } from '@Api/Urls';
 import Api from '@Api/Api';
-import {push} from '@core/middlewares/history';
 import {
     LOGOUT,
     FETCH_SESSION_REQUESTED,
@@ -35,10 +34,10 @@ import {
 } from './actions';
 // import { push } from 'connected-react-router';
 
-function* fetchLogin(values) {
+function* fetchLogin({payload}) {
     try {
         yield put(setRequestFlag({flag: true}));
-        const responseLogin = yield Api.post(`${AUTH}/${LOGIN}`, values.payload);
+        const responseLogin = yield Api.post(`${AUTH}/${LOGIN}`, payload);
         const success = get(responseLogin, 'data.success');
         if (success) {
             const token = get(responseLogin, 'data.data');
@@ -52,6 +51,7 @@ function* fetchLogin(values) {
                 const user = get(dataUser, 'data.data');
                 yield put(fetchLoginSucceeded(user));
                 yield put(setSystemMessage(SUCCESS));
+                yield push('/');
                 return;
             }
         }
@@ -83,6 +83,7 @@ function* logout() {
             yield localStorage.removeItem('token_agent');
             yield push(HOME);
             yield put(setSystemMessage(SUCCESS));
+            yield push('/');
         }
     } catch (err) {
         yield put(setSystemMessage(ERROR));

@@ -33,6 +33,8 @@ import BackUsersList from '@pages/BackUsersList';
 import BackUserForm from '@pages/BackUserForm';
 import BackMembersList from '@pages/BackMembersList';
 import BackContactList from '@pages/BackContactList';
+import TestimonialDetail from '@pages/TestimonialDetail';
+import PageNotFound from '@pages/PageNotFound';
 import isEmpty from 'lodash/isEmpty';
 import Header from './header';
 import Footer from './footer';
@@ -69,22 +71,20 @@ const Router = () => {
                     animate="visible"
                     variants={variants}
                 >
-                    <Container fluid className="m-0 p-0">
+                    <Container fluid>
                         <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
-                        </Switch>
-                    </Container>
-                    <Container className="background">
-                        <Switch location={location}>
+                            <Route exact path={`${mainRoutes.testimonial}/:id`} component={TestimonialDetail}/>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                             <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                             <Route exact path={mainRoutes.contact} component={Contact}/>
                             <Route exact path={mainRoutes.contribute} component={Contribute}/>
                             <Route exact path={mainRoutes.us} component={Us}/>
+                            <Route component={PageNotFound}/>
                         </Switch>
                     </Container>
                 </motion.div>
@@ -102,16 +102,13 @@ const Router = () => {
                     animate="visible"
                     variants={variants}
                 >
-                    <Container fluid className="m-0 p-0">
+                    <Container fluid>
                         <Switch location={location}>
                             <Route exact path={mainRoutes.home} component={Home}/>
                             <Route exact path={mainRoutes.activity} component={Activity}/>
                             <Route exact path={mainRoutes.news} component={News}/>
                             <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
-                        </Switch>
-                    </Container>
-                    <Container className="background">
-                        <Switch location={location}>
+                            <Route exact path={`${mainRoutes.testimonial}/:id`} component={TestimonialDetail}/>
                             <Route exact path={mainRoutes.organization} component={Organization}/>
                             <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                             <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
@@ -134,12 +131,13 @@ const Router = () => {
                             <Route exact path={backOfficeRoutes.testimonial.edit} component={BackTestimonial}/>
                             <Route exact path={backOfficeRoutes.testimonial.form} component={BackTestimonial}/>
                             <Route exact path={backOfficeRoutes.testimonial.list} component={BackTestimonialList}/>
-                            <Route exact path={backOfficeRoutes.organization.edit} component={BackOrganizationForm}/>
+                            <Route exact path={backOfficeRoutes.organization.edit} component={BackHomeForm}/>
                             <Route exact path={backOfficeRoutes.organization.form} component={BackOrganizationForm}/>
                             <Route exact path={backOfficeRoutes.organization.list} component={BackOrganizationList}/>
                             <Route exact path={backOfficeRoutes.contact.list} component={BackContactList}/>
                             <Route exact path={backOfficeRoutes.slides.edit} component={BackHomeForm}/>
                             <Route exact path={backOfficeRoutes.member.list} component={BackMembersList}/>
+                            <Route component={PageNotFound}/>
                         </Switch>
                     </Container>
                 </motion.div>
@@ -157,16 +155,13 @@ const Router = () => {
                 animate="visible"
                 variants={variants}
             >
-                <Container fluid className="m-0 p-0">
+                <Container fluid>
                     <Switch location={location}>
                         <Route exact path={mainRoutes.home} component={Home}/>
                         <Route exact path={mainRoutes.activity} component={Activity}/>
                         <Route exact path={mainRoutes.news} component={News}/>
                         <Route exact path={mainRoutes.testimonial} component={Testimonial}/>
-                    </Switch>
-                </Container>
-                <Container className="background">
-                    <Switch location={location}>
+                        <Route exact path={`${mainRoutes.testimonial}/:id`} component={TestimonialDetail}/>
                         <Route exact path={`${mainRoutes.activity}/:id`} component={ActivityDetail}/>
                         <Route exact path={`${mainRoutes.news}/:id`} component={NewsDetail}/>
                         <Route exact path={mainRoutes.organization} component={Organization}/>
@@ -175,6 +170,7 @@ const Router = () => {
                         <Route exact path={`${mainRoutes.myProfile}/:id`} component={MyProfile}/>
                         <Route exact path={`${mainRoutes.myProfile}/:id/edit`} component={MyProfileEdit}/>
                         <Route exact path={mainRoutes.us} component={Us}/>
+                        <Route component={PageNotFound}/>
                     </Switch>
                 </Container>
             </motion.div>

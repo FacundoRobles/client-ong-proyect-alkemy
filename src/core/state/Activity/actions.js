@@ -13,9 +13,9 @@ export const submitActivityRequested = props => ({
     ...props
 });
 
-export const fetchActivitiesRequested = props => ({
+export const fetchActivitiesRequested = id => ({
     type: FETCH_ACTIVITIES_REQUESTED,
-    ...props
+    id
 });
 
 export const fetchActivitiesSucceeded = props => ({
@@ -28,9 +28,9 @@ export const fetchActivitySucceeded = props => ({
     ...props
 });
 
-export const deleteActivityRequested = idActivity => ({
+export const deleteActivityRequested = id => ({
     type: DELETE_ACTIVITY_REQUESTED,
-    idActivity
+    id
 });
 
 export const cleanActivityForm = constant({

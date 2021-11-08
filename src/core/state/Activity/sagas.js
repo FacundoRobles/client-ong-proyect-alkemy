@@ -19,7 +19,8 @@ import {
 import {
     fetchActivitiesSucceeded,
     fetchActivitySucceeded,
-    cleanActivityForm
+    cleanActivityForm,
+    fetchActivitiesRequested
 } from './actions';
 import {
     FETCH_ACTIVITIES_REQUESTED,
@@ -28,11 +29,11 @@ import {
 } from './types';
 
 // eslint-disable-next-line consistent-return
-function* requestActivitiesSagas({idActivity}) {
+function* requestActivitiesSagas({id}) {
     try {
         yield put(setRequestFlag({flag: true}));
-        if (idActivity) {
-            const getActivity = yield Api.get(`${ACTIVITY}/${idActivity}`);
+        if (id) {
+            const getActivity = yield Api.get(`${ACTIVITY}/${id}`);
             const success = get(getActivity, 'data.success');
             if (success) {
                 const activity = get(getActivity, 'data.data');
@@ -55,19 +56,11 @@ function* requestActivitiesSagas({idActivity}) {
     }
 }
 
-function* submitActivitiesSagas({
-    payload, id
-}) {
-    const obj = {
-        name: payload.name,
-        image: payload.image,
-        content: payload.content
-    };
-    const idActivity = id.id;
+function* submitActivitiesSagas({payload, id}) {
     try {
-        if (idActivity) {
+        if (id) {
             yield put(setRequestFlag({flag: true}));
-            const editActivity = yield Api.put(`${ACTIVITY}/${idActivity}`, obj);
+            const editActivity = yield Api.put(`${ACTIVITY}/${id}`, payload);
             const success = get(editActivity, 'data.success');
             if (success) {
                 const activity = get(editActivity, 'data.data');
@@ -77,13 +70,13 @@ function* submitActivitiesSagas({
                 return;
             }
         }
-        yield put(setRequestFlag({flag: true}));
-        const createActivity = yield Api.post(`${ACTIVITY}`, obj);
+
+        const createActivity = yield Api.post(`${ACTIVITY}`, payload);
         const success = get(createActivity, 'data.success');
         if (success) {
             yield put(cleanActivityForm());
             yield put(setSystemMessage(SUCCESS));
-            yield requestActivitiesSagas({idActivity: null});
+            yield put(fetchActivitiesRequested());
             return;
         }
     } catch (err) {
@@ -93,18 +86,16 @@ function* submitActivitiesSagas({
     }
 }
 
-function* deleteActivitySagas(values) {
+function* deleteActivitySagas({id}) {
     try {
         yield put(setRequestFlag({flag: true}));
-        const deleteActivity = yield Api.delete(`${ACTIVITY}/${values.idActivity}`);
+        const deleteActivity = yield Api.delete(`${ACTIVITY}/${id}`);
         const success = get(deleteActivity, 'data.success');
         if (success) {
-            yield put(cleanActivityForm());
             yield put(setSystemMessage(SUCCESS));
-            yield requestActivitiesSagas({idActivity: null});
+            yield put(fetchActivitiesRequested());
             return;
         }
-        yield put(setSystemMessage(ERROR));
     } catch (err) {
         yield put(setSystemMessage(ERROR));
     } finally {

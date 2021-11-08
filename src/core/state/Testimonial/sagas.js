@@ -21,7 +21,8 @@ import {
 import {
     fetchTestimonialsSucceeded,
     fetchTestimonialSucceeded,
-    cleanRegisterForm
+    cleanRegisterForm,
+    fetchTestimonialRequested
 } from './actions';
 import {
     FETCH_TESTIMONIAL_REQUESTED,
@@ -101,7 +102,7 @@ function* deleteTestimonialSagas({id}) {
         yield put(setSystemMessage(ERROR));
     } finally {
         yield put(setRequestFlag({flag: false}));
-        yield requestTestimonialSagas({});
+        yield put(fetchTestimonialRequested({}));
     }
 }
 

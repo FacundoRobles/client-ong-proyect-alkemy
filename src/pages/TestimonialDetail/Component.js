@@ -1,29 +1,29 @@
 import React, {useEffect} from 'react';
 import {PropTypes} from 'prop-types';
-import {Row, Col, Container} from 'reactstrap';
+import {Container, Col, Row} from 'reactstrap';
 import ShowDetail from '@components/ShowDetail';
 import DetailNotFound from '@components/DetailNotFound';
 import {
-    ACTIVITY404CONTENT,
+    NEWS404CONTENT,
     NOT_FOUND_TITLE,
     NOT_FOUND_IMG,
-    GO_ACTIVITIES_LIST
+    GOBACK
 } from '@utils/constants';
 import get from 'lodash/get';
 
 const Component = ({
     form,
-    fetchActivitiesRequested,
+    fetchTestimonialRequested,
     match: {params: {id}},
     history: {goBack}
 }) => {
     useEffect(() => {
-        fetchActivitiesRequested(id);
-    }, [id, fetchActivitiesRequested]);
+        fetchTestimonialRequested(id);
+    }, [id, fetchTestimonialRequested]);
 
     const detailNotFoundData = {
         title: NOT_FOUND_TITLE,
-        content: ACTIVITY404CONTENT,
+        content: NEWS404CONTENT,
         image: NOT_FOUND_IMG
     };
 
@@ -34,18 +34,18 @@ const Component = ({
                     {get(form, 'name') && id
                         ? (
                             <ShowDetail
-                                key="ActivityDetail"
+                                key="TestimonialDetail"
                                 form={form}
                                 goList={goBack}
-                                goListBtn={GO_ACTIVITIES_LIST}
+                                goListBtn={GOBACK}
                             />
                         )
                         : (
                             <DetailNotFound
-                                key="ActivityDetailNotFound"
+                                key="TestimonialDetailNotFound"
                                 data={detailNotFoundData}
                                 goList={goBack}
-                                goListBtn={GO_ACTIVITIES_LIST}
+                                goListBtn={GOBACK}
                             />
                         )}
                 </Col>
@@ -58,7 +58,7 @@ export default Component;
 
 Component.propTypes = {
     form: PropTypes.shape({}).isRequired,
-    fetchActivitiesRequested: PropTypes.func.isRequired,
+    fetchTestimonialRequested: PropTypes.func.isRequired,
     userAgent: PropTypes.shape({roleId: PropTypes.number}),
     match: PropTypes.shape({
         params: PropTypes.shape({
