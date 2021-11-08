@@ -16,10 +16,10 @@ export const getNewsSlick = state => {
             title: item.name,
             key: item.id,
             ...item
-        }
+        };
         return newItem;
     });
-    return newList
+    return newList;
 };
 
 export const getTableProps = () => {

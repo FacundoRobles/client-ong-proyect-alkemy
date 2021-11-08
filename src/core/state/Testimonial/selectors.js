@@ -17,10 +17,10 @@ export const getTestimonialsSlick = state => {
             key: item.id,
             html: item.content,
             ...item
-        }
+        };
         return newItem;
     });
-    return newList
+    return newList;
 };
 
 export const getSlickTestimonials = () => {

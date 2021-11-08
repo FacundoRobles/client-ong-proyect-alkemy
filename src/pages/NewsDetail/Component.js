@@ -86,5 +86,5 @@ Component.propTypes = {
 
 Component.defaultProps = {
     match: {},
-    userAgent:{}
+    userAgent: {}
 };
