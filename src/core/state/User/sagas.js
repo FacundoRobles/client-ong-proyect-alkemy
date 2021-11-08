@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
     all,
     put,
@@ -84,9 +85,9 @@ function* fetchUserRequestedSagas({id}) {
 
 function* deleteUserRequestedSagas({id}) {
     try {
+        console.log(id);
         yield put(setRequestFlag({flag: true}));
         yield Api.delete(`${USER}/${id}`);
-        yield put(fetchUserRequested({}));
         return yield put(setSystemMessage(SUCCESS));
     } catch (err) {
         yield put(setSystemMessage(ERROR));

@@ -19,6 +19,7 @@ import {
     ORGANIZATION
 } from '@Api/Urls';
 import Api from '@Api/Api';
+import {push} from '@core/middlewares/history';
 import {
     LOGOUT,
     FETCH_SESSION_REQUESTED,
@@ -32,6 +33,7 @@ import {
     setSystemMessage,
     submitSlideSucceeded
 } from './actions';
+// import { push } from 'connected-react-router';
 
 function* fetchLogin(values) {
     try {
@@ -79,6 +81,7 @@ function* logout() {
         yield put(setRequestFlag({flag: true}));
         if (localStorage.getItem('token_agent')) {
             yield localStorage.removeItem('token_agent');
+            yield push(HOME);
             yield put(setSystemMessage(SUCCESS));
         }
     } catch (err) {

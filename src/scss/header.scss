@@ -25,16 +25,22 @@
   padding: 2% 14% !important;
 }
 
-.btn-backoffice {
+.btn-backoffice,
+.btn-profile {
   background-color: var(--warm-grey) !important;
   border-style: none !important;
   font-size: 1.5rem;
   padding: 3% 8% !important;
 }
 
-.btn-backoffice:hover {
+.btn-backoffice:hover,
+.btn-profile:hover {
   background-color: var(--default-color) !important;
   font-size: 1.5rem;
+}
+
+.btn-profile {
+  padding: 7% 22% !important;  
 }
 
 .btn-logout {

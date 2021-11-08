@@ -15,6 +15,34 @@ const initialState = {
     },
     isAuthenticate: false,
     flagRequest: false,
+    sessionForm: {
+        firstName: '',
+        lastName: '',
+        email: ''
+    },
+    sessionFields: [
+        {
+            label: 'Nombre',
+            placeholder: 'Nombre',
+            type: 'text',
+            id: 'firstName',
+            name: 'firstName'
+        },
+        {
+            label: 'Apellido',
+            placeholder: 'Apellido',
+            type: 'text',
+            id: 'lastName',
+            name: 'lastName'
+        },
+        {
+            label: 'Email',
+            placeholder: 'Email',
+            type: 'email',
+            id: 'email',
+            name: 'email'
+        }
+    ],
     form: {
         welcomeText: 'Texto de bienvenida',
         items: [{
@@ -77,7 +105,8 @@ const Session = (state = initialState, {type, ...props}) => {
                 user: {
                     userAgent: props
                 },
-                isAuthenticate: true
+                isAuthenticate: true,
+                sessionForm: props
             };
         case FETCH_SLIDES_SUCCEEDED:
             return {
