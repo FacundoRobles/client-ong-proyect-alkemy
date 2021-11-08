@@ -28,7 +28,7 @@ const Component = ({
         <Container>
             <Row className="text-center p-0 m-0">
                 <Col sm="12" md="12" className="m-auto">
-                <h1>{title}</h1>
+                    <h1>{title}</h1>
                     <TableListNew
                         props={testimonial}
                         erase={deleteTestimonialRequested}

@@ -32,6 +32,7 @@ import {
     setSystemMessage,
     submitSlideSucceeded
 } from './actions';
+// import { push } from 'connected-react-router';
 
 function* fetchLogin({payload}) {
     try {
@@ -50,7 +51,7 @@ function* fetchLogin({payload}) {
                 const user = get(dataUser, 'data.data');
                 yield put(fetchLoginSucceeded(user));
                 yield put(setSystemMessage(SUCCESS));
-                yield push('/')
+                yield push('/');
                 return;
             }
         }
@@ -80,8 +81,9 @@ function* logout() {
         yield put(setRequestFlag({flag: true}));
         if (localStorage.getItem('token_agent')) {
             yield localStorage.removeItem('token_agent');
+            yield push(HOME);
             yield put(setSystemMessage(SUCCESS));
-            yield push('/')
+            yield push('/');
         }
     } catch (err) {
         yield put(setSystemMessage(ERROR));

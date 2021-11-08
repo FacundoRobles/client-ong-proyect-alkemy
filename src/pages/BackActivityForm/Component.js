@@ -11,6 +11,8 @@ const Component = ({
     match,
     history: {goBack}
 }) => {
+    //  To Do -> quitar o dejar andando la validacion
+    // eslint-disable-next-line no-unused-vars
     const validate = values => {
         const errors = {};
         // if (!values.name || !values.image || !values.content) {

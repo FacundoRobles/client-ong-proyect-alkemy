@@ -1,15 +1,17 @@
+/* eslint-disable no-unused-vars */
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {fetchTestimonialRequested} from '@core/state/Testimonial/actions';
 import fromState from '@core/selectors';
+import {deleteUserRequested} from '@core/state/User/actions';
+import {fetchSessionLogout} from '@core/state/Session/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        form: fromState.Testimonial.getForm(state),
-        userAgent: fromState.Session.getUserAgent(state)
+        form: fromState.Session.getSessionForm(state)
     }),
     dispatch => bindActionCreators({
-        fetchTestimonialRequested
+        deleteUserRequested,
+        fetchSessionLogout
     }, dispatch)
 )(Component);

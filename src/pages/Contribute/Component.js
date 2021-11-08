@@ -52,9 +52,9 @@ const Component = ({link}) => (
 
 Component.propTypes = {
     link: PropType.string
-}
+};
 
 Component.defaultProps = {
     link: 'https://www.mercadopago.com.ar'
-}
+};
 export default Component;

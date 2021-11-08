@@ -25,6 +25,7 @@ const Component = ({
     const onDelete = prop => {
         const deleteField = () => {
             deleteUserRequested(get(prop, 'id'));
+            fetchUserRequested();
         };
         swalConfirmAction('warning', 'Eliminar Registro', '', 'Confirmar', 'Cancelar', deleteField);
     };

@@ -39,7 +39,7 @@ const initialState = {
 const testimonialForm = (state = {...initialState}, {type, ...props}) => {
     switch (type) {
         case FETCH_TESTIMONIAL_SUCCEEDED:
-            if(props.testimonial){
+            if (props.testimonial) {
                 return {
                     ...state,
                     form: {...props.testimonial}

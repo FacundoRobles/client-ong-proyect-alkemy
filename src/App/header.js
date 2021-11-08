@@ -25,7 +25,7 @@ import ModalLogin from '@components/ModalLogin';
 import FormLogin from '@components/FormLogin';
 import fromState from '@core/selectors';
 import logo from '../images/LOGO-HEADER.png';
-import {HOME} from '../utils/constants';
+import {HOME, MY_PROFILE} from '../utils/constants';
 import RegisterForm from '../components/RegisterForm';
 
 const mainRoutes = getRoutes('mainRoutes');
@@ -207,6 +207,15 @@ const Header = ({
                     {isAuthenticate && roleId !== 1 && (
                         <Nav className="btn-responsive">
                             <NavItem>
+                                <Button
+                                    className="btn-profile m-1"
+                                    color="info"
+                                    onClick={() => history.push(`${mainRoutes.myProfile}/${userAgent.id}`)}
+                                >
+                                    {MY_PROFILE}
+                                </Button>
+                            </NavItem>
+                            <NavItem>
                                 <Button className="btn-logout" color="info" onClick={logout}>
                                     {buttonStandardLogout}
                                 </Button>
@@ -236,7 +245,8 @@ Header.propTypes = {
         }).isRequired
     ).isRequired,
     userAgent: PropTypes.shape({
-        roleId: PropTypes.number
+        roleId: PropTypes.number,
+        id: PropTypes.number
     }).isRequired,
     isAuthenticate: PropTypes.bool.isRequired,
     buttonAdminBackoffice: PropTypes.string,

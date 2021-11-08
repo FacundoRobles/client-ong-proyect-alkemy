@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {PropTypes} from 'prop-types';
-import {getRoutes} from '@utils';
 import {Row, Col, Container} from 'reactstrap';
 import ShowDetail from '@components/ShowDetail';
 import DetailNotFound from '@components/DetailNotFound';
