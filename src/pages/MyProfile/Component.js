@@ -7,16 +7,31 @@ import {
     Container,
     Row
 } from 'reactstrap';
-import BackForm from '@components/BackForm';
+import ProfileDetail from '@components/ProfileDetail';
+import {getRoutes, swalConfirmAction} from '@utils';
+import get from 'lodash/get';
+
+const mainRoutes = getRoutes('mainRoutes');
 
 const Component = ({
     form,
-    fields,
-    submitUserRequested,
-    match,
-    history: {goBack}
+    history: {push},
+    deleteUserRequested,
+    fetchSessionLogout
 }) => {
-    console.log('');
+    console.log(form);
+    const onDelete = () => {
+        const deleteField = () => {
+            deleteUserRequested(get(form, 'id'));
+            fetchSessionLogout();
+        };
+        swalConfirmAction('warning', 'Eliminar Registro', '', 'Confirmar', 'Cancelar', deleteField);
+    };
+
+    const onEdit = () => {
+        const id = get(form, 'id');
+        push(`${mainRoutes.myProfile}/${id}/edit`);
+    };
     return (
         <Container>
             <Row>
@@ -24,17 +39,11 @@ const Component = ({
             </Row>
             <Row>
                 <Col>
-                    <div className="form">
-                        <BackForm
-                            key="NewsForm"
-                            form={form}
-                            fields={fields}
-                            submit={submitUserRequested}
-                            fetch={id => id}
-                            id={match.params.id}
-                            goBack={goBack}
-                        />
-                    </div>
+                    <ProfileDetail
+                        form={form}
+                        onDelete={onDelete}
+                        onEdit={onEdit}
+                    />
                 </Col>
             </Row>
         </Container>
@@ -42,17 +51,17 @@ const Component = ({
 };
 Component.propTypes = {
     form: PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired
     }).isRequired,
-    fields: PropTypes.arrayOf(),
-    submitUserRequested: PropTypes.func
+    deleteUserRequested: PropTypes.func,
+    fetchSessionLogout: PropTypes.func
 };
 
 Component.defaultProps = {
-    submitUserRequested: null,
-    fields: null
+    deleteUserRequested: null,
+    fetchSessionLogout: null
 };
 
 export default Component;

@@ -26,7 +26,7 @@ const CardSlickComponent = ({items, onView}) => (
                     <CardTitle tag="h5" className="text-center w-100">{get(items, 'title')}</CardTitle>
                     {get(items, 'html')
                         ? (
-                            <CardText 
+                            <CardText
                                 className="description-text"
                                 dangerouslySetInnerHTML={{__html: get(items, 'content')}}
                             />
@@ -34,8 +34,7 @@ const CardSlickComponent = ({items, onView}) => (
                             <CardText style={{lineHeight: '1.5rem'}}>
                                 {get(items, 'text') || get(items, 'name')}
                             </CardText>
-                        )
-                    }
+                        )}
                     {onView
                             && (
                                 <div className="btn-container">

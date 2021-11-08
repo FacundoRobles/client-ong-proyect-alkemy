@@ -14,7 +14,8 @@ const mainRoutes = {
     novelty: '/novelties',
     editProfile: '/edit-profile',
     backOffice: '/backoffice',
-    myProfile: '/myprofile'
+    myProfile: '/myprofile',
+    myProfileEdit: '/myprofile/:id/edit'
 };
 
 export default {

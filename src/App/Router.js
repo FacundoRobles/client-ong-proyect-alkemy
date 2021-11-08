@@ -15,6 +15,7 @@ import Testimonial from '@pages/Testimonial';
 import Contact from '@pages/Contact';
 import Contribute from '@pages/Contribute';
 import MyProfile from '@pages/MyProfile';
+import MyProfileEdit from '@pages/MyProfileEdit';
 import Us from '@pages/Us';
 import BackOffice from '@pages/BackOffice';
 import BackActivityForm from '@pages/BackActivityForm';
@@ -172,6 +173,7 @@ const Router = () => {
                         <Route exact path={mainRoutes.contact} component={Contact}/>
                         <Route exact path={mainRoutes.contribute} component={Contribute}/>
                         <Route exact path={`${mainRoutes.myProfile}/:id`} component={MyProfile}/>
+                        <Route exact path={`${mainRoutes.myProfile}/:id/edit`} component={MyProfileEdit}/>
                         <Route exact path={mainRoutes.us} component={Us}/>
                     </Switch>
                 </Container>

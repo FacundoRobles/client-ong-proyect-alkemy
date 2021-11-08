@@ -2,16 +2,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import fromState from '@core/selectors';
-import {deleteUserRequested} from '@core/state/User/actions';
-import {fetchSessionLogout} from '@core/state/Session/actions';
+import {submitUserRequested} from '@core/state/User/actions';
 import Component from './Component';
 
 export default connect(
     state => ({
-        form: fromState.Session.getSessionForm(state)
+        user: fromState.Session.getUserAgent(state),
+        form: fromState.Session.getSessionForm(state),
+        fields: fromState.Session.getSessionFields(state)
     }),
     dispatch => bindActionCreators({
-        deleteUserRequested,
-        fetchSessionLogout
+        submitUserRequested
     }, dispatch)
 )(Component);

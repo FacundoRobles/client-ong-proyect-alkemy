@@ -187,7 +187,7 @@ export const getSlickSettings = () => {
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
-                    infinite: true,
+                    infinite: true
                 }
             },
             {

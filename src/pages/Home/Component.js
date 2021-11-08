@@ -32,10 +32,10 @@ const Component = ({
     fetchTestimonialRequested
 }) => {
     useEffect(() => {
-        fetchNewsRequested({})
+        fetchNewsRequested({});
     }, [fetchNewsRequested]);
     useEffect(() => {
-        fetchTestimonialRequested({})
+        fetchTestimonialRequested({});
     }, [fetchTestimonialRequested]);
     const settings = useSelector(fromState.Session.getSlickHomeSettings);
     const roleId = isEmpty(userAgent) ? null : userAgent.roleId;
